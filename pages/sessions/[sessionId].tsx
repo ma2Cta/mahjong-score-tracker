@@ -25,9 +25,11 @@ const SessionDetail = () => {
         <h1>セッション詳細</h1>
         {session ? (
           <div>
-            <div>開催日: {session.date}</div>
+            <div>開催日: {session.date.toString()}</div>
             <div>開催場所: {session.location}</div>
-            <div>参加ユーザー: {session.participants.join(", ")}</div>
+            <div>
+              参加ユーザー: {session.users?.map((user) => user.name).join(", ")}
+            </div>
             <h2>ゲーム一覧</h2>
             <GameList sessionId={session.id} />
           </div>

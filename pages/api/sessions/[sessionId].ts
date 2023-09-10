@@ -1,40 +1,39 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { Session } from '../../../types/session';
+import { NextApiRequest, NextApiResponse } from "next";
+import { Session } from "../../../types/session";
+import prisma from "../../../lib/prisma";
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const { sessionId } = req.query;
-  if (typeof sessionId === 'undefined') {
-    res.status(400).json({ error: 'ID is required' });
+  if (typeof sessionId === "undefined") {
+    res.status(400).json({ error: "ID is required" });
     return;
   }
 
   // 配列ならエラー
   if (Array.isArray(sessionId)) {
-    res.status(400).json({ error: 'Multiple IDs are not supported' });
+    res.status(400).json({ error: "Multiple IDs are not supported" });
     return;
   }
 
-  const session = getSessionById(sessionId);
+  const session = await getSessionById(sessionId);
   if (session) {
     res.status(200).json(session);
   } else {
-    res.status(404).json({ error: 'Session not found' });
+    res.status(404).json({ error: "Session not found" });
   }
-};
+}
 
-function getSessionById(id: string): Session {
+async function getSessionById(id: string): Promise<Session | null> {
   // idがnumberに変換できない場合エラー
   if (!id.match(/^[0-9]+$/)) {
-    throw new Error('Invalid ID');
+    throw new Error("Invalid ID");
   }
 
-  return {
-    id: Number(id), 
-    date: '2023-08-12',
-    location: 'Tokyo',
-    participants: ['Alice', 'Bob', 'Charlie'],
-  };
+  return await prisma.session.findUnique({
+    where: { id: Number(id) },
+    include: { users: true },
+  });
 }

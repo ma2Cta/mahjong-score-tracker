@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Session } from "../../types/session";
+import prisma from '../../lib/prisma';
 
 type GetResponse = {
   sessions: Session[];
@@ -11,27 +12,13 @@ type PostResponse = {
   session?: Session;
 };
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<GetResponse | PostResponse>
 ) {
   switch (req.method) {
     case "GET":
-      // mock response
-      const sessions = [
-        {
-          id: 1,
-          date: "2021-01-01",
-          location: "自宅",
-          participants: ["user1", "user2", "user3", "user4"],
-        },
-        {
-          id: 2,
-          date: "2021-01-02",
-          location: "自宅",
-          participants: ["user1", "user2", "user3", "user4"],
-        },
-      ]
+      const sessions = await prisma.session.findMany({ include: { users: true } }      );
       return res.status(200).json({ sessions });
     case "POST":
       const { date, location } = req.body;

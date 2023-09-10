@@ -1,6 +1,8 @@
+import { User } from "@prisma/client";
+
 export type Session = {
   id: number;
-  date: string;
+  date: Date;
   location: string;
-  participants: string[];
+  users: User[];
 };
