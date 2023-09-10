@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {
+  // APIはBasic認証をしない
+  if (req.nextUrl.pathname.startsWith("/api")) {
+    return NextResponse.next();
+  }
+
   if (req.nextUrl.pathname.startsWith("/")) {
     const basicAuth = req.headers.get("authorization");
 
