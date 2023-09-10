@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Session } from "../../types/session";
+import GameList from "../../components/GameList";
 
 const SessionDetail = () => {
   const router = useRouter();
@@ -27,7 +28,8 @@ const SessionDetail = () => {
             <div>開催日: {session.date}</div>
             <div>開催場所: {session.location}</div>
             <div>参加ユーザー: {session.participants.join(", ")}</div>
-            <Link href={`/sessions/${session.id}/games`}>ゲーム一覧</Link>
+            <h2>ゲーム一覧</h2>
+            <GameList sessionId={session.id} />
           </div>
         ) : (
           <div>Loading...</div>
