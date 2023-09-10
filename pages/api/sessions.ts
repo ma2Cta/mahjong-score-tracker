@@ -21,10 +21,17 @@ export default async function handler(
       const sessions = await prisma.session.findMany({ include: { users: true } }      );
       return res.status(200).json({ sessions });
     case "POST":
-      const { date, location } = req.body;
-
-      // ここでデータベースなどにセッションを保存
-
+      const { date, location, selectedUserIds } = req.body;
+      const isoDate = new Date(date);
+      await prisma.session.create({
+        data: {
+          date: isoDate,
+          location,
+          users: {
+            connect: selectedUserIds.map((id: String) => ({ id: Number(id) })),
+          },
+        },
+      });
       return res.status(201).json({ success: true });
     default:
       return res.status(405).end(`Method ${req.method} Not Allowed`);
