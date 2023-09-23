@@ -1,5 +1,19 @@
 services:
-  postgres:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+  db:
     container_name: postgres
     image: postgres:15.4
     volumes:
