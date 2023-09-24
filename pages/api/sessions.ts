@@ -18,7 +18,7 @@ export default async function handler(
 ) {
   switch (req.method) {
     case "GET":
-      const sessions = await prisma.session.findMany({ include: { users: true } }      );
+      const sessions = await prisma.session.findMany({ include: { users: true } });
       return res.status(200).json({ sessions });
     case "POST":
       const { date, location, selectedUserIds } = req.body;

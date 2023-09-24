@@ -19,19 +19,42 @@ const SessionDetail = () => {
     }
   }, [sessionId]);
 
+  const deleteSession = async () => {
+    if (!sessionId) {
+      return
+    }
+    try {
+      const response = await fetch(`/api/sessions/${sessionId}`, {
+        method: 'DELETE',
+        body: null
+      });
+      if (response.ok) {
+        // セッションが正常に削除された場合、ユーザーをセッション一覧ページにリダイレクトします。
+        router.push('/sessions');
+      } else {
+        // エラーメッセージを表示するなど、適切なエラーハンドリングを行います。
+        console.error('Failed to delete session');
+      }
+    } catch (error) {
+      // ネットワークエラーや、サーバーエラーのハンドリングを行います。
+      console.error('Error occurred while deleting session:', error);
+    }
+  };
+
   return (
     <>
       <div>
         <h1>セッション詳細</h1>
         {session ? (
           <div>
-            <div>開催日: {session.date.toString()}</div>
+            <div>開催日: {session.date?.toString()}</div>
             <div>開催場所: {session.location}</div>
             <div>
               参加ユーザー: {session.users?.map((user) => user.name).join(", ")}
             </div>
             <h2>ゲーム一覧</h2>
             <GameList sessionId={session.id} />
+            <button onClick={deleteSession}>セッションを削除</button>
           </div>
         ) : (
           <div>Loading...</div>

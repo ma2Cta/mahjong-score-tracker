@@ -18,22 +18,31 @@ export default async function handler(
     return;
   }
 
-  const session = await getSessionById(sessionId);
-  if (session) {
-    res.status(200).json(session);
-  } else {
-    res.status(404).json({ error: "Session not found" });
-  }
-}
-
-async function getSessionById(id: string): Promise<Session | null> {
   // idがnumberに変換できない場合エラー
-  if (!id.match(/^[0-9]+$/)) {
-    throw new Error("Invalid ID");
+  if (!sessionId.match(/^[0-9]+$/)) {
+    res.status(400).json({ error: "ID must be number" });
+    return;
   }
 
-  return await prisma.session.findUnique({
-    where: { id: Number(id) },
-    include: { users: true },
-  });
+  const sessionIdNumber = Number(sessionId);
+  switch (req.method) {
+    case "GET":
+      const session = await prisma.session.findUnique({
+        where: { id: sessionIdNumber },
+        include: { users: true },
+      });
+      if (session) {
+        res.status(200).json(session);
+      } else {
+        res.status(404).json({ error: "Session not found" });
+      }
+      break;
+    case "DELETE":
+      console.log("delete executed");
+      await prisma.session.delete({
+        where: { id: sessionIdNumber },
+      });
+      res.status(200).json({ success: true });
+      break;
+    }
 }

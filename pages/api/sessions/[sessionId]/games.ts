@@ -1,30 +1,28 @@
 // pages/api/sessions/[sessionId]/games.ts
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { Game } from '../../../../types/game';
+import type { NextApiRequest, NextApiResponse } from "next";
+import { Game, GameRound, toGameRound } from "../../../../types/game";
+import prisma from "../../../../lib/prisma";
 
-function getGamesBySessionId(sessionId: number): Game[] {
-  // mock response
-  return [
-    {
-      id: 1,
-      session_id: sessionId,
-      round: 1,
+async function getGamesBySessionId(sessionId: number): Promise<Game[]> {
+  const games = await prisma.game.findMany({
+    where: {
+      sessionId: sessionId,
     },
-    {
-      id: 2,
-      session_id: sessionId,
-      round: 2,
-    },
-  ]
+  });
+  return games.map((game) => ({
+    id: game.id,
+    date: game.date,
+    session_id: game.sessionId,
+    round: toGameRound(game.gameRound),
+  }));
 }
 
 const handler = (req: NextApiRequest, res: NextApiResponse<Game[]>) => {
   const { sessionId } = req.query;
-
-  // セッションIDを使用してゲームを取得するロジック
-  const games = getGamesBySessionId(Number(sessionId));
-
-  res.status(200).json(games);
+  const games = getGamesBySessionId(Number(sessionId)).then((games) =>
+    res.status(200).json(games)
+  );
+  return games;
 };
 
 export default handler;
