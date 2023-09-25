@@ -3,7 +3,16 @@ import { Game, GameRound } from "../types/game";
 
 const fetchGames = async (sessionId: number): Promise<Game[]> => {
   const response = await fetch(`/api/sessions/${sessionId}/games`);
-  return response.json();
+  if (!response.ok) {
+    throw new Error(`Failed to fetch games: ${response.statusText}`);
+  }
+  
+  const data = await response.json();
+  if (!data.games || !Array.isArray(data.games)) {
+    throw new Error('Invalid data format: Expected a list of games');
+  }
+  
+  return data.games;
 };
 
 function gameRoundNames(gameRound: GameRound): String {

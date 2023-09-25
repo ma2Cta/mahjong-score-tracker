@@ -52,9 +52,9 @@ const SessionDetail = () => {
             <div>
               参加ユーザー: {session.users?.map((user) => user.name).join(", ")}
             </div>
+            <button onClick={deleteSession}>セッションを削除</button>
             <h2>ゲーム一覧</h2>
             <GameList sessionId={session.id} />
-            <button onClick={deleteSession}>セッションを削除</button>
           </div>
         ) : (
           <div>Loading...</div>
