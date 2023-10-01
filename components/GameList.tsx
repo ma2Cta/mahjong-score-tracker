@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Game, GameRound } from "../types/game";
+import { Game, gameRoundNames } from "../types/game";
+import Link from "next/link";
 
 const fetchGames = async (sessionId: number): Promise<Game[]> => {
   const response = await fetch(`/api/sessions/${sessionId}/games`);
@@ -14,17 +15,6 @@ const fetchGames = async (sessionId: number): Promise<Game[]> => {
   
   return data.games;
 };
-
-function gameRoundNames(gameRound: GameRound): String {
-  switch (gameRound) {
-    case GameRound.One:
-      return "東風戦";
-    case GameRound.Half:
-      return "半荘戦";
-    case GameRound.Full:
-      return "一荘戦";
-  }
-}
 
 interface GameListProps {
   sessionId: number;
@@ -47,8 +37,10 @@ const GameList: React.FC<GameListProps> = ({ sessionId }) => {
     <ul>
       {games.map((game) => (
         <li key={game.id}>
-          {`${gameRoundNames(game.round)} 開催日時:${game.date}`}
-          </li>
+          <Link href={`/sessions/${sessionId}/games/${game.id}`}>
+            {`${gameRoundNames(game.round)} 開催日時:${game.date}`}
+          </Link>
+        </li>
       ))}
     </ul>
   );

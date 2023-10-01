@@ -54,6 +54,7 @@ const SessionDetail = () => {
             </div>
             <button onClick={deleteSession}>セッションを削除</button>
             <h2>ゲーム一覧</h2>
+            <Link href={`/sessions/${session.id}/games/create`}>ゲームを作成</Link>
             <GameList sessionId={session.id} />
           </div>
         ) : (

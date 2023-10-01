@@ -17,3 +17,14 @@ export function toGameRound(value: number): GameRound {
   }
   throw new Error('Invalid GameRound value');
 }
+
+export function gameRoundNames(gameRound: GameRound): String {
+  switch (gameRound) {
+    case GameRound.One:
+      return "東風戦";
+    case GameRound.Half:
+      return "半荘戦";
+    case GameRound.Full:
+      return "一荘戦";
+  }
+}
