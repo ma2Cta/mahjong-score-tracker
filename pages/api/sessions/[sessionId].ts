@@ -37,7 +37,6 @@ export default async function handler(
       }
       break;
     case "DELETE":
-      console.log("delete executed");
       await prisma.session.delete({
         where: { id: sessionIdNumber },
       });
