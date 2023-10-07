@@ -28,10 +28,9 @@ const CreateGame: React.FC = () => {
         throw new Error(message || 'Failed to create game');
       }
 
-      // 成功したら、フォームをクリアするなどの処理を行う
-      setGameRound('');
-      setDate('');
-      alert('Game successfully created');
+      if (response.ok) {
+        router.push(`/sessions/${sessionId}`);
+      }
     } catch (error) {
       console.error('Error creating game:', error);
       alert('Error creating game. Please try again.');
