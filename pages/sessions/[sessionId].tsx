@@ -1,23 +1,22 @@
-// pages/sessions/[id].tsx
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Session } from "../../types/session";
 import GameList from "../../components/GameList";
+import useSWR from "swr";
 
 const SessionDetail = () => {
   const router = useRouter();
   const { sessionId } = router.query;
 
   const [session, setSession] = useState<Session | null>(null);
+  const { data, error, isLoading } = useSWR(sessionId ? `/api/sessions/${sessionId}` : null);
 
   useEffect(() => {
-    if (sessionId) {
-      fetch(`/api/sessions/${sessionId}`)
-        .then((res) => res.json())
-        .then(setSession);
+    if (data) {
+      setSession(data);
     }
-  }, [sessionId]);
+  }, [data]);
 
   const deleteSession = async () => {
     if (!sessionId) {
@@ -40,6 +39,14 @@ const SessionDetail = () => {
       console.error('Error occurred while deleting session:', error);
     }
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <>

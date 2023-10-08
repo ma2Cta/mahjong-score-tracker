@@ -2,19 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { User } from "../../types/user";
-
-type UserListResponse = {
-  users: User[];
-}
-
-const fetchUsers = async (): Promise<UserListResponse> => {
-  const response = await fetch("/api/users");
-  if (!response.ok) {
-    throw new Error("Failed to fetch users");
-  }
-  return response.json() as Promise<UserListResponse>;
-};
-
+import useSWR from "swr";
 
 const CreateSession: React.FC = () => {
   const [date, setDate] = useState("");
@@ -22,15 +10,13 @@ const CreateSession: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [selectedUserIds, setSelectedUserIds] = useState<string[]>([]);
   const router = useRouter();
+  const { data, error, isLoading } = useSWR('/api/users');
 
   useEffect(() => {
-    // コンポーネントのマウント時にユーザー一覧を取得
-    fetchUsers().then(response => {
-      setUsers(response.users);
-    }).catch(error => {
-      console.error("Failed to fetch users:", error);
-    });
-  }, []);
+    if (data) {
+      setUsers(data);
+    }
+  }, [data]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,6 +36,14 @@ const CreateSession: React.FC = () => {
       // エラーハンドリング
     }
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <>

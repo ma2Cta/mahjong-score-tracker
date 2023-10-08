@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Game, toGameRound, gameRoundNames } from "../../../../types/game";
+import useSWR from "swr";
 
 const GameDetail = () => {
   const router = useRouter();
@@ -9,14 +10,21 @@ const GameDetail = () => {
   const { gameId } = router.query;
 
   const [game, setGame] = useState<Game | null>(null);
+  const { data, error, isLoading } = useSWR(`/api/sessions/${sessionId}/games/${gameId}`);
 
   useEffect(() => {
-    if (sessionId && gameId) {
-      fetch(`/api/sessions/${sessionId}/games/${gameId}`)
-        .then((res) => res.json())
-        .then(setGame);
+    if (data) {
+      setGame(data);
     }
-  }, [sessionId, gameId]);
+  }, [data]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   const deleteGame = async () => {
     if (!sessionId || !gameId) {
