@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Session } from "../../types/session";
-import GameList from "../../components/GameList";
 import useSWR from "swr";
+import SessionDetail from "@/components/SessionDetail";
 
-const SessionDetail = () => {
+const SessionDetailPage = () => {
   const router = useRouter();
   const { sessionId } = router.query;
 
@@ -14,7 +14,7 @@ const SessionDetail = () => {
 
   useEffect(() => {
     if (data) {
-      setSession(data);
+      setSession(data as Session);
     }
   }, [data]);
 
@@ -40,7 +40,7 @@ const SessionDetail = () => {
     }
   };
 
-  if (isLoading) {
+  if (!session || isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -52,25 +52,11 @@ const SessionDetail = () => {
     <>
       <div>
         <h1>セッション詳細</h1>
-        {session ? (
-          <div>
-            <div>開催日: {session.date?.toString()}</div>
-            <div>開催場所: {session.location}</div>
-            <div>
-              参加ユーザー: {session.users?.map((user) => user.name).join(", ")}
-            </div>
-            <button onClick={deleteSession}>セッションを削除</button>
-            <h2>ゲーム一覧</h2>
-            <Link href={`/sessions/${session.id}/games/create`}>ゲームを作成</Link>
-            <GameList sessionId={session.id} />
-          </div>
-        ) : (
-          <div>Loading...</div>
-        )}
+        <SessionDetail session={session} deleteSession={deleteSession} />
       </div>
       <Link href="/sessions">セッション一覧に戻る</Link>
     </>
   );
 };
 
-export default SessionDetail;
+export default SessionDetailPage;

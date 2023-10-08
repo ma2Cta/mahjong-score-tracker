@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Game, toGameRound, gameRoundNames } from "../../../../types/game";
+import { Game, gameRoundNames } from "../../../../types/game";
 import useSWR from "swr";
+import GameDetail from "@/components/GameDetail";
 
-const GameDetail = () => {
+const GameDetailPage = () => {
   const router = useRouter();
   const { sessionId } = router.query;
   const { gameId } = router.query;
@@ -17,14 +18,6 @@ const GameDetail = () => {
       setGame(data);
     }
   }, [data]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
 
   const deleteGame = async () => {
     if (!sessionId || !gameId) {
@@ -48,25 +41,23 @@ const GameDetail = () => {
     }
   };
 
-  console.log(game);
+  if (!game || isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <>
       <div>
         <h1>ゲーム詳細</h1>
-        {game ? (
-          <div>
-            <div>開催日: {game.date?.toString()}</div>
-            <div>ゲーム数: {gameRoundNames(game.round)}</div>
-            <button onClick={deleteGame}>ゲームを削除</button>
-          </div>
-        ) : (
-          <div>Loading...</div>
-        )}
+        <GameDetail game={game} deleteGame={deleteGame} />
       </div>
       <Link href={`/sessions/${sessionId}`}>セッション詳細に戻る</Link>
     </>
   );
 };
 
-export default GameDetail;
+export default GameDetailPage;
