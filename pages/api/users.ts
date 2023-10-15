@@ -14,7 +14,15 @@ export default async function handler(
   switch (req.method) {
     case "GET":
       const users = await prisma.user.findMany();
-      return res.status(200).json({ users });
+      const response = users.map((user) => {
+        return {
+          id: user.id,
+          name: user.name,
+          sessions: null,
+          scores: null
+        };
+      });
+      return res.status(200).json({ users: response });
     default:
       return res.status(405).end(`Method ${req.method} Not Allowed`);
   }

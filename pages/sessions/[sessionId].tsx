@@ -7,10 +7,13 @@ import SessionDetail from "@/components/SessionDetail";
 
 const SessionDetailPage = () => {
   const router = useRouter();
-  const { sessionId } = router.query;
+  const { sessionId: sessionIdStr } = router.query;
+  const sessionId = Number(sessionIdStr);
 
   const [session, setSession] = useState<Session | null>(null);
-  const { data, error, isLoading } = useSWR(sessionId ? `/api/sessions/${sessionId}` : null);
+  const { data, error, isLoading } = useSWR(
+    sessionId ? `/api/sessions/${sessionId}` : null
+  );
 
   useEffect(() => {
     if (data) {
@@ -52,7 +55,7 @@ const SessionDetailPage = () => {
     <>
       <div>
         <h1>セッション詳細</h1>
-        <SessionDetail session={session} deleteSession={deleteSession} />
+        <SessionDetail session={session} games={session.games ? session.games : []} deleteSession={deleteSession} />
       </div>
       <Link href="/sessions">セッション一覧に戻る</Link>
     </>

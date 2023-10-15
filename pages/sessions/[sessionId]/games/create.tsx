@@ -5,7 +5,7 @@ const CreateGame: React.FC = () => {
   const router = useRouter();
   const { sessionId } = router.query;
 
-  const [gameRound, setGameRound] = useState<string | number>('');
+  const [roundLength, setRoundLength] = useState<string | number>('');
   const [date, setDate] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -18,7 +18,7 @@ const CreateGame: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          round: gameRound,
+          round: roundLength,
           date,
         }),
       });
@@ -42,8 +42,8 @@ const CreateGame: React.FC = () => {
       <label>
         Game Round:
         <select
-          value={gameRound}
-          onChange={(e) => setGameRound(Number(e.target.value))}
+          value={roundLength}
+          onChange={(e) => setRoundLength(Number(e.target.value))}
         >
           <option value="" disabled>Select Round</option>
           <option value={1}>東風戦</option>

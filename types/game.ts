@@ -1,30 +1,34 @@
+import { Round } from '@/types/round';
+import { Session } from '@/types/session';
+
 export type Game = {
   id: number;
   date: Date;
-  session_id: number;
-  round: GameRound;
+  roundLength: RoundLength;
+  session: Session | null;
+  rounds: Round[] | null;
 }
 
-export enum GameRound {
+export enum RoundLength {
   One = 1,
   Half = 2,
   Full = 4,
 }
 
-export function toGameRound(value: number): GameRound {
-  if (Object.values(GameRound).includes(value)) {
-      return value as GameRound;
+export function toRoundLength(value: number): RoundLength {
+  if (Object.values(RoundLength).includes(value)) {
+      return value as RoundLength;
   }
-  throw new Error('Invalid GameRound value');
+  throw new Error('Invalid RoundLength value');
 }
 
-export function gameRoundNames(gameRound: GameRound): String {
-  switch (gameRound) {
-    case GameRound.One:
+export function roundLengthNames(roundLength: RoundLength): String {
+  switch (roundLength) {
+    case RoundLength.One:
       return "東風戦";
-    case GameRound.Half:
+    case RoundLength.Half:
       return "半荘戦";
-    case GameRound.Full:
+    case RoundLength.Full:
       return "一荘戦";
   }
 }

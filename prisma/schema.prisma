@@ -3,26 +3,26 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 //////////// model 
 
 model User {
-  id    Int       @id @default(autoincrement())
-  name  String
+  id       Int       @id @default(autoincrement())
+  name     String
   sessions Session[]
-  scores  Score[]
+  scores   Score[]
 }
 
 model Session {
-  id          Int      @id @default(autoincrement())
-  date        DateTime
-  location    String
-  users       User[]
-  games       Game[]
+  id       Int      @id @default(autoincrement())
+  date     DateTime
+  location String
+  users    User[]
+  games    Game[]
 }
 
 model Game {
@@ -30,17 +30,23 @@ model Game {
   date        DateTime
   sessionId   Int
   session     Session  @relation(fields: [sessionId], references: [id])
-  gameRound   Int
-  scores      Score[]
+  roundLength Int      @default(1)
+  rounds      Round[]
+}
+
+model Round {
+  id     Int     @id @default(autoincrement())
+  gameId Int
+  game   Game    @relation(fields: [gameId], references: [id])
+  round  Int
+  scores Score[]
 }
 
 model Score {
-  id          Int    @id @default(autoincrement())
-  gameId      Int
-  game        Game   @relation(fields: [gameId], references: [id])
-  userId      Int
-  user        User   @relation(fields: [userId], references: [id])
-  round       Int
-  points      Int
-  ranking     Int
+  id      Int   @id @default(autoincrement())
+  roundId Int
+  round   Round @relation(fields: [roundId], references: [id])
+  userId  Int
+  user    User  @relation(fields: [userId], references: [id])
+  points  Int
 }

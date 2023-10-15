@@ -2,14 +2,17 @@ import { Session } from "@/types/session";
 import React from "react";
 import Link from "next/link";
 import GameList from "@/components/GameList";
+import { Game } from "@/types/game";
 
 type SessionDetailProps = {
   session: Session;
+  games: Game[];
   deleteSession: (sessionId: number) => void;
 };
 
 const SessionDetail: React.FC<SessionDetailProps> = ({
   session,
+  games,
   deleteSession,
 }) => {
   if (!session) {
@@ -28,7 +31,7 @@ const SessionDetail: React.FC<SessionDetailProps> = ({
       </button>
       <h2>ゲーム一覧</h2>
       <Link href={`/sessions/${session.id}/games/create`}>ゲームを作成</Link>
-      <GameList sessionId={session.id} />
+      <GameList games={games} sessionId={session.id} />
     </div>
   );
 };
