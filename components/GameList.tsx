@@ -21,7 +21,7 @@ const GameList: React.FC<GameListProps> = ({ games, sessionId }) => {
       {games.map((game) => (
         <li key={game.id}>
           <Link href={`/sessions/${sessionId}/games/${game.id}`}>
-            {`${roundLengthNames(game.roundLength)} 開催日時:${game.date}`}
+            {roundLengthNames(game.roundLength)}
           </Link>
         </li>
       ))}
