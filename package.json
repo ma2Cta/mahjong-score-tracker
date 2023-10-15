@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^5.2.0",
+    "@prisma/client": "^5.4.1",
     "@types/node": "20.4.9",
     "@types/react-dom": "18.2.7",
     "@vercel/postgres": "^0.4.1",
@@ -25,6 +25,6 @@
   },
   "devDependencies": {
     "@types/react": "18.2.22",
-    "prisma": "^5.2.0"
+    "prisma": "^5.4.1"
   }
 }
