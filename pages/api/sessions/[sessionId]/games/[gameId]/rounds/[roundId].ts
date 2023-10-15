@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { toWind } from "@/types/round";
 import prisma from "@/lib/prisma";
 
 export default async function handler(
@@ -23,6 +24,8 @@ async function getResponse(res: NextApiResponse, roundIdNumber: number) {
     const response = {
       id: round.id,
       round: round.round,
+      wind: toWind(round.wind),
+      roundInWind: round.roundInWind,
     }
     return res.status(200).json(response);
   } else {

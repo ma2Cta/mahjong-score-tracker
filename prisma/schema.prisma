@@ -35,11 +35,13 @@ model Game {
 }
 
 model Round {
-  id     Int     @id @default(autoincrement())
-  gameId Int
-  game   Game    @relation(fields: [gameId], references: [id])
-  round  Int
-  scores Score[]
+  id          Int     @id @default(autoincrement())
+  gameId      Int
+  game        Game    @relation(fields: [gameId], references: [id])
+  round       Int     @default(1)
+  wind        Int     @default(0)
+  roundInWind Int     @default(0)
+  scores      Score[]
 }
 
 model Score {

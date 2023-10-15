@@ -1,4 +1,4 @@
-import { Round } from "@/types/round";
+import { Round, roundNames } from "@/types/round";
 import Link from "next/link";
 
 
@@ -22,7 +22,7 @@ const RoundList: React.FC<RoundListProps> = ({ rounds, sessionId, gameId }) => {
       {rounds.map((round) => (
         <li key={round.id}>
           <Link href={`/sessions/${sessionId}/games/${gameId}/rounds/${round.id}`}>
-            {`${(round.round)}`}
+            {`${(round.round)}: ${roundNames(round.wind, round.roundInWind)}`}
           </Link>
         </li>
       ))}

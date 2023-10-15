@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { toWind } from "@/types/round";
 import prisma from "@/lib/prisma";
 
 export default async function handler(
@@ -39,6 +40,8 @@ async function getResponse(res: NextApiResponse, gameIdNumber: number) {
       rounds: game.rounds.map((round) => ({
         id: round.id,
         round: round.round,
+        wind: toWind(round.wind),
+        roundInWind: round.roundInWind,
         game: game,
         scores: null,
       }))

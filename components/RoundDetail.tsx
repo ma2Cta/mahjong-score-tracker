@@ -1,4 +1,4 @@
-import { Round } from "@/types/round";
+import { Round, roundNames } from "@/types/round";
 
 
 type RoundDetailProps = {
@@ -14,6 +14,7 @@ const RoundDetail: React.FC<RoundDetailProps> = ({ round, deleteRound }) => {
   return (
     <div>
       <div>ラウンド数: {round.round}</div>
+      <div>局: {roundNames(round.wind, round.roundInWind)}</div>
       <button onClick={() => deleteRound(round.id)}>ラウンドを削除</button>
     </div>
   );
