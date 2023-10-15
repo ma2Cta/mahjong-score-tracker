@@ -37,7 +37,6 @@ async function getResponse(res: NextApiResponse, gameIdNumber: number) {
   if (game) {
     const response = {
       id: game.id,
-      date: game.date,
       round: game.roundLength,
       session: {
         id: game.sessionId,

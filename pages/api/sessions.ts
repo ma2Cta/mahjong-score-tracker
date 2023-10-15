@@ -49,7 +49,6 @@ async function getResponse(res: NextApiResponse<GetResponse>) {
       games: session.games.map((game) => {
         return {
           id: game.id,
-          date: game.date,
           roundLength: game.roundLength,
           session: null,
           rounds: null,

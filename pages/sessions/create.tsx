@@ -14,7 +14,7 @@ const CreateSession: React.FC = () => {
 
   useEffect(() => {
     if (data) {
-      setUsers(data);
+      setUsers(data.users);
     }
   }, [data]);
 
@@ -37,7 +37,7 @@ const CreateSession: React.FC = () => {
     }
   };
 
-  if (isLoading) {
+  if (!users || isLoading) {
     return <div>Loading...</div>;
   }
 

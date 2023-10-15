@@ -27,7 +27,6 @@ model Session {
 
 model Game {
   id          Int      @id @default(autoincrement())
-  date        DateTime
   sessionId   Int
   session     Session  @relation(fields: [sessionId], references: [id])
   roundLength Int      @default(1)

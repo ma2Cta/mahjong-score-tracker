@@ -4,7 +4,6 @@ import { User } from "@/types/user";
 
 export type Game = {
   id: number;
-  date: Date;
   roundLength: RoundLength;
   session: Session | null;
   rounds: Round[] | null;

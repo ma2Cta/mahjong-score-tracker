@@ -15,7 +15,6 @@ const GameDetail: React.FC<GameDetailProps> = ({ game, sessionId, deleteGame }) 
 
   return (
     <div>
-      <div>開催日: {game.date?.toString()}</div>
       <div>ゲーム数: {roundLengthNames(game.roundLength)}</div>
       <button onClick={() => deleteGame(game.id)}>ゲームを削除</button>
       <h2>ラウンド一覧</h2>

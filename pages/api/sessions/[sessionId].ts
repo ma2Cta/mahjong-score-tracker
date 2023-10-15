@@ -36,7 +36,6 @@ async function getResponse(res: NextApiResponse, sessionIdNumber: number) {
       games: session.games.map((game) => {
         return {
           id: game.id,
-          date: game.date,
           roundLength: game.roundLength,
           session: null,
           scores: null,
