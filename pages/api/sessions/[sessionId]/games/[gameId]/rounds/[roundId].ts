@@ -18,6 +18,13 @@ export default async function handler(
 
 async function getResponse(res: NextApiResponse, roundIdNumber: number) {
   const round = await prisma.round.findUnique({
+    include: { 
+      scores: {
+        include: {
+          user: true
+        }
+      }
+    },
     where: { id: roundIdNumber }
   });
   if (round) {
@@ -26,6 +33,17 @@ async function getResponse(res: NextApiResponse, roundIdNumber: number) {
       round: round.round,
       wind: toWind(round.wind),
       roundInWind: round.roundInWind,
+      scores: round.scores.map((score) => ({
+        id: score.id,
+        user: {
+          id: score.user.id,
+          name: score.user.name,
+          sessions: null,
+          scores: null
+        },
+        round: null,
+        point: score.point
+      })),
     }
     return res.status(200).json(response);
   } else {

@@ -20,7 +20,15 @@ async function getResponse(res: NextApiResponse, gameIdNumber: number) {
   const game = await prisma.game.findUnique({
     include: { 
       session: true,
-      rounds: true
+      rounds: {
+        include: {
+          scores: {
+            include: {
+              user: true
+            }
+          }
+        }
+      }
     },
     where: { 
       id: gameIdNumber
@@ -42,9 +50,20 @@ async function getResponse(res: NextApiResponse, gameIdNumber: number) {
         round: round.round,
         wind: toWind(round.wind),
         roundInWind: round.roundInWind,
-        game: game,
-        scores: null,
-      }))
+        game: null,
+        scores: round.scores.map((score) => ({
+          id: score.id,
+          user: {
+            id: score.user.id,
+            name: score.user.name,
+            sessions: null,
+            scores: null
+          },
+          round: null,
+          point: score.point,
+        }))
+      })),
+      basePoint: game.basePoint,
     }
     return res.status(200).json(response);
   } else {

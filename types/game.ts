@@ -1,5 +1,6 @@
-import { Round } from '@/types/round';
-import { Session } from '@/types/session';
+import { Round } from "@/types/round";
+import { Session } from "@/types/session";
+import { User } from "@/types/user";
 
 export type Game = {
   id: number;
@@ -7,7 +8,8 @@ export type Game = {
   roundLength: RoundLength;
   session: Session | null;
   rounds: Round[] | null;
-}
+  basePoint: number;
+};
 
 export enum RoundLength {
   One = 1,
@@ -17,9 +19,9 @@ export enum RoundLength {
 
 export function toRoundLength(value: number): RoundLength {
   if (Object.values(RoundLength).includes(value)) {
-      return value as RoundLength;
+    return value as RoundLength;
   }
-  throw new Error('Invalid RoundLength value');
+  throw new Error("Invalid RoundLength value");
 }
 
 export function roundLengthNames(roundLength: RoundLength): String {
@@ -31,4 +33,49 @@ export function roundLengthNames(roundLength: RoundLength): String {
     case RoundLength.Full:
       return "一荘戦";
   }
+}
+
+export type GameResult = {
+  place: number;
+  userTotalScore: UserTotalScore;
+};
+
+export type UserTotalScore = {
+  user: User;
+  totalScore: number;
+};
+
+export function buildGameResult(game: Game): GameResult[] {
+  const userScores = calculateUserScores(game);
+  const results: GameResult[] = [];
+  Object.values(userScores).forEach((userScore) => {
+    results.push({
+      place: 0,
+      userTotalScore: userScore,
+    });
+  });
+  results.sort((a, b) => {
+    return b.userTotalScore.totalScore - a.userTotalScore.totalScore;
+  });
+  results.forEach((result, index) => {
+    result.place = index + 1;
+  });
+  return results;
+}
+
+function calculateUserScores(game: Game): Record<number, UserTotalScore> {
+  if (game.rounds === null || game.rounds.length === 0) {
+    return {};
+  }
+
+  const lastScores = game.rounds[game.rounds.length - 1].scores;
+  return lastScores.map((score) => {
+    if (score.user === null) {
+      throw new Error("User is null");
+    }
+    return {
+      user: score.user,
+      totalScore: score.point,
+    };
+  });
 }

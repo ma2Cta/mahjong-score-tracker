@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Game, roundLengthNames } from "../../../../types/game";
 import useSWR from "swr";
 import GameDetail from "@/components/GameDetail";
+import GameResultComponent from "@/components/GameResult";
 
 const GameDetailPage = () => {
   const router = useRouter();
@@ -57,6 +58,8 @@ const GameDetailPage = () => {
       <div>
         <h1>ゲーム詳細</h1>
         <GameDetail game={game} sessionId={sessionId} deleteGame={deleteGame} />
+        <h2>ゲーム結果</h2>
+        <GameResultComponent game={game} />
       </div>
       <Link href={`/sessions/${sessionId}`}>セッション詳細に戻る</Link>
     </>

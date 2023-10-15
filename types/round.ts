@@ -1,5 +1,6 @@
 import { Score } from '@/types/score';
 import { Game } from '@/types/game';
+import { User } from '@/types/user';
 
 export type Round = {
   id: number;

@@ -1,3 +1,4 @@
+import ScoreList from "@/components/ScoreList";
 import { Round, roundNames } from "@/types/round";
 
 
@@ -15,6 +16,7 @@ const RoundDetail: React.FC<RoundDetailProps> = ({ round, deleteRound }) => {
     <div>
       <div>ラウンド数: {round.round}</div>
       <div>局: {roundNames(round.wind, round.roundInWind)}</div>
+      <ScoreList scores={round.scores} />
       <button onClick={() => deleteRound(round.id)}>ラウンドを削除</button>
     </div>
   );

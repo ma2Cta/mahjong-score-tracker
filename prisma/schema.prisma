@@ -32,6 +32,7 @@ model Game {
   session     Session  @relation(fields: [sessionId], references: [id])
   roundLength Int      @default(1)
   rounds      Round[]
+  basePoint   Int      @default(25000)
 }
 
 model Round {
@@ -50,5 +51,5 @@ model Score {
   round   Round @relation(fields: [roundId], references: [id])
   userId  Int
   user    User  @relation(fields: [userId], references: [id])
-  points  Int
+  point   Int   @default(0)
 }

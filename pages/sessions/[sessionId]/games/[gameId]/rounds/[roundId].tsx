@@ -4,6 +4,7 @@ import Link from "next/link";
 import useSWR from "swr";
 import RoundDetail from "@/components/RoundDetail";
 import { Round } from "@/types/round";
+import RoundResult from "@/components/GameResult";
 
 const RoundDetailPage = () => {
   const router = useRouter();
