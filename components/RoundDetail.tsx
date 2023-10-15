@@ -6,7 +6,7 @@ type RoundDetailProps = {
   deleteRound: (roundId: number) => void;
 };
 
-const GameDetail: React.FC<RoundDetailProps> = ({ round, deleteRound }) => {
+const RoundDetail: React.FC<RoundDetailProps> = ({ round, deleteRound }) => {
   if (!round) {
     return <div>Loading...</div>;
   }
@@ -19,4 +19,4 @@ const GameDetail: React.FC<RoundDetailProps> = ({ round, deleteRound }) => {
   );
 };
 
-export default GameDetail;
+export default RoundDetail;
