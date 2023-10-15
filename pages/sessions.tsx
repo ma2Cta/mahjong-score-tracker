@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Session } from "../types/session";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import SessionList from "@/components/SessionList";
 
 const Sessions: React.FC = () => {
@@ -11,6 +11,7 @@ const Sessions: React.FC = () => {
     if (data) {
       setSessions(data.sessions);
     }
+    mutate('/api/sessions');
   }, [data]); 
 
   if (isLoading) {
@@ -21,7 +22,6 @@ const Sessions: React.FC = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  console.log(sessions);
   return (
     <div>
       <h1>セッション一覧</h1>

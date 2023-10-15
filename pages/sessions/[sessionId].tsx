@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Session } from "../../types/session";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import SessionDetail from "@/components/SessionDetail";
 
 const SessionDetailPage = () => {
@@ -19,7 +19,8 @@ const SessionDetailPage = () => {
     if (data) {
       setSession(data as Session);
     }
-  }, [data]);
+    mutate(`/api/sessions/${sessionId}`);
+  }, [sessionId, data]);
 
   const deleteSession = async () => {
     if (!sessionId) {

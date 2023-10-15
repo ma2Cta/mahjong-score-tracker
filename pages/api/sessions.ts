@@ -31,7 +31,8 @@ async function getResponse(res: NextApiResponse<GetResponse>) {
     include: { 
       users: true, 
       games: true,
-    }
+    },
+    orderBy: { date: 'asc' }
   });
   const response = sessions.map((session) => {
     return {

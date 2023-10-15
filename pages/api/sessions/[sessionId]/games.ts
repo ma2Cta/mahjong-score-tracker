@@ -36,7 +36,7 @@ async function getResponse(res: NextApiResponse, sessionIdNumber: number) {
     const games = await prisma.game.findMany({
       where: { sessionId: sessionIdNumber },
       include: { session: true },
-      orderBy: { date: "desc" },
+      orderBy: { createdAt: "asc" },
     });
     games.map((game) => ({
       id: game.id,
@@ -58,10 +58,8 @@ async function getResponse(res: NextApiResponse, sessionIdNumber: number) {
 async function postResponse(req: NextApiRequest, res: NextApiResponse, sessionIdNumber: number) {
   try {
     const { date, round } = req.body;
-    const isoDate = date.toISOString();
     await prisma.game.create({
       data: {
-        date: isoDate,
         roundLength: round,
         session: {
           connect: { id: sessionIdNumber },
