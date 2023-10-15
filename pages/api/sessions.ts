@@ -52,7 +52,8 @@ async function getResponse(res: NextApiResponse<GetResponse>) {
           date: game.date,
           roundLength: game.roundLength,
           session: null,
-          rounds: null
+          rounds: null,
+          basePoint: game.basePoint,
         }
       })
     };
