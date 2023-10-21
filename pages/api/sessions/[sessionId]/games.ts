@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { Game, RoundLength, toRoundLength } from "../../../../types/game";
-import prisma from "../../../../lib/prisma";
+import { Game, RoundLength, toRoundLength } from "@/types/game";
+import prisma from "@/lib/prisma";
 
 type GetResponse = {
   games: Game[];

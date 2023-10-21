@@ -7,3 +7,8 @@ export type Score = {
   round: Round | null;
   point: number;
 }
+
+export type CreateScoreData = {
+  userId: number,
+  point: number
+}

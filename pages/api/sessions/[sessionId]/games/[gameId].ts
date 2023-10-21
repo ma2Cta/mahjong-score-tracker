@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { toWind } from "@/types/round";
+import { Wind } from "@/types/round";
 import prisma from "@/lib/prisma";
 
 export default async function handler(
@@ -19,7 +19,11 @@ export default async function handler(
 async function getResponse(res: NextApiResponse, gameIdNumber: number) {
   const game = await prisma.game.findUnique({
     include: { 
-      session: true,
+      session: {
+        include: {
+          users: true
+        }
+      },
       rounds: {
         include: {
           scores: {
@@ -42,12 +46,12 @@ async function getResponse(res: NextApiResponse, gameIdNumber: number) {
         id: game.sessionId,
         date: game.session.date,
         location: game.session.location,
-        users: null
+        users: game.session.users
       },
       rounds: game.rounds.map((round) => ({
         id: round.id,
         round: round.round,
-        wind: toWind(round.wind),
+        wind: round.wind as Wind,
         roundInWind: round.roundInWind,
         game: null,
         scores: round.scores.map((score) => ({

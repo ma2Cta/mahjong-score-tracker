@@ -5,12 +5,17 @@ type GameResultProps = {
   game: Game;
 }
 
-const GameResultComponent: React.FC<GameResultProps> = ({ game }) => {
+const GameResult: React.FC<GameResultProps> = ({ game }) => {
   if (!game) {
     return <div>Loading...</div>;
   }
 
   const gameResult = buildGameResult(game);
+  console.log(gameResult);
+  if (gameResult.length === 0) {
+    return <div>ラウンドがありません。</div>
+  }
+  
   return (
     <div>
       <ul>
@@ -24,4 +29,4 @@ const GameResultComponent: React.FC<GameResultProps> = ({ game }) => {
   )
 }
 
-export default GameResultComponent;
+export default GameResult;

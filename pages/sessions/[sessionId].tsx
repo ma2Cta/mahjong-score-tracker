@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Session } from "../../types/session";
+import { Session } from "@/types/session";
 import useSWR, { mutate } from "swr";
 import SessionDetail from "@/components/SessionDetail";
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { User } from "../../types/user";
+import { User } from "@/types/user";
 import useSWR, { mutate } from "swr";
 
 const CreateSession: React.FC = () => {

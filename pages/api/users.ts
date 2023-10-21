@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { User } from "../../types/user";
-import prisma from '../../lib/prisma';
+import { User } from "@/types/user";
+import prisma from '@/lib/prisma';
 
 type GetResponse = {
   users: User[];

@@ -15,7 +15,7 @@ const GameDetail: React.FC<GameDetailProps> = ({ game, sessionId, deleteGame }) 
 
   return (
     <div>
-      <div>ゲーム数: {roundLengthNames(game.roundLength)}</div>
+      <div>{roundLengthNames(game.roundLength)}</div>
       <button onClick={() => deleteGame(game.id)}>ゲームを削除</button>
       <h2>ラウンド一覧</h2>
       <RoundList
