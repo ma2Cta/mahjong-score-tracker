@@ -9,6 +9,7 @@ import {
   TableRow,
   TableCell,
 } from "@nextui-org/react";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 type SessionListProps = {
   sessions: Session[];
@@ -16,7 +17,7 @@ type SessionListProps = {
 
 const SessionsList: React.FC<SessionListProps> = ({ sessions }) => {
   if (!sessions) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

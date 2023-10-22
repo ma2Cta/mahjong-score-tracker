@@ -1,3 +1,4 @@
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { Game } from "@/types/game";
 import { GameResult, buildGameResult } from "@/types/game";
 import {
@@ -15,7 +16,7 @@ type GameResultProps = {
 
 const GameResult: React.FC<GameResultProps> = ({ game }) => {
   if (!game) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   const gameResult = buildGameResult(game);

@@ -1,3 +1,4 @@
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { Game } from "@/types/game";
 import { roundLengthNames } from "@/types/game";
 import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react";
@@ -9,7 +10,7 @@ type GameDetailProps = {
 
 const GameDetail: React.FC<GameDetailProps> = ({ game }) => {
   if (!game) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />
   }
 
   return (

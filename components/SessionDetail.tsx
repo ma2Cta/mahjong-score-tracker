@@ -12,6 +12,7 @@ import {
 import GameList from "@/components/GameList";
 import { Game } from "@/types/game";
 import CreateGameForm from "@/components/CreateGameForm";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 type SessionDetailProps = {
   session: Session;
@@ -20,7 +21,7 @@ type SessionDetailProps = {
 
 const SessionDetail: React.FC<SessionDetailProps> = ({ session, games }) => {
   if (!session) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

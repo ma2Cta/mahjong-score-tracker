@@ -1,3 +1,4 @@
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { Round, Wind } from "@/types/round";
 import {
   Table,
@@ -14,7 +15,7 @@ type RoundDetailProps = {
 
 const RoundDetail: React.FC<RoundDetailProps> = ({ round }) => {
   if (!round) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (

@@ -7,6 +7,7 @@ import SessionDetail from "@/components/SessionDetail";
 import GameList from "@/components/GameList";
 import CreateGameForm from "@/components/CreateGameForm";
 import Container from "@/components/ui/Container";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const SessionDetailPage = () => {
   const router = useRouter();
@@ -48,7 +49,7 @@ const SessionDetailPage = () => {
   };
 
   if (!session || isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (error) {
