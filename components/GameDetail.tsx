@@ -1,29 +1,28 @@
 import { Game } from "@/types/game";
 import { roundLengthNames } from "@/types/game";
-import RoundList from "@/components/RoundList";
+import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react";
 
 type GameDetailProps = {
   game: Game;
   sessionId: number;
-  deleteGame: (gameId: number) => void;
 };
 
-const GameDetail: React.FC<GameDetailProps> = ({ game, sessionId, deleteGame }) => {
+const GameDetail: React.FC<GameDetailProps> = ({ game }) => {
   if (!game) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      <div>{roundLengthNames(game.roundLength)}</div>
-      <button onClick={() => deleteGame(game.id)}>ゲームを削除</button>
-      <h2>ラウンド一覧</h2>
-      <RoundList
-        rounds={game.rounds ? game.rounds : []}
-        sessionId={sessionId}
-        gameId={game.id}
-      />
-    </div>
+    <Table removeWrapper className="my-4" isStriped>
+      <TableHeader>
+        <TableColumn>長さ</TableColumn>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>{roundLengthNames(game.roundLength)}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
   );
 };
 

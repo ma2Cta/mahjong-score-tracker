@@ -1,11 +1,10 @@
-import Link from "next/link";
+import { Link } from "@nextui-org/react";
 
 export default function Home() {
   return (
     <>
-      <main>
-        <h1>mahjong score tracker</h1>
-        <p>麻雀のスコアを記録するアプリです。</p>
+      <main className="p-10">
+        <h1 className="text-4xl font-bold my-4">mahjong score tracker</h1>
         <Link href="/sessions">セッション一覧</Link>
       </main>
     </>

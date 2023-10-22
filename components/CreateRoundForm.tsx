@@ -1,6 +1,7 @@
 import { CreateRoundData, Wind, roundNames, toWind } from "@/types/round";
 import { CreateScoreData } from "@/types/score";
 import { User } from "@/types/user";
+import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 import { useState } from "react";
 
 type CreateRoundFormProps = {
@@ -13,12 +14,12 @@ const CreateRoundForm: React.FC<CreateRoundFormProps> = ({
   users,
 }) => {
   const [wind, setWind] = useState<number>(0);
-  const [roundInWind, setRoundInWind] = useState<number>(0);
+  const [roundInWind, setRoundInWind] = useState<number>(1);
   const [scoreData, setScoreData] = useState<CreateScoreData[]>([]);
-  
+
   const handleScoreChange = (userId: number, newScore: number) => {
     const existingScoreData = scoreData.find((data) => data.userId === userId);
-  
+
     if (existingScoreData) {
       setScoreData(
         scoreData.map((data) =>
@@ -45,43 +46,47 @@ const CreateRoundForm: React.FC<CreateRoundFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <select value={wind} onChange={(e) => setWind(Number(e.target.value))}>
-          {Object.values(Wind)
-            .filter((value) => typeof value === "number")
-            .map((windValue) => (
-              <option key={windValue} value={windValue}>
-                {toWind(windValue)}
-              </option>
-            ))}
-        </select>
-      </label>
-      <label>
-        <input
-          type="text"
-          value={roundInWind}
-          onChange={(e) => setRoundInWind(Number(e.target.value))}
-        />
-        局
-      </label>
+    <form className="w-full" onSubmit={handleSubmit}>
+      <Select
+        className="mb-4"
+        isRequired
+        label="風"
+        placeholder="風を入力してください。"
+        onChange={(e) => setWind(Number(e.target.value))}
+      >
+        {Object.values(Wind)
+          .filter((value) => typeof value === "number")
+          .map((windValue) => (
+            <SelectItem key={windValue} value={windValue}>
+              {toWind(windValue)}
+            </SelectItem>
+          ))}
+      </Select>
+      <Input
+        className="mb-4"
+        isRequired
+        type="text"
+        label="局"
+        placeholder="局数を入力してください。"
+        value={String(roundInWind)}
+        onChange={(e) => setRoundInWind(Number(e.target.value))}
+      />
       {users.map((user) => (
-        <div key={user.id}>
-          <label>
-            {user.name} のスコア:
-            <input
-              type="text"
-              value={
-                scoreData.find((data) => data.userId === user.id)?.point || 0
-              }
-              onChange={(e) =>
-                handleScoreChange(user.id, Number(e.target.value))
-              }
-            />
-          </label>
-        </div>
+        <Input
+          key={user.id}
+          className="mb-4"
+          isRequired
+          type="text"
+          label={`${user.name} のスコア`}
+          value={String(
+            scoreData.find((data) => data.userId === user.id)?.point || 0
+          )}
+          onChange={(e) => handleScoreChange(user.id, Number(e.target.value))}
+        />
       ))}
-      <button type="submit">ラウンドを作成</button>
+      <Button color="primary" type="submit" onSubmit={handleSubmit}>
+        ラウンドを作成
+      </Button>
     </form>
   );
 };

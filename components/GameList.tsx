@@ -1,6 +1,14 @@
 import React from "react";
 import { Game, roundLengthNames } from "@/types/game";
-import Link from "next/link";
+import {
+  Link,
+  Table,
+  TableHeader,
+  TableBody,
+  TableColumn,
+  TableRow,
+  TableCell,
+} from "@nextui-org/react";
 
 interface GameListProps {
   games: Game[];
@@ -17,15 +25,22 @@ const GameList: React.FC<GameListProps> = ({ games, sessionId }) => {
   }
 
   return (
-    <ul>
-      {games.map((game) => (
-        <li key={game.id}>
-          <Link href={`/sessions/${sessionId}/games/${game.id}`}>
-            {roundLengthNames(game.roundLength)}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <Table className="my-4" isStriped>
+      <TableHeader>
+        <TableColumn>ゲーム名</TableColumn>
+      </TableHeader>
+      <TableBody>
+        {games.map((game) => (
+          <TableRow key={game.id}>
+            <TableCell>
+              <Link href={`/sessions/${sessionId}/games/${game.id}`}>
+                {roundLengthNames(game.roundLength)}
+              </Link>
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   );
 };
 
