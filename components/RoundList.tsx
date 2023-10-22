@@ -1,6 +1,13 @@
-import { Round, roundNames } from "@/types/round";
-import Link from "next/link";
-
+import { Round, Wind } from "@/types/round";
+import {
+  Link,
+  Table,
+  TableHeader,
+  TableBody,
+  TableColumn,
+  TableRow,
+  TableCell,
+} from "@nextui-org/react";
 
 interface RoundListProps {
   rounds: Round[];
@@ -18,16 +25,37 @@ const RoundList: React.FC<RoundListProps> = ({ rounds, sessionId, gameId }) => {
   }
 
   return (
-    <ul>
-      {rounds.map((round) => (
-        <li key={round.id}>
-          <Link href={`/sessions/${sessionId}/games/${gameId}/rounds/${round.id}`}>
-            {`${(round.round)}: ${roundNames(round.wind, round.roundInWind)}`}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  )
-}
+    <Table className="my-4" isStriped>
+      <TableHeader>
+        <TableColumn width={2}>ゲーム内局数</TableColumn>
+        <TableColumn>風</TableColumn>
+        <TableColumn>何局</TableColumn>
+      </TableHeader>
+      <TableBody>
+        {rounds.map((round, index) => (
+          <TableRow key={round.id}>
+            <TableCell>
+              {index + 1}
+            </TableCell>
+            <TableCell>
+              <Link
+                href={`/sessions/${sessionId}/games/${gameId}/rounds/${round.id}`}
+              >
+                {Wind[round.wind]}
+              </Link>
+            </TableCell>
+            <TableCell>
+              <Link
+                href={`/sessions/${sessionId}/games/${gameId}/rounds/${round.id}`}
+              >
+                {round.roundInWind}
+              </Link>
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+};
 
 export default RoundList;

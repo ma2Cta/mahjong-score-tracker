@@ -1,38 +1,47 @@
 import { Session } from "@/types/session";
 import React from "react";
-import Link from "next/link";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableColumn,
+  TableRow,
+  TableCell,
+  Divider,
+} from "@nextui-org/react";
 import GameList from "@/components/GameList";
 import { Game } from "@/types/game";
+import CreateGameForm from "@/components/CreateGameForm";
 
 type SessionDetailProps = {
   session: Session;
   games: Game[];
-  deleteSession: (sessionId: number) => void;
 };
 
-const SessionDetail: React.FC<SessionDetailProps> = ({
-  session,
-  games,
-  deleteSession,
-}) => {
+const SessionDetail: React.FC<SessionDetailProps> = ({ session, games }) => {
   if (!session) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      <div>開催日: {session.date?.toString()}</div>
-      <div>開催場所: {session.location}</div>
-      <div>
-        参加ユーザー: {session.users?.map((user) => user.name).join(", ")}
-      </div>
-      <button onClick={() => deleteSession(session.id)}>
-        セッションを削除
-      </button>
-      <h2>ゲーム一覧</h2>
-      <Link href={`/sessions/${session.id}/games/create`}>ゲームを作成</Link>
-      <GameList games={games} sessionId={session.id} />
-    </div>
+    <>
+      <Table removeWrapper className="my-4" isStriped>
+        <TableHeader>
+          <TableColumn>開催日</TableColumn>
+          <TableColumn>開催場所</TableColumn>
+          <TableColumn>参加ユーザー</TableColumn>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>{session.date?.toString()}</TableCell>
+            <TableCell>{session.location}</TableCell>
+            <TableCell>
+              {session.users?.map((user) => user.name).join(", ")}
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </>
   );
 };
 

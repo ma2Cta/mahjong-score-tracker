@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { Button, Divider, Link } from "@nextui-org/react";
 import useSWR from "swr";
 import RoundDetail from "@/components/RoundDetail";
 import { Round } from "@/types/round";
 import RoundResult from "@/components/GameResult";
+import ScoreList from "@/components/ScoreList";
 
 const RoundDetailPage = () => {
   const router = useRouter();
@@ -52,13 +53,17 @@ const RoundDetailPage = () => {
   }
 
   return (
-    <>
-      <div>
-        <h1>ラウンド詳細</h1>
-        <RoundDetail round={round} deleteRound={deleteRound} />
+    <div className="p-10">
+      <div className="flex justify-between items-center">
+        <h1 className="text-4xl font-bold my-4">ラウンド詳細</h1>
+        <Button color="danger" onClick={deleteRound}>ラウンドを削除</Button>
       </div>
+      <RoundDetail round={round} />
+      <Divider className="my-4" />
+      <ScoreList scores={round.scores} />
+      <Divider className="my-4" />
       <Link href={`/sessions/${sessionId}/games/${gameId}`}>ゲーム詳細に戻る</Link>
-    </>
+    </div>
   );
 };
 
