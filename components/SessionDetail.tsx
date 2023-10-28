@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import GameList from "@/components/GameList";
 import { Game } from "@/types/game";
+import { Button } from "@/components/ui/button"
 
 type SessionDetailProps = {
   session: Session;
@@ -26,9 +27,9 @@ const SessionDetail: React.FC<SessionDetailProps> = ({
       <div>
         参加ユーザー: {session.users?.map((user) => user.name).join(", ")}
       </div>
-      <button onClick={() => deleteSession(session.id)}>
+      <Button onClick={() => deleteSession(session.id)}>
         セッションを削除
-      </button>
+      </Button>
       <h2>ゲーム一覧</h2>
       <Link href={`/sessions/${session.id}/games/create`}>ゲームを作成</Link>
       <GameList games={games} sessionId={session.id} />
