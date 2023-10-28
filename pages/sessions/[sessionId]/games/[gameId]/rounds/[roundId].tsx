@@ -6,7 +6,6 @@ import RoundDetail from "@/components/RoundDetail";
 import { Round } from "@/types/round";
 import RoundResult from "@/components/GameResult";
 import ScoreList from "@/components/ScoreList";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const RoundDetailPage = () => {
   const router = useRouter();
@@ -46,7 +45,7 @@ const RoundDetailPage = () => {
   };
 
   if (!round || isLoading) {
-    return <LoadingSpinner />;
+    return <div>Loading...</div>;
   }
 
   if (error) {

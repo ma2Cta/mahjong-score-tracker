@@ -9,7 +9,6 @@ import {
   TableRow,
   TableCell,
 } from "@nextui-org/react";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 interface GameListProps {
   games: Game[];
@@ -18,7 +17,7 @@ interface GameListProps {
 
 const GameList: React.FC<GameListProps> = ({ games, sessionId }) => {
   if (!games) {
-    return <LoadingSpinner />;
+    return <div>Loading...</div>;
   }
 
   if (games.length === 0) {

@@ -8,7 +8,6 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 type ScoreListProps = {
   scores: Score[];
@@ -16,7 +15,7 @@ type ScoreListProps = {
 
 const ScoreList: React.FC<ScoreListProps> = ({ scores }) => {
   if (!scores) {
-    return <LoadingSpinner />;
+    return <div>Loading...</div>;
   }
 
   return (

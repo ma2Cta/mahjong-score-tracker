@@ -9,7 +9,6 @@ import { CreateRoundData } from "@/types/round";
 import CreateRoundForm from "@/components/CreateRoundForm";
 import RoundList from "@/components/RoundList";
 import Container from "@/components/ui/Container";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const GameDetailPage = () => {
   const router = useRouter();
@@ -82,7 +81,7 @@ const GameDetailPage = () => {
   };
 
   if (!game || isLoading) {
-    return <LoadingSpinner />;
+    return <div>Loading...</div>;
   }
 
   if (error) {

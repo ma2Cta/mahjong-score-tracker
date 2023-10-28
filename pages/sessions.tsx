@@ -3,7 +3,6 @@ import { Link, Button, Divider } from "@nextui-org/react";
 import { Session } from "@/types/session";
 import useSWR, { mutate } from "swr";
 import SessionList from "@/components/SessionList";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const Sessions: React.FC = () => {
   const { data, error, isLoading } = useSWR("/api/sessions");
@@ -16,7 +15,7 @@ const Sessions: React.FC = () => {
   }, [data]);
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <div>Loading...</div>;
   }
 
   if (error) {

@@ -1,4 +1,3 @@
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { Round, Wind } from "@/types/round";
 import {
   Link,
@@ -18,7 +17,7 @@ interface RoundListProps {
 
 const RoundList: React.FC<RoundListProps> = ({ rounds, sessionId, gameId }) => {
   if (!rounds) {
-    return <LoadingSpinner />;
+    return <div>Loading...</div>;
   }
 
   if (rounds.length === 0) {

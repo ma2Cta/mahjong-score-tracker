@@ -1,4 +1,3 @@
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import { Link } from "@nextui-org/react";
 
 export default function Home() {

@@ -4,7 +4,6 @@ import { User } from "@/types/user";
 import useSWR from "swr";
 import CreateSessionForm from "@/components/CreateSessionForm";
 import { useRouter } from "next/router";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const CreateSession: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -19,7 +18,7 @@ const CreateSession: React.FC = () => {
   }, [data]);
 
   if (!users || isLoading) {
-    return <LoadingSpinner />;
+    return <div>Loading...</div>;
   }
 
   if (error) {
