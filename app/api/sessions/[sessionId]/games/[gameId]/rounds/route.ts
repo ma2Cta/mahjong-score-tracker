@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 import { CreateRoundData } from "@/types/round";
 import { CreateScoreData } from "@/types/score";
 
-export async function postResponse(
+export async function POST(
   req: NextRequest,
   { params }: { params: { gameId: string } }
 ) {
