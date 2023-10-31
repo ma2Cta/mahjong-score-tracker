@@ -1,6 +1,7 @@
 import { Game } from "@/types/game";
 import { roundLengthNames } from "@/types/game";
 import RoundList from "@/components/RoundList";
+import TypographyH2 from "@/components/ui/TypographyH2";
 
 type GameDetailProps = {
   game: Game;
@@ -17,7 +18,7 @@ const GameDetail: React.FC<GameDetailProps> = ({ game, sessionId, deleteGame }) 
     <div>
       <div>{roundLengthNames(game.roundLength)}</div>
       <button onClick={() => deleteGame(game.id)}>ゲームを削除</button>
-      <h2>ラウンド一覧</h2>
+      <TypographyH2>ラウンド一覧</TypographyH2>
       <RoundList
         rounds={game.rounds ? game.rounds : []}
         sessionId={sessionId}

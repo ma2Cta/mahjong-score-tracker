@@ -4,6 +4,7 @@ import Link from "next/link";
 import GameList from "@/components/GameList";
 import { Game } from "@/types/game";
 import { Button } from "@/components/ui/button"
+import TypographyH2 from "@/components/ui/TypographyH2";
 
 type SessionDetailProps = {
   session: Session;
@@ -30,7 +31,7 @@ const SessionDetail: React.FC<SessionDetailProps> = ({
       <Button onClick={() => deleteSession(session.id)}>
         セッションを削除
       </Button>
-      <h2>ゲーム一覧</h2>
+      <TypographyH2>ゲーム一覧</TypographyH2>
       <Link href={`/sessions/${session.id}/games/create`}>ゲームを作成</Link>
       <GameList games={games} sessionId={session.id} />
     </div>

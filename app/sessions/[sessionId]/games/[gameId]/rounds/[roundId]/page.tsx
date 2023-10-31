@@ -7,6 +7,7 @@ import useSWR from "swr";
 import RoundDetail from "@/components/RoundDetail";
 import { Round } from "@/types/round";
 import RoundResult from "@/components/GameResult";
+import TypographyH1 from "@/components/ui/TypographyH1";
 
 const RoundDetailPage = () => {
   const router = useRouter();
@@ -56,7 +57,7 @@ const RoundDetailPage = () => {
   return (
     <>
       <div>
-        <h1>ラウンド詳細</h1>
+        <TypographyH1>ラウンド詳細</TypographyH1>
         <RoundDetail round={round} deleteRound={deleteRound} />
       </div>
       <Link href={`/sessions/${sessionId}/games/${gameId}`}>ゲーム詳細に戻る</Link>

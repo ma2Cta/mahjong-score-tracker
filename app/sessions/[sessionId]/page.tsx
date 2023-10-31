@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Session } from "@/types/session";
 import useSWR, { mutate } from "swr";
 import SessionDetail from "@/components/SessionDetail";
+import TypographyH1 from "@/components/ui/TypographyH1";
 
 const SessionDetailPage = () => {
   const router = useRouter();
@@ -57,7 +58,7 @@ const SessionDetailPage = () => {
   return (
     <>
       <div>
-        <h1>セッション詳細</h1>
+        <TypographyH1>セッション詳細</TypographyH1>
         <SessionDetail session={session} games={session.games ? session.games : []} deleteSession={deleteSession} />
       </div>
       <Link href="/sessions">セッション一覧に戻る</Link>
