@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Session } from "@/types/session";
 import useSWR, { mutate } from "swr";
 import SessionList from "@/components/SessionList";
+import TypographyH1 from "@/components/ui/TypographyH1";
 
 const Sessions: React.FC = () => {
   const { data, error, isLoading } = useSWR('/api/sessions');
@@ -26,7 +27,7 @@ const Sessions: React.FC = () => {
 
   return (
     <div>
-      <h1>セッション一覧</h1>
+      <TypographyH1>セッション一覧</TypographyH1>
       <Link href="/sessions/create">新しいセッションを作成</Link>
       <SessionList sessions={sessions} />
       <Link href="/">トップページに戻る</Link>

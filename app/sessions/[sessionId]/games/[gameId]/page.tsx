@@ -9,6 +9,8 @@ import GameDetail from "@/components/GameDetail";
 import GameResult from "@/components/GameResult";
 import { CreateRoundData } from "@/types/round";
 import CreateRoundForm from "@/components/CreateRoundForm";
+import TypographyH1 from "@/components/ui/TypographyH1";
+import TypographyH2 from "@/components/ui/TypographyH2";
 
 const GameDetailPage = () => {
   const router = useRouter();
@@ -85,11 +87,11 @@ const GameDetailPage = () => {
   return (
     <>
       <div>
-        <h1>ゲーム詳細</h1>
+        <TypographyH1>ゲーム詳細</TypographyH1>
         <GameDetail game={game} sessionId={sessionId} deleteGame={deleteGame} />
-        <h2>ラウンドを作成</h2>
+        <TypographyH2>ラウンドを作成</TypographyH2>
         <CreateRoundForm createRound={createRound} users={game?.session?.users || []} />
-        <h2>ゲーム結果</h2>
+        <TypographyH2>ゲーム結果</TypographyH2>
         <GameResult game={game} />
       </div>
       <Link href={`/sessions/${sessionId}`}>セッション詳細に戻る</Link>

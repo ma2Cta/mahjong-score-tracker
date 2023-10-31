@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { User } from "@/types/user";
 import useSWR, { mutate } from "swr";
+import TypographyH1 from "@/components/ui/TypographyH1";
 
 const CreateSession: React.FC = () => {
   const [date, setDate] = useState("");
@@ -49,7 +50,7 @@ const CreateSession: React.FC = () => {
 
   return (
     <>
-      <h1>新しいセッションを作成</h1>
+      <TypographyH1>新しいセッションを作成</TypographyH1>
       <form onSubmit={handleSubmit}>
         <label>
           開催日:
