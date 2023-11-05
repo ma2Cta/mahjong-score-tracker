@@ -83,7 +83,7 @@ const CreateSession: React.FC = () => {
         </label>
         <button type="submit">作成</button>
       </form>
-      <Link href="/sessions">一覧に戻る</Link>
+      <Link className="underline underline-offset-2" href="/sessions">一覧に戻る</Link>
     </>
   );
 };

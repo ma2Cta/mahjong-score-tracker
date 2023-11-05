@@ -15,7 +15,10 @@ const SessionsList: React.FC<SessionListProps> = ({ sessions }) => {
     <ul>
       {sessions.map((session) => (
         <li key={session.id}>
-          <Link href={`/sessions/${session.id}`}>
+          <Link
+            className="underline underline-offset-2"
+            href={`/sessions/${session.id}`}
+          >
             {`開催日: ${session.date}, 場所: ${session.location}`}
           </Link>
         </li>

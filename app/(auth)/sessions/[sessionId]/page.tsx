@@ -61,7 +61,7 @@ const SessionDetailPage = () => {
         <TypographyH1>セッション詳細</TypographyH1>
         <SessionDetail session={session} games={session.games ? session.games : []} deleteSession={deleteSession} />
       </div>
-      <Link href="/sessions">セッション一覧に戻る</Link>
+      <Link className="underline underline-offset-2" href="/sessions">セッション一覧に戻る</Link>
     </>
   );
 };

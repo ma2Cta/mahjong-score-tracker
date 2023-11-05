@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -8,14 +8,14 @@ import SessionList from "@/components/SessionList";
 import TypographyH1 from "@/components/ui/TypographyH1";
 
 const Sessions: React.FC = () => {
-  const { data, error, isLoading } = useSWR('/api/sessions');
+  const { data, error, isLoading } = useSWR("/api/sessions");
   const [sessions, setSessions] = useState<Session[]>([]);
-  useEffect(() => { 
+  useEffect(() => {
     if (data) {
       setSessions(data.sessions);
     }
-    mutate('/api/sessions');
-  }, [data]); 
+    mutate("/api/sessions");
+  }, [data]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -28,9 +28,13 @@ const Sessions: React.FC = () => {
   return (
     <div>
       <TypographyH1>セッション一覧</TypographyH1>
-      <Link href="/sessions/create">新しいセッションを作成</Link>
+      <Link className="underline underline-offset-2" href="/sessions/create">
+        新しいセッションを作成
+      </Link>
       <SessionList sessions={sessions} />
-      <Link href="/">トップページに戻る</Link>
+      <Link className="underline underline-offset-2" href="/">
+        トップページに戻る
+      </Link>
     </div>
   );
 };

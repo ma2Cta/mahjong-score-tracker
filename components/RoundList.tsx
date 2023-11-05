@@ -1,7 +1,6 @@
 import { Round, roundNames } from "@/types/round";
 import Link from "next/link";
 
-
 interface RoundListProps {
   rounds: Round[];
   sessionId: number;
@@ -21,13 +20,16 @@ const RoundList: React.FC<RoundListProps> = ({ rounds, sessionId, gameId }) => {
     <ul>
       {rounds.map((round) => (
         <li key={round.id}>
-          <Link href={`/sessions/${sessionId}/games/${gameId}/rounds/${round.id}`}>
-            {`${(round.round)}: ${roundNames(round.wind, round.roundInWind)}`}
+          <Link
+            className="underline underline-offset-2"
+            href={`/sessions/${sessionId}/games/${gameId}/rounds/${round.id}`}
+          >
+            {`${round.round}: ${roundNames(round.wind, round.roundInWind)}`}
           </Link>
         </li>
       ))}
     </ul>
-  )
-}
+  );
+};
 
 export default RoundList;

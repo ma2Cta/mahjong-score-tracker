@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import GameList from "@/components/GameList";
 import { Game } from "@/types/game";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import TypographyH2 from "@/components/ui/TypographyH2";
 
 type SessionDetailProps = {
@@ -32,7 +32,12 @@ const SessionDetail: React.FC<SessionDetailProps> = ({
         セッションを削除
       </Button>
       <TypographyH2>ゲーム一覧</TypographyH2>
-      <Link href={`/sessions/${session.id}/games/create`}>ゲームを作成</Link>
+      <Link
+        className="underline underline-offset-2"
+        href={`/sessions/${session.id}/games/create`}
+      >
+        ゲームを作成
+      </Link>
       <GameList games={games} sessionId={session.id} />
     </div>
   );

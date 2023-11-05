@@ -20,7 +20,10 @@ const GameList: React.FC<GameListProps> = ({ games, sessionId }) => {
     <ul>
       {games.map((game) => (
         <li key={game.id}>
-          <Link href={`/sessions/${sessionId}/games/${game.id}`}>
+          <Link
+            className="underline underline-offset-2"
+            href={`/sessions/${sessionId}/games/${game.id}`}
+          >
             {roundLengthNames(game.roundLength)}
           </Link>
         </li>

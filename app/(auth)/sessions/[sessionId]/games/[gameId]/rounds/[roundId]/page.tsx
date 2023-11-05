@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -11,14 +11,20 @@ import TypographyH1 from "@/components/ui/TypographyH1";
 
 const RoundDetailPage = () => {
   const router = useRouter();
-  const { sessionId:sessionIdStr, gameId: gameIdStr, roundId: roundIdStr } = useParams();
+  const {
+    sessionId: sessionIdStr,
+    gameId: gameIdStr,
+    roundId: roundIdStr,
+  } = useParams();
   const sessionId = Number(sessionIdStr);
   const gameId = Number(gameIdStr);
   const roundId = Number(roundIdStr);
 
   const [round, setRound] = useState<Round | null>(null);
   const { data, error, isLoading } = useSWR(
-    (sessionId && gameId && roundId) ? `/api/sessions/${sessionId}/games/${gameId}/rounds/${roundId}` : null
+    sessionId && gameId && roundId
+      ? `/api/sessions/${sessionId}/games/${gameId}/rounds/${roundId}`
+      : null
   );
 
   useEffect(() => {
@@ -29,20 +35,23 @@ const RoundDetailPage = () => {
 
   const deleteRound = async () => {
     if (!sessionId || !gameId || !roundId) {
-      return
+      return;
     }
     try {
-      const response = await fetch(`/api/sessions/${sessionId}/games/${gameId}/rounds/${roundId}`, {
-        method: 'DELETE',
-        body: null
-      });
+      const response = await fetch(
+        `/api/sessions/${sessionId}/games/${gameId}/rounds/${roundId}`,
+        {
+          method: "DELETE",
+          body: null,
+        }
+      );
       if (response.ok) {
         router.push(`/sessions/${sessionId}/games/${gameId}`);
       } else {
-        console.error('Failed to delete round');
+        console.error("Failed to delete round");
       }
     } catch (error) {
-      console.error('Error occurred while deleting round:', error);
+      console.error("Error occurred while deleting round:", error);
     }
   };
 
@@ -60,7 +69,12 @@ const RoundDetailPage = () => {
         <TypographyH1>ラウンド詳細</TypographyH1>
         <RoundDetail round={round} deleteRound={deleteRound} />
       </div>
-      <Link href={`/sessions/${sessionId}/games/${gameId}`}>ゲーム詳細に戻る</Link>
+      <Link
+        className="underline underline-offset-2"
+        href={`/sessions/${sessionId}/games/${gameId}`}
+      >
+        ゲーム詳細に戻る
+      </Link>
     </>
   );
 };
