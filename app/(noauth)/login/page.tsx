@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+"use client";
+
+import LoginButton from "@/components/LoginButton";
 
 const Login: React.FC = () => {
   return (
@@ -14,9 +15,7 @@ const Login: React.FC = () => {
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2 mx-auto">
-              <Link href="/">
-                <Button>Googleアカウントでログイン</Button>
-              </Link>
+              <LoginButton />
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import Providers from "@/app/(auth)/providers";
 import "@/styles/globals.css";
 
 export default function LoginLayout({
@@ -5,5 +6,13 @@ export default function LoginLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <main>{children}</main>;
+  return (
+    <html lang="en">
+      <body>
+        <main>
+          <Providers>{children}</Providers>
+        </main>
+      </body>
+    </html>
+  );
 }
