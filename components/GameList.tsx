@@ -4,10 +4,10 @@ import Link from "next/link";
 
 interface GameListProps {
   games: Game[];
-  sessionId: number;
+  setId: number;
 }
 
-const GameList: React.FC<GameListProps> = ({ games, sessionId }) => {
+const GameList: React.FC<GameListProps> = ({ games, setId }) => {
   if (!games) {
     return <div>Loading...</div>;
   }
@@ -22,7 +22,7 @@ const GameList: React.FC<GameListProps> = ({ games, sessionId }) => {
         <li key={game.id}>
           <Link
             className="underline underline-offset-2"
-            href={`/sessions/${sessionId}/games/${game.id}`}
+            href={`/sets/${setId}/games/${game.id}`}
           >
             {roundLengthNames(game.roundLength)}
           </Link>

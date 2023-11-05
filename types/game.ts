@@ -1,11 +1,11 @@
 import { Round } from "@/types/round";
-import { Session } from "@/types/session";
+import { Set } from "@/types/set";
 import { User } from "@/types/user";
 
 export type Game = {
   id: number;
   roundLength: RoundLength;
-  session: Session | null;
+  set: Set | null;
   rounds: Round[] | null;
   basePoint: number;
 };

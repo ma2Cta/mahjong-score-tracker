@@ -5,11 +5,11 @@ import TypographyH2 from "@/components/ui/TypographyH2";
 
 type GameDetailProps = {
   game: Game;
-  sessionId: number;
+  setId: number;
   deleteGame: (gameId: number) => void;
 };
 
-const GameDetail: React.FC<GameDetailProps> = ({ game, sessionId, deleteGame }) => {
+const GameDetail: React.FC<GameDetailProps> = ({ game, setId, deleteGame }) => {
   if (!game) {
     return <div>Loading...</div>;
   }
@@ -21,7 +21,7 @@ const GameDetail: React.FC<GameDetailProps> = ({ game, sessionId, deleteGame }) 
       <TypographyH2>ラウンド一覧</TypographyH2>
       <RoundList
         rounds={game.rounds ? game.rounds : []}
-        sessionId={sessionId}
+        setId={setId}
         gameId={game.id}
       />
     </div>

@@ -5,7 +5,7 @@ type ScoreListProps = {
   scores: Score[];
 };
 
-const SessionsList: React.FC<ScoreListProps> = ({ scores }) => {
+const SetsList: React.FC<ScoreListProps> = ({ scores }) => {
   if (!scores) {
     return <div>Loading...</div>;
   }
@@ -21,4 +21,4 @@ const SessionsList: React.FC<ScoreListProps> = ({ scores }) => {
   );
 };
 
-export default SessionsList;
+export default SetsList;

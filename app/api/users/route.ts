@@ -7,7 +7,7 @@ export async function GET() {
     return {
       id: user.id,
       name: user.name,
-      sessions: null,
+      sets: null,
       scores: null,
     };
   });

@@ -3,11 +3,11 @@ import Link from "next/link";
 
 interface RoundListProps {
   rounds: Round[];
-  sessionId: number;
+  setId: number;
   gameId: number;
 }
 
-const RoundList: React.FC<RoundListProps> = ({ rounds, sessionId, gameId }) => {
+const RoundList: React.FC<RoundListProps> = ({ rounds, setId, gameId }) => {
   if (!rounds) {
     return <div>Loading...</div>;
   }
@@ -22,7 +22,7 @@ const RoundList: React.FC<RoundListProps> = ({ rounds, sessionId, gameId }) => {
         <li key={round.id}>
           <Link
             className="underline underline-offset-2"
-            href={`/sessions/${sessionId}/games/${gameId}/rounds/${round.id}`}
+            href={`/sets/${setId}/games/${gameId}/rounds/${round.id}`}
           >
             {`${round.round}: ${roundNames(round.wind, round.roundInWind)}`}
           </Link>
