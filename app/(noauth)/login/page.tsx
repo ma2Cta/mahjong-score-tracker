@@ -1,6 +1,6 @@
 "use client";
 
-import LoginButton from "@/components/LoginButton";
+import LoginButton from "@/components/ui/LoginButton";
 
 const Login: React.FC = () => {
   return (
