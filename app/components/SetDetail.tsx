@@ -1,10 +1,10 @@
-import { Set } from "@/types/set";
+import { Set } from "@/app/types/set";
 import React from "react";
 import Link from "next/link";
-import GameList from "@/components/GameList";
-import { Game } from "@/types/game";
-import { Button } from "@/components/ui/button";
-import TypographyH2 from "@/components/ui/TypographyH2";
+import GameList from "@/app/components/GameList";
+import { Game } from "@/app/types/game";
+import { Button } from "@/app/components/ui/button";
+import TypographyH2 from "@/app/components/ui/TypographyH2";
 
 type SetDetailProps = {
   set: Set;

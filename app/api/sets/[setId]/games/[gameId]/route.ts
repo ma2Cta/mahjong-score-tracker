@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
-import { Wind } from "@/types/round";
+import prisma from "@/app/lib/prisma";
+import { Wind } from "@/app/types/round";
 
 export async function GET(
   request: NextRequest,

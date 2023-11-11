@@ -3,10 +3,10 @@
 import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Set } from "@/types/set";
+import { Set } from "@/app/types/set";
 import useSWR, { mutate } from "swr";
-import SetDetail from "@/components/SetDetail";
-import TypographyH1 from "@/components/ui/TypographyH1";
+import SetDetail from "@/app/components/SetDetail";
+import TypographyH1 from "@/app/components/ui/TypographyH1";
 
 const SetDetailPage = () => {
   const router = useRouter();

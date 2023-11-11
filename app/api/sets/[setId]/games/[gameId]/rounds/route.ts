@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
-import { CreateRoundData } from "@/types/round";
-import { CreateScoreData } from "@/types/score";
+import prisma from "@/app/lib/prisma";
+import { CreateRoundData } from "@/app/types/round";
+import { CreateScoreData } from "@/app/types/score";
 
 export async function POST(
   req: NextRequest,

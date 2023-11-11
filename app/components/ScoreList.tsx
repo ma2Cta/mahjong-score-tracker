@@ -1,5 +1,5 @@
 import React from "react";
-import { Score } from "@/types/score";
+import { Score } from "@/app/types/score";
 
 type ScoreListProps = {
   scores: Score[];

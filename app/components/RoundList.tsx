@@ -1,4 +1,4 @@
-import { Round, roundNames } from "@/types/round";
+import { Round, roundNames } from "@/app/types/round";
 import Link from "next/link";
 
 interface RoundListProps {

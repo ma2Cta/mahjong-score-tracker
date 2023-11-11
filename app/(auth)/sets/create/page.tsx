@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { User } from "@/types/user";
+import { User } from "@/app/types/user";
 import useSWR, { mutate } from "swr";
-import TypographyH1 from "@/components/ui/TypographyH1";
+import TypographyH1 from "@/app/components/ui/TypographyH1";
 
 const CreateSet: React.FC = () => {
   const [date, setDate] = useState("");

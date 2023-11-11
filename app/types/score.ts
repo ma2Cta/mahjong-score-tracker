@@ -1,5 +1,5 @@
-import { Round } from "@/types/round";
-import { User } from "@/types/user";
+import { Round } from "@/app/types/round";
+import { User } from "@/app/types/user";
 
 export type Score = {
   id: number;

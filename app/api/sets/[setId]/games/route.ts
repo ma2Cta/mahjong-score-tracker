@@ -1,5 +1,5 @@
-import prisma from "@/lib/prisma";
-import { toRoundLength } from "@/types/game";
+import prisma from "@/app/lib/prisma";
+import { toRoundLength } from "@/app/types/game";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(

@@ -1,5 +1,5 @@
 import React from "react";
-import { Set } from "@/types/set";
+import { Set } from "@/app/types/set";
 import Link from "next/link";
 
 type SetListProps = {

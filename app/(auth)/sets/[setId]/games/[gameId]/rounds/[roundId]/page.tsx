@@ -4,10 +4,10 @@ import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import useSWR from "swr";
-import RoundDetail from "@/components/RoundDetail";
-import { Round } from "@/types/round";
-import RoundResult from "@/components/GameResult";
-import TypographyH1 from "@/components/ui/TypographyH1";
+import RoundDetail from "@/app/components/RoundDetail";
+import { Round } from "@/app/types/round";
+import RoundResult from "@/app/components/GameResult";
+import TypographyH1 from "@/app/components/ui/TypographyH1";
 
 const RoundDetailPage = () => {
   const router = useRouter();

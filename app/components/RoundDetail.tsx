@@ -1,5 +1,5 @@
-import ScoreList from "@/components/ScoreList";
-import { Round, roundNames } from "@/types/round";
+import ScoreList from "@/app/components/ScoreList";
+import { Round, roundNames } from "@/app/types/round";
 
 
 type RoundDetailProps = {

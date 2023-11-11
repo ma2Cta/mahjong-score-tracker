@@ -1,6 +1,6 @@
-import { Round } from "@/types/round";
-import { Set } from "@/types/set";
-import { User } from "@/types/user";
+import { Round } from "@/app/types/round";
+import { Set } from "@/app/types/set";
+import { User } from "@/app/types/user";
 
 export type Game = {
   id: number;

@@ -1,6 +1,6 @@
-import { CreateRoundData, Wind, roundNames, toWind } from "@/types/round";
-import { CreateScoreData } from "@/types/score";
-import { User } from "@/types/user";
+import { CreateRoundData, Wind, roundNames, toWind } from "@/app/types/round";
+import { CreateScoreData } from "@/app/types/score";
+import { User } from "@/app/types/user";
 import { useState } from "react";
 
 type CreateRoundFormProps = {

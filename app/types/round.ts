@@ -1,5 +1,5 @@
-import { CreateScoreData, Score } from '@/types/score';
-import { Game } from '@/types/game';
+import { CreateScoreData, Score } from '@/app/types/score';
+import { Game } from '@/app/types/game';
 
 export type Round = {
   id: number;

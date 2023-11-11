@@ -1,5 +1,5 @@
 import React from "react";
-import { Game, roundLengthNames } from "@/types/game";
+import { Game, roundLengthNames } from "@/app/types/game";
 import Link from "next/link";
 
 interface GameListProps {

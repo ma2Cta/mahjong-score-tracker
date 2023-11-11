@@ -8,7 +8,7 @@ import {
   signIn,
 } from "next-auth/react";
 import { BuiltInProviderType, Provider } from "next-auth/providers";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 
 const Login: React.FC = () => {
   const [providers, setProviders] = useState<Record<

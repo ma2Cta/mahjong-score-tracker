@@ -1,7 +1,7 @@
-import { Game } from "@/types/game";
-import { roundLengthNames } from "@/types/game";
-import RoundList from "@/components/RoundList";
-import TypographyH2 from "@/components/ui/TypographyH2";
+import { Game } from "@/app/types/game";
+import { roundLengthNames } from "@/app/types/game";
+import RoundList from "@/app/components/RoundList";
+import TypographyH2 from "@/app/components/ui/TypographyH2";
 
 type GameDetailProps = {
   game: Game;

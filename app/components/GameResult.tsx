@@ -1,5 +1,5 @@
-import { Game } from "@/types/game";
-import { GameResult, buildGameResult } from "@/types/game";
+import { Game } from "@/app/types/game";
+import { GameResult, buildGameResult } from "@/app/types/game";
 
 type GameResultProps = {
   game: Game;
