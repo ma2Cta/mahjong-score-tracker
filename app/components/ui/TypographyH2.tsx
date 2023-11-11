@@ -1,4 +1,6 @@
-import { ReactElement, ReactNode } from "react"
+"use client";
+
+import { ReactNode } from "react"
 
 interface TypographyH2Props {
   children: ReactNode
@@ -6,7 +8,7 @@ interface TypographyH2Props {
 }
 
 const TypographyH2: React.FC<TypographyH2Props> =  ({ children, className }) => {
-  const classNames = `scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 ${className || ''}`;
+  const classNames = `scroll-m-20 pb-2 text-3xl font-semibold tracking-tight ${className || ''}`;
 
   return (
     <h2 className={classNames}>

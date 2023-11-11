@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
 
 interface TypographyH1Props {
   children: ReactNode;

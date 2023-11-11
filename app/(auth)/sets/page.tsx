@@ -5,7 +5,8 @@ import Link from "next/link";
 import { Set } from "@/app/types/set";
 import useSWR, { mutate } from "swr";
 import SetList from "@/app/components/SetList";
-import TypographyH1 from "@/app/components/ui/TypographyH1";
+import { Button } from "@/app/components/ui/button";
+import TypographyH2 from "@/app/components/ui/TypographyH2";
 
 const Sets: React.FC = () => {
   const { data, error, isLoading } = useSWR("/api/sets");
@@ -27,14 +28,13 @@ const Sets: React.FC = () => {
 
   return (
     <div>
-      <TypographyH1>セット一覧</TypographyH1>
-      <Link className="underline underline-offset-2" href="/sets/create">
-        新しいセットを作成
-      </Link>
+      <div className="flex justify-between items-center">
+        <TypographyH2>セット一覧</TypographyH2>
+        <Link href="/sets/create">
+          <Button>新しいセットを作成</Button>
+        </Link>
+      </div>
       <SetList sets={sets} />
-      <Link className="underline underline-offset-2" href="/">
-        トップページに戻る
-      </Link>
     </div>
   );
 };

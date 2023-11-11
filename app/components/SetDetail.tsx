@@ -1,44 +1,44 @@
 import { Set } from "@/app/types/set";
 import React from "react";
-import Link from "next/link";
-import GameList from "@/app/components/GameList";
-import { Game } from "@/app/types/game";
-import { Button } from "@/app/components/ui/button";
-import TypographyH2 from "@/app/components/ui/TypographyH2";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/app/components/ui/table";
 
 type SetDetailProps = {
   set: Set;
-  games: Game[];
-  deleteSet: (setId: number) => void;
 };
 
-const SetDetail: React.FC<SetDetailProps> = ({
-  set,
-  games,
-  deleteSet,
-}) => {
+const SetDetail: React.FC<SetDetailProps> = ({ set }) => {
   if (!set) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
-      <div>開催日: {set.date?.toString()}</div>
-      <div>開催場所: {set.location}</div>
-      <div>
-        参加ユーザー: {set.users?.map((user) => user.name).join(", ")}
-      </div>
-      <Button onClick={() => deleteSet(set.id)}>
-        セットを削除
-      </Button>
-      <TypographyH2>ゲーム一覧</TypographyH2>
-      <Link
-        className="underline underline-offset-2"
-        href={`/sets/${set.id}/games/create`}
-      >
-        ゲームを作成
-      </Link>
-      <GameList games={games} setId={set.id} />
+    <div className="rounded-md border mt-4">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>開催日</TableHead>
+            <TableHead>開催場所</TableHead>
+            <TableHead>参加ユーザー</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>{set.date?.toString()}</TableCell>
+            <TableCell>{set.location}</TableCell>
+            <TableCell>
+              {set.users?.map((user) => user.name).join(", ")}
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -7,6 +7,9 @@ import { Set } from "@/app/types/set";
 import useSWR, { mutate } from "swr";
 import SetDetail from "@/app/components/SetDetail";
 import TypographyH1 from "@/app/components/ui/TypographyH1";
+import TypographyH2 from "@/app/components/ui/TypographyH2";
+import { Button } from "@/app/components/ui/button";
+import GameList from "@/app/components/GameList";
 
 const SetDetailPage = () => {
   const router = useRouter();
@@ -27,23 +30,23 @@ const SetDetailPage = () => {
 
   const deleteSet = async () => {
     if (!setId) {
-      return
+      return;
     }
     try {
       const response = await fetch(`/api/sets/${setId}`, {
-        method: 'DELETE',
-        body: null
+        method: "DELETE",
+        body: null,
       });
       if (response.ok) {
         // セットが正常に削除された場合、ユーザーをセット一覧ページにリダイレクトします。
-        router.push('/sets');
+        router.push("/sets");
       } else {
         // エラーメッセージを表示するなど、適切なエラーハンドリングを行います。
-        console.error('Failed to delete set');
+        console.error("Failed to delete set");
       }
     } catch (error) {
       // ネットワークエラーや、サーバーエラーのハンドリングを行います。
-      console.error('Error occurred while deleting set:', error);
+      console.error("Error occurred while deleting set:", error);
     }
   };
 
@@ -57,11 +60,28 @@ const SetDetailPage = () => {
 
   return (
     <>
-      <div>
-        <TypographyH1>セット詳細</TypographyH1>
-        <SetDetail set={set} games={set.games ? set.games : []} deleteSet={deleteSet} />
+      <div className="flex justify-between items-center">
+        <div className="flex items-center space-x-4">
+          <TypographyH2>セット詳細</TypographyH2>
+          <Link className="underline underline-offset-2" href="/sets">
+            セット一覧に戻る
+          </Link>
+        </div>
+        <Button variant="destructive" onClick={() => deleteSet()}>
+          セットを削除
+        </Button>
       </div>
-      <Link className="underline underline-offset-2" href="/sets">セット一覧に戻る</Link>
+      <SetDetail set={set} />
+      {/* <div className="flex justify-between items-center">
+        <TypographyH2>ゲーム一覧</TypographyH2>
+        <Link
+          className="underline underline-offset-2"
+          href={`/sets/${set.id}/games/create`}
+        >
+          <Button>ゲームを作成</Button>
+        </Link>
+      </div>
+      <GameList games={set.games ? set.games : []} setId={set.id} /> */}
     </>
   );
 };
