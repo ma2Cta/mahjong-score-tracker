@@ -5,6 +5,7 @@ import Header from "@/app/components/ui/Header";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
+import Footer from "@/app/components/ui/Footer";
 
 export default function AuthLayout({
   children,
@@ -27,6 +28,7 @@ export default function AuthLayout({
           <Header />
         </nav>
         <main className="px-16 pt-2">{children}</main>
+        <Footer />
       </>
     );
   }
