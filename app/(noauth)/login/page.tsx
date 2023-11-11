@@ -53,7 +53,7 @@ const Login: React.FC = () => {
               </Link>
               に同意したものとします。
             </p>
-            <p className="text-xs">©︎ 2023 ma2Cta</p>
+            <p className="text-xs">&copy; 2023 ma2Cta All Rights Reserved.</p>
           </div>
         </div>
       </div>
