@@ -9,6 +9,7 @@ import {
 } from "next-auth/react";
 import { BuiltInProviderType, Provider } from "next-auth/providers";
 import { Button } from "@/app/components/ui/button";
+import Link from "next/link";
 
 const Login: React.FC = () => {
   const [providers, setProviders] = useState<Record<
@@ -45,6 +46,14 @@ const Login: React.FC = () => {
                   </div>
                 ))}
             </div>
+            <p className="text-xs">
+              ログインすることで
+              <Link className="underline underline-offset-2" href="/terms">
+                利用規約
+              </Link>
+              に同意したものとします。
+            </p>
+            <p className="text-xs">©︎ 2023 ma2Cta</p>
           </div>
         </div>
       </div>
