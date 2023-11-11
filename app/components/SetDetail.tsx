@@ -2,11 +2,8 @@ import { Set } from "@/app/types/set";
 import React from "react";
 import {
   Table,
-  TableBody,
-  TableCaption,
   TableCell,
   TableHead,
-  TableHeader,
   TableRow,
 } from "@/app/components/ui/table";
 
@@ -22,22 +19,20 @@ const SetDetail: React.FC<SetDetailProps> = ({ set }) => {
   return (
     <div className="rounded-md border mt-4">
       <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>開催日</TableHead>
-            <TableHead>開催場所</TableHead>
-            <TableHead>参加ユーザー</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableCell>{set.date?.toString()}</TableCell>
-            <TableCell>{set.location}</TableCell>
-            <TableCell>
-              {set.users?.map((user) => user.name).join(", ")}
-            </TableCell>
-          </TableRow>
-        </TableBody>
+        <TableRow>
+          <TableHead className="text-right">開催日時</TableHead>
+          <TableCell>{set.date?.toString()}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableHead className="text-right">開催場所</TableHead>
+          <TableCell>{set.location}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableHead className="text-right">参加ユーザー</TableHead>
+          <TableCell>
+            {set.users?.map((user) => user.name).join(", ")}
+          </TableCell>
+        </TableRow>
       </Table>
     </div>
   );

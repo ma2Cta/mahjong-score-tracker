@@ -6,10 +6,15 @@ import Link from "next/link";
 import { Set } from "@/app/types/set";
 import useSWR, { mutate } from "swr";
 import SetDetail from "@/app/components/SetDetail";
-import TypographyH1 from "@/app/components/ui/TypographyH1";
 import TypographyH2 from "@/app/components/ui/TypographyH2";
 import { Button } from "@/app/components/ui/button";
 import GameList from "@/app/components/GameList";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/app/components/ui/accordion";
 
 const SetDetailPage = () => {
   const router = useRouter();
@@ -72,16 +77,19 @@ const SetDetailPage = () => {
         </Button>
       </div>
       <SetDetail set={set} />
-      {/* <div className="flex justify-between items-center">
-        <TypographyH2>ゲーム一覧</TypographyH2>
-        <Link
-          className="underline underline-offset-2"
-          href={`/sets/${set.id}/games/create`}
-        >
-          <Button>ゲームを作成</Button>
-        </Link>
-      </div>
-      <GameList games={set.games ? set.games : []} setId={set.id} /> */}
+      <Accordion className="my-6" type="single" collapsible>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>
+            <div className="font-semibold">ゲーム一覧</div>
+          </AccordionTrigger>
+          <AccordionContent>
+            <GameList games={set.games ? set.games : []} setId={set.id} />
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+      <Link href={`/sets/${set.id}/games/create`}>
+        <Button>ゲームを作成</Button>
+      </Link>
     </>
   );
 };

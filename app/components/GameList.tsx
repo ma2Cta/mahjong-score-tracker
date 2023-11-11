@@ -1,10 +1,38 @@
 import React from "react";
-import { Game, roundLengthNames } from "@/app/types/game";
+import { Game, RoundLength, roundLengthNames } from "@/app/types/game";
 import Link from "next/link";
+import { ColumnDef } from "@tanstack/react-table";
+import DataTable from "@/app/components/ui/DataTable";
 
 interface GameListProps {
   games: Game[];
   setId: number;
+}
+
+const columns: ColumnDef<GameWithURL>[] = [
+  {
+    accessorKey: "id",
+    header: "ID",
+  },
+  {
+    accessorKey: "roundLength",
+    header: "何風戦",
+    cell: ({ row }) => {
+      const roundLength = row.getValue("roundLength") as RoundLength;
+      return (
+        <Link
+          className="underline underline-offset-2"
+          href={row.original.url}
+        >
+          {roundLengthNames(roundLength)}
+        </Link>
+      );
+    },
+  }
+];
+
+interface GameWithURL extends Game {
+  url: string;
 }
 
 const GameList: React.FC<GameListProps> = ({ games, setId }) => {
@@ -12,23 +40,17 @@ const GameList: React.FC<GameListProps> = ({ games, setId }) => {
     return <div>Loading...</div>;
   }
 
-  if (games.length === 0) {
-    return <div>ゲームが存在しません。</div>;
-  }
+  const gamesWithURL = games.map((game) => {
+    return {
+      ...game,
+      url: `/sets/${setId}/games/${game.id}`,
+    };
+  });
 
   return (
-    <ul>
-      {games.map((game) => (
-        <li key={game.id}>
-          <Link
-            className="underline underline-offset-2"
-            href={`/sets/${setId}/games/${game.id}`}
-          >
-            {roundLengthNames(game.roundLength)}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <div className="container mx-auto my-4">
+      <DataTable columns={columns} data={gamesWithURL} />
+    </div>
   );
 };
 

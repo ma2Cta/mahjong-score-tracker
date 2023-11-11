@@ -18,7 +18,7 @@ const columns: ColumnDef<Set>[] = [
   },
   {
     accessorKey: "date",
-    header: "日付",
+    header: "開催日時",
     cell: ({ row }) => {
       const date = row.getValue("date") as string;
       return <Link className="underline" href={`/sets/${row.getValue("id")}`}>{date}</Link>
@@ -44,7 +44,7 @@ const SetsList: React.FC<SetListProps> = ({ sets }) => {
   }
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto my-4">
       <DataTable columns={columns} data={sets} />
     </div>
   );
