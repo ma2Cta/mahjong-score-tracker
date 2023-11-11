@@ -13,13 +13,18 @@ datasource db {
 model User {
   id       Int       @id @default(autoincrement())
   name     String
-  sessions Session[]
+  sets Set[]
   scores   Score[]
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
 
-model Session {
+model Set {
   id       Int      @id @default(autoincrement())
   date     DateTime
   location String
@@ -31,8 +36,8 @@ model Session {
 
 model Game {
   id          Int      @id @default(autoincrement())
-  sessionId   Int
-  session     Session  @relation(fields: [sessionId], references: [id])
+  setId   Int
+  set     Set  @relation(fields: [setId], references: [id])
   roundLength Int      @default(1)
   rounds      Round[]
   basePoint   Int      @default(25000)
@@ -61,4 +66,39 @@ model Score {
   point   Int   @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+}
+
+model Account {
+  id                 Int  @id @default(autoincrement())
+  userId             Int
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           Int   @id @default(autoincrement())
+  sessionToken String   @unique
+  userId       Int
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
 }

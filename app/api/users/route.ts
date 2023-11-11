@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+import prisma from "@/app/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -7,7 +7,7 @@ export async function GET() {
     return {
       id: user.id,
       name: user.name,
-      sessions: null,
+      sets: null,
       scores: null,
     };
   });
