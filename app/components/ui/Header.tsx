@@ -27,7 +27,7 @@ const Header: React.FC = () => {
         <div className="flex items-center">
           <Link href="/">
             <span className="text-4xl mr-2">🀙</span>
-            <span className="text-3xl font-bold">mahjong score tracker</span>
+            <span className="text-3xl font-bold">Mahjong Score Tracker</span>
           </Link>
         </div>
         <div className="flex items-center space-x-4">
