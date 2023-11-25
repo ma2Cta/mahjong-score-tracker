@@ -26,10 +26,10 @@ export default function AuthLayout({
     return (
       <>
         <div className="flex flex-col min-h-screen">
-          <nav className="px-10 pt-6 pb-4">
+          <nav className="fixed w-full z-10 px-10 p-3 bg-background border-b-2">
             <Header />
           </nav>
-          <main className="flex-grow px-16 pt-2">{children}</main>
+          <main className="flex-grow px-16 mt-24">{children}</main>
           <Toaster />
           <Footer />
         </div>
