@@ -24,11 +24,13 @@ export default function AuthLayout({
   if (status === "authenticated") {
     return (
       <>
-        <nav className="px-10 pt-6 pb-4">
-          <Header />
-        </nav>
-        <main className="px-16 pt-2">{children}</main>
-        <Footer />
+        <div className="flex flex-col min-h-screen">
+          <nav className="px-10 pt-6 pb-4">
+            <Header />
+          </nav>
+          <main className="flex-grow px-16 pt-2">{children}</main>
+          <Footer />
+        </div>
       </>
     );
   }
