@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/app/lib/prisma";
+import prisma from "@/app/_lib/prisma";
 
 export async function GET(
   request: NextRequest,
@@ -28,6 +28,7 @@ export async function GET(
         user: {
           id: score.user.id,
           name: score.user.name,
+          image: score.user.image,
           sets: null,
           scores: null
         },

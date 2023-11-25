@@ -8,7 +8,7 @@ import {
   signIn,
 } from "next-auth/react";
 import { BuiltInProviderType, Provider } from "next-auth/providers";
-import { Button } from "@/app/components/ui/button";
+import { Button } from "@/app/_components/ui/button";
 import Link from "next/link";
 
 const Login: React.FC = () => {
