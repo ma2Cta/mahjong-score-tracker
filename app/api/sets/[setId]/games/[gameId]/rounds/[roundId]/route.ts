@@ -28,6 +28,7 @@ export async function GET(
         user: {
           id: score.user.id,
           name: score.user.name,
+          image: score.user.image,
           sets: null,
           scores: null
         },

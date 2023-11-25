@@ -2,7 +2,7 @@
 
 import { UseFormReturn } from "react-hook-form";
 import * as z from "zod";
-import { createSetFormSchema } from "@/app/_components/set/CreateSetFormSchema";
+import { createRoundFormSchema } from "@/app/_components/round/CreateRoundFormSchema";
 import {
   FormControl,
   FormField,
@@ -13,20 +13,20 @@ import {
 import React from "react";
 import { Input } from "@/app/_components/ui/input";
 
-interface LocationInputProps {
-  form: UseFormReturn<z.infer<typeof createSetFormSchema>>;
+interface RoundInWindInputProps {
+  form: UseFormReturn<z.infer<typeof createRoundFormSchema>>;
 }
 
-const LocationInput: React.FC<LocationInputProps> = ({ form }) => {
+const RoundInWindInput: React.FC<RoundInWindInputProps> = ({ form }) => {
   return (
     <FormField
       control={form.control}
-      name="location"
+      name="roundInWind"
       render={({ field }) => (
         <FormItem className="flex flex-col">
-          <FormLabel>開催場所</FormLabel>
+          <FormLabel>局</FormLabel>
           <FormControl>
-            <Input {...field} placeholder="場所を入力" />
+            <Input {...field} type="number" className="w-[60px]"/>
           </FormControl>
           <FormMessage />
         </FormItem>
@@ -35,4 +35,4 @@ const LocationInput: React.FC<LocationInputProps> = ({ form }) => {
   );
 };
 
-export default LocationInput;
+export default RoundInWindInput;

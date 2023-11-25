@@ -2,7 +2,7 @@
 
 import { Controller, UseFormReturn, useFieldArray } from "react-hook-form";
 import * as z from "zod";
-import { formSchema } from "@/app/_components/set/CrateSetFormSchema";
+import { createSetFormSchema } from "@/app/_components/set/CreateSetFormSchema";
 import {
   FormControl,
   FormDescription,
@@ -33,7 +33,7 @@ import { User } from "@/app/_types/user";
 import UserSearchTable from "@/app/_components/set/UserSearchTable";
 
 interface SelectedUsersInputProps {
-  form: UseFormReturn<z.infer<typeof formSchema>>;
+  form: UseFormReturn<z.infer<typeof createSetFormSchema>>;
 }
 
 const SelectedUsersInput: React.FC<SelectedUsersInputProps> = ({ form }) => {

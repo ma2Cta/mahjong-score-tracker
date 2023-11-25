@@ -5,7 +5,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/app/_components/ui/button";
 import { Form } from "@/app/_components/ui/form";
-import { formSchema } from "@/app/_components/set/CrateSetFormSchema";
+import { createSetFormSchema } from "@/app/_components/set/CreateSetFormSchema";
 import DateInput from "@/app/_components/set/DateInput";
 import LocationInput from "@/app/_components/set/LocationInput";
 import SelectedUsersInput from "@/app/_components/set/SelectedUsersInput";
@@ -17,8 +17,8 @@ interface CreateSetFormProps {
 
 const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
   const { toast } = useToast();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof createSetFormSchema>>({
+    resolver: zodResolver(createSetFormSchema),
     defaultValues: {
       date: new Date(),
       location: "",
@@ -26,7 +26,7 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof createSetFormSchema>) {
     const response = await fetch("/api/sets", {
       method: "POST",
       headers: {
@@ -42,7 +42,7 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
     if (response.ok) {
       onSuccess();
       toast({
-        title: "フォームの作成に成功しました。",
+        title: "セットの作成に成功しました。",
         description: `${values.date}`,
       })
     }

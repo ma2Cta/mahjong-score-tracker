@@ -2,7 +2,7 @@
 
 import { UseFormReturn } from "react-hook-form";
 import * as z from "zod";
-import { formSchema } from "@/app/_components/set/CrateSetFormSchema";
+import { createSetFormSchema } from "@/app/_components/set/CreateSetFormSchema";
 import { Calendar } from "@/app/_components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/app/_lib/utils";
@@ -11,7 +11,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/app/_components/ui/po
 import { Button } from "@/app/_components/ui/button";
 
 interface DateInputProps {
-  form: UseFormReturn<z.infer<typeof formSchema>>;
+  form: UseFormReturn<z.infer<typeof createSetFormSchema>>;
 }
 
 const DateInput: React.FC<DateInputProps> = ({ form }) => {

@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Game } from "@/app/_types/game";
 import useSWR, { mutate } from "swr";
-import GameDetail from "@/app/_components/GameDetail";
-import GameResult from "@/app/_components/GameResult";
-import { CreateRoundData } from "@/app/_types/round";
-import CreateRoundForm from "@/app/_components/CreateRoundForm";
-import TypographyH1 from "@/app/_components/ui/TypographyH1";
+import GameDetail from "@/app/_components/game/GameDetail";
+import GameResult from "@/app/_components/game/GameResult";
+import CreateRoundForm from "@/app/_components/round/CreateRoundForm";
 import TypographyH2 from "@/app/_components/ui/TypographyH2";
+import { Button } from "@/app/_components/ui/button";
+import RoundList from "@/app/_components/round/RoundList";
 
 const GameDetailPage = () => {
   const router = useRouter();
@@ -34,13 +34,10 @@ const GameDetailPage = () => {
       return;
     }
     try {
-      const response = await fetch(
-        `/api/sets/${setId}/games/${gameId}`,
-        {
-          method: "DELETE",
-          body: null,
-        }
-      );
+      const response = await fetch(`/api/sets/${setId}/games/${gameId}`, {
+        method: "DELETE",
+        body: null,
+      });
       if (response.ok) {
         // セットが正常に削除された場合、ユーザーをセット詳細ページにリダイレクトします。
         router.push(`/sets/${setId}`);
@@ -51,34 +48,6 @@ const GameDetailPage = () => {
     } catch (error) {
       // ネットワークエラーや、サーバーエラーのハンドリングを行います。
       console.error("Error occurred while deleting game:", error);
-    }
-  };
-
-  const createRound = async (data: CreateRoundData) => {
-    if (!setId || !gameId) {
-      return;
-    }
-    try {
-      const response = await fetch(
-        `/api/sets/${setId}/games/${gameId}/rounds`,
-        {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.ok) {
-        // ラウンドが正常に作成された場合、ゲームのデータを再取得します。
-        mutate(`/api/sets/${setId}/games/${gameId}`);
-      } else {
-        // エラーメッセージを表示するなど、適切なエラーハンドリングを行います。
-        console.error("Failed to create round");
-      }
-    } catch (error) {
-      // ネットワークエラーや、サーバーエラーのハンドリングを行います。
-      console.error("Error occurred while creating round:", error);
     }
   };
 
@@ -93,22 +62,41 @@ const GameDetailPage = () => {
   return (
     <>
       <div>
-        <TypographyH1>ゲーム詳細</TypographyH1>
+        <div className="flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <TypographyH2>ゲーム詳細</TypographyH2>
+            <Link
+              className="underline underline-offset-2"
+              href={`/sets/${setId}`}
+            >
+              セット詳細に戻る
+            </Link>
+          </div>
+          <Button variant="destructive" onClick={() => deleteGame()}>
+            ゲームを削除
+          </Button>
+        </div>
         <GameDetail game={game} setId={setId} deleteGame={deleteGame} />
-        <TypographyH2>ラウンドを作成</TypographyH2>
-        <CreateRoundForm
-          createRound={createRound}
-          users={game?.set?.users || []}
-        />
-        <TypographyH2>ゲーム結果</TypographyH2>
+        <div className="font-semibold my-4">ラウンド</div>
+        <div className="flex flex-row justify-between">
+          <div className="flex-1 mr-4">
+            <RoundList
+              rounds={game.rounds ? game.rounds : []}
+              setId={setId}
+              gameId={game.id}
+            />
+          </div>
+          <div className="flex-1">
+            <CreateRoundForm
+              onSuccess={() => mutate(`/api/sets/${setId}/games/${gameId}`)}
+              lastRound={game?.rounds?.[game?.rounds?.length - 1] || null}
+              users={game?.set?.users || []}
+            />
+          </div>
+        </div>
+        <div className="font-semibold my-4">ゲーム結果</div>
         <GameResult game={game} />
       </div>
-      <Link
-        className="underline underline-offset-2"
-        href={`/sets/${setId}`}
-      >
-        セット詳細に戻る
-      </Link>
     </>
   );
 };

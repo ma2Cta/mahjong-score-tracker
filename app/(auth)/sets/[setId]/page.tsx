@@ -8,13 +8,16 @@ import useSWR, { mutate } from "swr";
 import SetDetail from "@/app/_components/set/SetDetail";
 import TypographyH2 from "@/app/_components/ui/TypographyH2";
 import { Button } from "@/app/_components/ui/button";
-import GameList from "@/app/_components/GameList";
+import GameList from "@/app/_components/game/GameList";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/app/_components/ui/accordion";
+import CreateGameForm from "@/app/_components/game/CreateGameForm";
+import { Separator } from "@/app/_components/ui/separator";
+import GameResult from "@/app/_components/game/GameResult";
 
 const SetDetailPage = () => {
   const router = useRouter();
@@ -77,19 +80,15 @@ const SetDetailPage = () => {
         </Button>
       </div>
       <SetDetail set={set} />
-      <Accordion className="my-6" type="single" collapsible>
-        <AccordionItem value="item-1">
-          <AccordionTrigger>
-            <div className="font-semibold">ゲーム一覧</div>
-          </AccordionTrigger>
-          <AccordionContent>
-            <GameList games={set.games ? set.games : []} setId={set.id} />
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-      <Link href={`/sets/${set.id}/games/create`}>
-        <Button>ゲームを作成</Button>
-      </Link>
+      <div className="font-semibold my-4">ゲーム</div>
+      <div className="flex flex-row justify-between">
+        <div className="flex-1 mr-4">
+          <GameList games={set.games ? set.games : []} setId={set.id} />
+        </div>
+        <div className="flex-1">
+          <CreateGameForm onSuccess={() => mutate(`/api/sets/${setId}`)} />
+        </div>
+      </div>
     </>
   );
 };

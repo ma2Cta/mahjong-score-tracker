@@ -4,10 +4,11 @@ import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import useSWR from "swr";
-import RoundDetail from "@/app/_components/RoundDetail";
+import RoundDetail from "@/app/_components/round/RoundDetail";
 import { Round } from "@/app/_types/round";
-import RoundResult from "@/app/_components/GameResult";
-import TypographyH1 from "@/app/_components/ui/TypographyH1";
+import TypographyH2 from "@/app/_components/ui/TypographyH2";
+import { Button } from "@/app/_components/ui/button";
+import ScoreList from "@/app/_components/ScoreList";
 
 const RoundDetailPage = () => {
   const router = useRouter();
@@ -65,16 +66,23 @@ const RoundDetailPage = () => {
 
   return (
     <>
-      <div>
-        <TypographyH1>ラウンド詳細</TypographyH1>
-        <RoundDetail round={round} deleteRound={deleteRound} />
+      <div className="flex justify-between items-center">
+        <div className="flex items-center space-x-4">
+          <TypographyH2>ラウンド詳細</TypographyH2>
+          <Link
+            className="underline underline-offset-2"
+            href={`/sets/${setId}/games/${gameId}`}
+          >
+            ゲーム詳細に戻る
+          </Link>
+        </div>
+        <Button variant="destructive" onClick={() => deleteRound()}>
+          ラウンドを削除
+        </Button>
       </div>
-      <Link
-        className="underline underline-offset-2"
-        href={`/sets/${setId}/games/${gameId}`}
-      >
-        ゲーム詳細に戻る
-      </Link>
+      <RoundDetail round={round} deleteRound={deleteRound} />
+      <div className="font-semibold my-4">スコア一覧</div>
+      <ScoreList scores={round.scores} />
     </>
   );
 };
