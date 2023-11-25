@@ -2,7 +2,7 @@
 
 import { Controller, UseFormReturn, useFieldArray } from "react-hook-form";
 import * as z from "zod";
-import { formSchema } from "@/app/_components/create_set_form/CrateSetFormSchema";
+import { formSchema } from "@/app/_components/set/CrateSetFormSchema";
 import {
   FormControl,
   FormDescription,
@@ -30,7 +30,7 @@ import {
 import { Button } from "@/app/_components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { User } from "@/app/_types/user";
-import UserSearchTable from "@/app/_components/create_set_form/UserSearchTable";
+import UserSearchTable from "@/app/_components/set/UserSearchTable";
 
 interface SelectedUsersInputProps {
   form: UseFormReturn<z.infer<typeof formSchema>>;

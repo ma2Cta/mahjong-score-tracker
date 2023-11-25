@@ -2,7 +2,7 @@
 
 import { UseFormReturn } from "react-hook-form";
 import * as z from "zod";
-import { formSchema } from "@/app/_components/create_set_form/CrateSetFormSchema";
+import { formSchema } from "@/app/_components/set/CrateSetFormSchema";
 import { Calendar } from "@/app/_components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/app/_lib/utils";

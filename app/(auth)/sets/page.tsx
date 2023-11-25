@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Set } from "@/app/_types/set";
 import useSWR, { mutate } from "swr";
-import SetList from "@/app/_components/SetList";
+import SetList from "@/app/_components/set/SetList";
 import { Button } from "@/app/_components/ui/button";
 import TypographyH2 from "@/app/_components/ui/TypographyH2";
 

@@ -5,10 +5,10 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/app/_components/ui/button";
 import { Form } from "@/app/_components/ui/form";
-import { formSchema } from "@/app/_components/create_set_form/CrateSetFormSchema";
-import DateInput from "@/app/_components/create_set_form/DateInput";
-import LocationInput from "@/app/_components/create_set_form/LocationInput";
-import SelectedUsersInput from "@/app/_components/create_set_form/SelectedUsersInput";
+import { formSchema } from "@/app/_components/set/CrateSetFormSchema";
+import DateInput from "@/app/_components/set/DateInput";
+import LocationInput from "@/app/_components/set/LocationInput";
+import SelectedUsersInput from "@/app/_components/set/SelectedUsersInput";
 
 interface CreateSetFormProps {
   onSuccess: () => void;

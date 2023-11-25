@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import TypographyH2 from "@/app/_components/ui/TypographyH2";
-import CreateSetForm from "@/app/_components/create_set_form/CreateSetForm";
+import CreateSetForm from "@/app/_components/set/CreateSetForm";
 
 const CreateSet: React.FC = () => {
   const router = useRouter();
