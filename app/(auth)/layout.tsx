@@ -1,11 +1,11 @@
 "use client";
 
 import "@/styles/globals.css";
-import Header from "@/app/components/ui/Header";
+import Header from "@/app/_components/ui/Header";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
-import Footer from "@/app/components/ui/Footer";
+import Footer from "@/app/_components/ui/Footer";
 
 export default function AuthLayout({
   children,

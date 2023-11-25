@@ -3,18 +3,18 @@
 import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Set } from "@/app/types/set";
+import { Set } from "@/app/_types/set";
 import useSWR, { mutate } from "swr";
-import SetDetail from "@/app/components/SetDetail";
-import TypographyH2 from "@/app/components/ui/TypographyH2";
-import { Button } from "@/app/components/ui/button";
-import GameList from "@/app/components/GameList";
+import SetDetail from "@/app/_components/SetDetail";
+import TypographyH2 from "@/app/_components/ui/TypographyH2";
+import { Button } from "@/app/_components/ui/button";
+import GameList from "@/app/_components/GameList";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/app/components/ui/accordion";
+} from "@/app/_components/ui/accordion";
 
 const SetDetailPage = () => {
   const router = useRouter();

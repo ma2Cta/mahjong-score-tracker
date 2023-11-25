@@ -1,7 +1,7 @@
 "use client";
 
-import TypographyH1 from "@/app/components/ui/TypographyH1";
-import TypographyH2 from "@/app/components/ui/TypographyH2";
+import TypographyH1 from "@/app/_components/ui/TypographyH1";
+import TypographyH2 from "@/app/_components/ui/TypographyH2";
 import { useRouter } from "next/navigation";
 
 const Terms: React.FC = () => {

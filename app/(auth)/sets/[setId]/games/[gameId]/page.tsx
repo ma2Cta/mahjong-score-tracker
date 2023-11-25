@@ -3,14 +3,14 @@
 import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Game } from "@/app/types/game";
+import { Game } from "@/app/_types/game";
 import useSWR, { mutate } from "swr";
-import GameDetail from "@/app/components/GameDetail";
-import GameResult from "@/app/components/GameResult";
-import { CreateRoundData } from "@/app/types/round";
-import CreateRoundForm from "@/app/components/CreateRoundForm";
-import TypographyH1 from "@/app/components/ui/TypographyH1";
-import TypographyH2 from "@/app/components/ui/TypographyH2";
+import GameDetail from "@/app/_components/GameDetail";
+import GameResult from "@/app/_components/GameResult";
+import { CreateRoundData } from "@/app/_types/round";
+import CreateRoundForm from "@/app/_components/CreateRoundForm";
+import TypographyH1 from "@/app/_components/ui/TypographyH1";
+import TypographyH2 from "@/app/_components/ui/TypographyH2";
 
 const GameDetailPage = () => {
   const router = useRouter();

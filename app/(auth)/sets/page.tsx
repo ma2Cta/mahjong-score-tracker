@@ -2,11 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Set } from "@/app/types/set";
+import { Set } from "@/app/_types/set";
 import useSWR, { mutate } from "swr";
-import SetList from "@/app/components/SetList";
-import { Button } from "@/app/components/ui/button";
-import TypographyH2 from "@/app/components/ui/TypographyH2";
+import SetList from "@/app/_components/SetList";
+import { Button } from "@/app/_components/ui/button";
+import TypographyH2 from "@/app/_components/ui/TypographyH2";
 
 const Sets: React.FC = () => {
   const { data, error, isLoading } = useSWR("/api/sets");

@@ -2,8 +2,8 @@
 
 import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr";
-import { fetcher } from "@/app/lib/fetcher";
-import { ThemeProvider } from "@/app/components/ui/ThemeProvider";
+import { fetcher } from "@/app/_lib/fetcher";
+import { ThemeProvider } from "@/app/_components/ui/ThemeProvider";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
