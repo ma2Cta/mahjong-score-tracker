@@ -18,6 +18,7 @@ export async function GET() {
         return {
           id: user.id,
           name: user.name,
+          image: user.image,
           sets: null,
           scores: null
         };

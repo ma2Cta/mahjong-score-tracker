@@ -8,7 +8,7 @@ import RoundDetail from "@/app/_components/round/RoundDetail";
 import { Round } from "@/app/_types/round";
 import TypographyH2 from "@/app/_components/ui/TypographyH2";
 import { Button } from "@/app/_components/ui/button";
-import ScoreList from "@/app/_components/ScoreList";
+import ScoreList from "@/app/_components/score/ScoreList";
 
 const RoundDetailPage = () => {
   const router = useRouter();

@@ -8,11 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/app/_components/ui/table";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/app/_components/ui/avatar";
+import { UserName } from "@/app/_components/ui/UserName";
 
 type ScoreListProps = {
   scores: Score[];
@@ -37,15 +33,11 @@ const ScoreList: React.FC<ScoreListProps> = ({ scores }) => {
         <TableBody>
           {scores.map((score) => (
             <TableRow key={score.id}>
-              <TableCell className="flex items-center">
-                <Avatar className="h-5 w-5 border flex mr-1">
-                  <AvatarImage
-                    className="w-full h-full"
-                    src={score.user?.image ?? ""}
-                  />
-                  <AvatarFallback>?</AvatarFallback>
-                </Avatar>
-                {score.user?.name}
+              <TableCell>
+                <UserName
+                  name={score.user?.name ?? ""}
+                  image={score.user?.image ?? ""}
+                />
               </TableCell>
               <TableCell>{score.point}</TableCell>
             </TableRow>

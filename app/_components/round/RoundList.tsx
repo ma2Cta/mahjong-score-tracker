@@ -1,4 +1,5 @@
 import DataTable from "@/app/_components/ui/DataTable";
+import { UserName } from "@/app/_components/ui/UserName";
 import {
   Avatar,
   AvatarFallback,
@@ -39,14 +40,10 @@ const RoundList: React.FC<RoundListProps> = ({ rounds, setId, gameId }) => {
           <>
             {row.original.scores.map((score) => (
               <div key={score.id} className="flex justify-end border-b-2">
-                <Avatar className="h-5 w-5 border flex mr-1">
-                  <AvatarImage
-                    className="w-full h-full"
-                    src={score?.user?.image ?? ""}
-                  />
-                  <AvatarFallback>?</AvatarFallback>
-                </Avatar>
-                {score?.user?.name ?? ""}
+                <UserName
+                  name={score?.user?.name ?? ""}
+                  image={score?.user?.image ?? ""}
+                />
               </div>
             ))}
           </>

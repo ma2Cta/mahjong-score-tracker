@@ -94,7 +94,7 @@ const GameDetailPage = () => {
             />
           </div>
         </div>
-        <div className="font-semibold my-4">ゲーム結果</div>
+        <div className="font-semibold my-4">ゲーム集計結果</div>
         <GameResult game={game} />
       </div>
     </>

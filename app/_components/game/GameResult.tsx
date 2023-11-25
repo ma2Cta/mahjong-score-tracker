@@ -1,8 +1,4 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/app/_components/ui/avatar";
+import { UserName } from "@/app/_components/ui/UserName";
 import {
   Table,
   TableBody,
@@ -42,15 +38,11 @@ const GameResult: React.FC<GameResultProps> = ({ game }) => {
           {gameResult.map((gameResult: GameResult) => (
             <TableRow key={gameResult.place}>
               <TableCell>{gameResult.place}</TableCell>
-              <TableCell className="flex items-center">
-                <Avatar className="h-5 w-5 border flex mr-1">
-                  <AvatarImage
-                    className="w-full h-full"
-                    src={gameResult.userTotalScore.user.image ?? ""}
-                  />
-                  <AvatarFallback>?</AvatarFallback>
-                </Avatar>
-                {gameResult.userTotalScore.user.name}
+              <TableCell>
+                <UserName
+                  name={gameResult.userTotalScore.user.name}
+                  image={gameResult.userTotalScore.user.image ?? ""}
+                />
               </TableCell>
               <TableCell>{gameResult.userTotalScore.totalScore}</TableCell>
             </TableRow>

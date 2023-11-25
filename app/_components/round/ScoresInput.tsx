@@ -17,6 +17,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/app/_components/ui/avatar";
+import { UserName } from "@/app/_components/ui/UserName";
 
 interface ScoresInputProps {
   form: UseFormReturn<z.infer<typeof createRoundFormSchema>>;
@@ -51,15 +52,8 @@ const ScoresInput: React.FC<ScoresInputProps> = ({ form, users }) => {
                 key={field.id}
                 render={({ field: renderField }) => (
                   <FormItem className="flex-1 mr-4 flex flex-col">
-                    <FormLabel className="flex items-center">
-                      <Avatar className="h-5 w-5 border flex mr-1">
-                        <AvatarImage
-                          className="w-full h-full"
-                          src={userImage}
-                        />
-                        <AvatarFallback>?</AvatarFallback>
-                      </Avatar>
-                      {`${userName}のスコア`}
+                    <FormLabel>
+                      <UserName name={`${userName}のスコア`} image={userImage} />
                     </FormLabel>
                     <FormControl>
                       <Input

@@ -7,6 +7,7 @@ import {
   TableHead,
   TableRow,
 } from "@/app/_components/ui/table";
+import { UserName } from "@/app/_components/ui/UserName";
 
 type SetDetailProps = {
   set: Set;
@@ -32,7 +33,13 @@ const SetDetail: React.FC<SetDetailProps> = ({ set }) => {
           <TableRow>
             <TableHead className="text-right">参加ユーザー</TableHead>
             <TableCell>
-              {set.users?.map((user) => user.name).join(", ")}
+              {set.users?.map((user) => {
+                return (
+                  <div key={user.id}>
+                    <UserName name={user.name} image={user.image ?? ""} />
+                  </div>
+                );
+              })}
             </TableCell>
           </TableRow>
         </TableBody>

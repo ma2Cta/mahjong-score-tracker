@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
 import DataTable from "@/app/_components/ui/DataTable";
 import { User } from "@/app/_types/user";
+import { UserName } from "@/app/_components/ui/UserName";
 
 type SetListProps = {
   sets: Set[];
@@ -14,15 +15,19 @@ type SetListProps = {
 const columns: ColumnDef<Set>[] = [
   {
     accessorKey: "id",
-    header: "ID"
+    header: "ID",
   },
   {
     accessorKey: "date",
     header: "開催日時",
     cell: ({ row }) => {
       const date = row.getValue("date") as string;
-      return <Link className="underline" href={`/sets/${row.getValue("id")}`}>{date}</Link>
-    }
+      return (
+        <Link className="underline" href={`/sets/${row.getValue("id")}`}>
+          {date}
+        </Link>
+      );
+    },
   },
   {
     accessorKey: "location",
@@ -33,8 +38,14 @@ const columns: ColumnDef<Set>[] = [
     header: "参加ユーザー",
     cell: ({ row }) => {
       const users = row.getValue("users") as User[];
-      return users.map(user => user.name).join(', ')
-    }
+      return users.map((user) => {
+        return (
+          <div key={user.id}>
+            <UserName name={user.name} image={user.image ?? ""} />
+          </div>
+        );
+      });
+    },
   },
 ];
 

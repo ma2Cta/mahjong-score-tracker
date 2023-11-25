@@ -9,15 +9,7 @@ import SetDetail from "@/app/_components/set/SetDetail";
 import TypographyH2 from "@/app/_components/ui/TypographyH2";
 import { Button } from "@/app/_components/ui/button";
 import GameList from "@/app/_components/game/GameList";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/app/_components/ui/accordion";
 import CreateGameForm from "@/app/_components/game/CreateGameForm";
-import { Separator } from "@/app/_components/ui/separator";
-import GameResult from "@/app/_components/game/GameResult";
 
 const SetDetailPage = () => {
   const router = useRouter();
