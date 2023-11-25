@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import Footer from "@/app/_components/ui/Footer";
+import { Toaster } from "@/app/_components/ui/toaster";
 
 export default function AuthLayout({
   children,
@@ -29,6 +30,7 @@ export default function AuthLayout({
             <Header />
           </nav>
           <main className="flex-grow px-16 pt-2">{children}</main>
+          <Toaster />
           <Footer />
         </div>
       </>

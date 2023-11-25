@@ -9,12 +9,14 @@ import { formSchema } from "@/app/_components/set/CrateSetFormSchema";
 import DateInput from "@/app/_components/set/DateInput";
 import LocationInput from "@/app/_components/set/LocationInput";
 import SelectedUsersInput from "@/app/_components/set/SelectedUsersInput";
+import { useToast } from "@/app/_components/ui/use-toast";
 
 interface CreateSetFormProps {
   onSuccess: () => void;
 }
 
 const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,6 +41,10 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
 
     if (response.ok) {
       onSuccess();
+      toast({
+        title: "フォームの作成に成功しました。",
+        description: `${values.date}`,
+      })
     }
   }
 
