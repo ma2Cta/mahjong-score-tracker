@@ -1,12 +1,6 @@
 import DataTable from "@/app/_components/ui/DataTable";
 import { UserName } from "@/app/_components/ui/UserName";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/app/_components/ui/avatar";
 import { Round, roundNames } from "@/app/_types/round";
-import { User } from "@/app/_types/user";
 import { ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
 
@@ -18,6 +12,10 @@ interface RoundListProps {
 
 const RoundList: React.FC<RoundListProps> = ({ rounds, setId, gameId }) => {
   const columns: ColumnDef<Round>[] = [
+    {
+      accessorKey: "round",
+      header: "何戦目",
+    },
     {
       accessorKey: "name",
       header: "第何局",

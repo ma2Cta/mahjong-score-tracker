@@ -2,15 +2,15 @@
 
 import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { Game } from "@/app/_types/game";
 import useSWR, { mutate } from "swr";
 import GameDetail from "@/app/_components/game/GameDetail";
 import GameResult from "@/app/_components/game/GameResult";
 import CreateRoundForm from "@/app/_components/round/CreateRoundForm";
 import TypographyH2 from "@/app/_components/ui/TypographyH2";
-import { Button } from "@/app/_components/ui/button";
 import RoundList from "@/app/_components/round/RoundList";
+import BreadCrumbs from "@/app/_components/ui/BreadCrumbs";
+import DeleteGameButton from "@/app/_components/game/DeleteGameButton";
 
 const GameDetailPage = () => {
   const router = useRouter();
@@ -20,7 +20,7 @@ const GameDetailPage = () => {
 
   const [game, setGame] = useState<Game | null>(null);
   const { data, error, isLoading } = useSWR(
-    setId && gameId ? `/api/sets/${setId}/games/${gameId}` : null
+    setId && gameId ? `/api/sets/${setId}/games/${gameId}` : null,
   );
 
   useEffect(() => {
@@ -62,19 +62,16 @@ const GameDetailPage = () => {
   return (
     <>
       <div>
+        <BreadCrumbs
+          crumbs={[
+            { name: "セット一覧", path: "/sets" },
+            { name: "セット詳細", path: `/sets/${setId}` },
+            { name: "ゲーム詳細", path: "" },
+          ]}
+        />
         <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <TypographyH2>ゲーム詳細</TypographyH2>
-            <Link
-              className="underline underline-offset-2"
-              href={`/sets/${setId}`}
-            >
-              セット詳細に戻る
-            </Link>
-          </div>
-          <Button variant="destructive" onClick={() => deleteGame()}>
-            ゲームを削除
-          </Button>
+          <TypographyH2>ゲーム詳細</TypographyH2>
+          <DeleteGameButton />
         </div>
         <GameDetail game={game} setId={setId} deleteGame={deleteGame} />
         <div className="font-semibold my-4">ラウンド</div>

@@ -1,0 +1,14 @@
+.env*
+.eslintrc.json
+.gitignore
+.prettier.json
+.prettierignore
+components.json
+compose.yml
+README.md
+.next/
+.vercel/
+node_modules/
+prisma/
+public/
+stypes/

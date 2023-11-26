@@ -20,7 +20,7 @@ const CreateSet: React.FC = () => {
         </div>
       </div>
       <div className="my-4">
-        <CreateSetForm onSuccess={() => router.push("/sets")}/>
+        <CreateSetForm onSuccess={() => router.push("/sets")} />
       </div>
     </>
   );

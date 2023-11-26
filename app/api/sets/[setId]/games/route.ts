@@ -1,10 +1,9 @@
 import prisma from "@/app/_lib/prisma";
-import { toRoundLength } from "@/app/_types/game";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { setId: string } }
+  { params }: { params: { setId: string } },
 ) {
   const { setId } = params;
   const setIdNumber = Number(setId);
@@ -16,13 +15,13 @@ export async function GET(
   if (games) {
     const response = games.map((game) => ({
       id: game.id,
-      round: toRoundLength(game.roundLength),
+      roundLength: game.roundLength,
       set: {
         id: game.set.id,
         date: game.set.date,
         location: game.set.location,
-        users: null
-      }
+        users: null,
+      },
     }));
     return NextResponse.json(response);
   } else {
@@ -32,7 +31,7 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { setId: string } }
+  { params }: { params: { setId: string } },
 ) {
   const { setId } = params;
   const { round } = await request.json();

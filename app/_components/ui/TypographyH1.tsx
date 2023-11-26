@@ -6,13 +6,11 @@ interface TypographyH1Props {
 }
 
 const TypographyH1: React.FC<TypographyH1Props> = ({ children, className }) => {
-  const classNames = `scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ${className || ''}`;
-  
-  return (
-    <h1 className={classNames}>
-      {children}
-    </h1>
-  );
-}
+  const classNames = `scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ${
+    className || ""
+  }`;
+
+  return <h1 className={classNames}>{children}</h1>;
+};
 
 export default TypographyH1;

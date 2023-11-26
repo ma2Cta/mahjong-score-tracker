@@ -9,10 +9,9 @@ import {
 
 type RoundDetailProps = {
   round: Round;
-  deleteRound: (roundId: number) => void;
 };
 
-const RoundDetail: React.FC<RoundDetailProps> = ({ round, deleteRound }) => {
+const RoundDetail: React.FC<RoundDetailProps> = ({ round }) => {
   if (!round) {
     return <div>Loading...</div>;
   }

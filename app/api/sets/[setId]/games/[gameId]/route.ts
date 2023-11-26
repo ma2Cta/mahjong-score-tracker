@@ -4,7 +4,7 @@ import { Wind } from "@/app/_types/round";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { gameId: string } }
+  { params }: { params: { gameId: string } },
 ) {
   const { gameId } = params;
   const gameIdNumber = Number(gameId);
@@ -68,7 +68,7 @@ export async function GET(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { gameId: string } }
+  { params }: { params: { gameId: string } },
 ) {
   const { gameId } = params;
   const gameIdNumber = Number(gameId);

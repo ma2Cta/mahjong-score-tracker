@@ -23,14 +23,17 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center">
+      <div className="flex items-end justify-between">
+        <div className="flex items-end">
           <Link href="/">
             <span className="text-4xl mr-2">🀙</span>
             <span className="text-3xl font-bold">Mahjong Score Tracker</span>
           </Link>
         </div>
         <div className="flex items-center space-x-4">
+          <div className="ml-4">
+            <Link href="/sets">セット一覧</Link>
+          </div>
           <ModeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

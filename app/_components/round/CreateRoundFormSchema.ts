@@ -8,7 +8,7 @@ export const createRoundFormSchema = z.object({
       z.object({
         userId: z.number(),
         point: z.number(),
-      })
+      }),
     )
     .min(3)
     .max(4),

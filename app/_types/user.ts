@@ -1,5 +1,5 @@
-import { Set } from '@/app/_types/set';
-import { Score } from '@/app/_types/score';
+import { Set } from "@/app/_types/set";
+import { Score } from "@/app/_types/score";
 
 export type User = {
   id: number;
