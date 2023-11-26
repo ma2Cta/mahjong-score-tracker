@@ -16,10 +16,6 @@ const GameList: React.FC<GameListProps> = ({ games, setId }) => {
 
   const columns: ColumnDef<Game>[] = [
     {
-      accessorKey: "id",
-      header: "ID",
-    },
-    {
       accessorKey: "roundLength",
       header: "何風戦",
       cell: ({ row }) => {
@@ -33,7 +29,7 @@ const GameList: React.FC<GameListProps> = ({ games, setId }) => {
           </Link>
         );
       },
-    }
+    },
   ];
 
   return (

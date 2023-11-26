@@ -1,5 +1,4 @@
 import prisma from "@/app/_lib/prisma";
-import { toRoundLength } from "@/app/_types/game";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -16,13 +15,13 @@ export async function GET(
   if (games) {
     const response = games.map((game) => ({
       id: game.id,
-      round: toRoundLength(game.roundLength),
+      roundLength: game.roundLength,
       set: {
         id: game.set.id,
         date: game.set.date,
         location: game.set.location,
-        users: null
-      }
+        users: null,
+      },
     }));
     return NextResponse.json(response);
   } else {
