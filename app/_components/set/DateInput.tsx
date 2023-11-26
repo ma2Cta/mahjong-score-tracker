@@ -6,8 +6,18 @@ import { createSetFormSchema } from "@/app/_components/set/CreateSetFormSchema";
 import { Calendar } from "@/app/_components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/app/_lib/utils";
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/app/_components/ui/form";
-import { Popover, PopoverContent, PopoverTrigger } from "@/app/_components/ui/popover";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/app/_components/ui/form";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/app/_components/ui/popover";
 import { Button } from "@/app/_components/ui/button";
 
 interface DateInputProps {
@@ -29,7 +39,7 @@ const DateInput: React.FC<DateInputProps> = ({ form }) => {
                   variant={"outline"}
                   className={cn(
                     "w-[240px] pl-3 text-left font-normal",
-                    !field.value && "text-muted-foreground"
+                    !field.value && "text-muted-foreground",
                   )}
                 >
                   {field.value ? (

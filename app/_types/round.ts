@@ -1,5 +1,5 @@
-import { CreateScoreData, Score } from '@/app/_types/score';
-import { Game } from '@/app/_types/game';
+import { CreateScoreData, Score } from "@/app/_types/score";
+import { Game } from "@/app/_types/game";
 
 export type Round = {
   id: number;
@@ -8,7 +8,7 @@ export type Round = {
   roundInWind: number;
   game: Game;
   scores: Score[];
-}
+};
 
 export enum Wind {
   東 = 0,
@@ -18,12 +18,12 @@ export enum Wind {
 }
 
 export function toWind(value: number | string): string {
-  if (typeof value === 'number') {
+  if (typeof value === "number") {
     return Wind[value];
   } else if (Object.values(Wind).includes(value as any)) {
     return value;
   }
-  throw new Error('Invalid Wind value');
+  throw new Error("Invalid Wind value");
 }
 
 export function roundNames(wind: Wind, roundInWind: number): string {
@@ -34,4 +34,4 @@ export type CreateRoundData = {
   wind: Wind;
   roundInWind: number;
   scores: CreateScoreData[];
-}
+};

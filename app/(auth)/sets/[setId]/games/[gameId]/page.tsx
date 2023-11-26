@@ -20,7 +20,7 @@ const GameDetailPage = () => {
 
   const [game, setGame] = useState<Game | null>(null);
   const { data, error, isLoading } = useSWR(
-    setId && gameId ? `/api/sets/${setId}/games/${gameId}` : null
+    setId && gameId ? `/api/sets/${setId}/games/${gameId}` : null,
   );
 
   useEffect(() => {

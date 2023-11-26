@@ -11,7 +11,7 @@ type Crumb = {
   path: string;
 };
 
-const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ crumbs }) => {  
+const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ crumbs }) => {
   return (
     <div className="flex items-center text-sm font-medium text-gray-500 mb-4">
       <Link href="/" className="hover:underline">

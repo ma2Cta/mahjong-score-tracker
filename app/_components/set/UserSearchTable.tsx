@@ -16,9 +16,7 @@ const UserSearchTable: React.FC<UserSearchTableProps> = ({
   userSearchTableColumns,
 }) => {
   const [users, setUsers] = useState<User[]>([]);
-  const { data, error, isLoading } = useSWR(
-    `/api/users?name=${searchName}`
-  );
+  const { data, error, isLoading } = useSWR(`/api/users?name=${searchName}`);
 
   useEffect(() => {
     if (data) {
@@ -33,7 +31,7 @@ const UserSearchTable: React.FC<UserSearchTableProps> = ({
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  
+
   return <DataTable columns={userSearchTableColumns} data={users} />;
 };
 

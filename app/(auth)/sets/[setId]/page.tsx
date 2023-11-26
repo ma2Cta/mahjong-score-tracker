@@ -18,7 +18,7 @@ const SetDetailPage = () => {
 
   const [set, setSet] = useState<Set | null>(null);
   const { data, error, isLoading } = useSWR(
-    setId ? `/api/sets/${setId}` : null
+    setId ? `/api/sets/${setId}` : null,
   );
 
   useEffect(() => {

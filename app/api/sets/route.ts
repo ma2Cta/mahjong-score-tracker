@@ -1,13 +1,13 @@
-import prisma from '@/app/_lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
+import prisma from "@/app/_lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
-  const sets = await prisma.set.findMany({ 
-    include: { 
-      users: true, 
+  const sets = await prisma.set.findMany({
+    include: {
+      users: true,
       games: true,
     },
-    orderBy: { date: 'asc' }
+    orderBy: { date: "asc" },
   });
   const response = sets.map((set) => {
     return {
@@ -20,7 +20,7 @@ export async function GET() {
           name: user.name,
           image: user.image,
           sets: null,
-          scores: null
+          scores: null,
         };
       }),
       games: set.games.map((game) => {
@@ -30,10 +30,10 @@ export async function GET() {
           set: null,
           rounds: null,
           basePoint: game.basePoint,
-        }
-      })
+        };
+      }),
     };
-  })
+  });
   return NextResponse.json({ sets: response });
 }
 

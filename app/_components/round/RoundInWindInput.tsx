@@ -26,7 +26,7 @@ const RoundInWindInput: React.FC<RoundInWindInputProps> = ({ form }) => {
         <FormItem className="flex flex-col">
           <FormLabel>局</FormLabel>
           <FormControl>
-            <Input {...field} type="number" className="w-[60px]"/>
+            <Input {...field} type="number" className="w-[60px]" />
           </FormControl>
           <FormMessage />
         </FormItem>

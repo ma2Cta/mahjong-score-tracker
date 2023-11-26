@@ -1,4 +1,8 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/app/_components/ui/avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/app/_components/ui/avatar";
 import { UserIcon } from "lucide-react";
 
 interface UserNameProps {

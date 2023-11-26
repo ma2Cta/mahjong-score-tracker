@@ -5,7 +5,7 @@ import { CreateScoreData } from "@/app/_types/score";
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { gameId: string } }
+  { params }: { params: { gameId: string } },
 ) {
   const { gameId } = params;
   const gameIdNumber = Number(gameId);

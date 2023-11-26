@@ -25,7 +25,7 @@ const RoundDetailPage = () => {
   const { data, error, isLoading } = useSWR(
     setId && gameId && roundId
       ? `/api/sets/${setId}/games/${gameId}/rounds/${roundId}`
-      : null
+      : null,
   );
 
   useEffect(() => {

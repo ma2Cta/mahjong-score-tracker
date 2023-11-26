@@ -16,7 +16,7 @@ const DeleteRoundButton: React.FC = () => {
       {
         method: "DELETE",
         body: null,
-      }
+      },
     );
     if (response.ok) {
       router.push(`/sets/${setId}/games/${gameId}`);

@@ -24,7 +24,7 @@ const NoAuthLayout: React.FC<NoAuthLayoutProps> = ({ children }) => {
       <>
         <div className={`fixed top-0 left-0 w-full h-screen z-[-1]`}>
           <Image
-          className="opacity-20"
+            className="opacity-20"
             src={`/top_background.png`}
             alt="背景"
             layout={`fill`}

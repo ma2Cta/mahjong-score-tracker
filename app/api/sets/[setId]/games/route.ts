@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { setId: string } }
+  { params }: { params: { setId: string } },
 ) {
   const { setId } = params;
   const setIdNumber = Number(setId);
@@ -31,7 +31,7 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { setId: string } }
+  { params }: { params: { setId: string } },
 ) {
   const { setId } = params;
   const { round } = await request.json();

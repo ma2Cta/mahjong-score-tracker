@@ -3,19 +3,19 @@ import prisma from "@/app/_lib/prisma";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { roundId: string } }
+  { params }: { params: { roundId: string } },
 ) {
   const { roundId } = params;
   const roundIdNumber = Number(roundId);
   const round = await prisma.round.findUnique({
-    include: { 
+    include: {
       scores: {
         include: {
-          user: true
-        }
-      }
+          user: true,
+        },
+      },
     },
-    where: { id: roundIdNumber }
+    where: { id: roundIdNumber },
   });
   if (round) {
     const response = {
@@ -30,12 +30,12 @@ export async function GET(
           name: score.user.name,
           image: score.user.image,
           sets: null,
-          scores: null
+          scores: null,
         },
         round: null,
-        point: score.point
+        point: score.point,
       })),
-    }
+    };
     return NextResponse.json(response);
   } else {
     return NextResponse.json({ error: "Round not found" });
@@ -44,7 +44,7 @@ export async function GET(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { roundId: string } }
+  { params }: { params: { roundId: string } },
 ) {
   const { roundId } = params;
   const roundIdNumber = Number(roundId);

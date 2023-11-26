@@ -53,7 +53,10 @@ const ScoresInput: React.FC<ScoresInputProps> = ({ form, users }) => {
                 render={({ field: renderField }) => (
                   <FormItem className="flex-1 mr-4 flex flex-col">
                     <FormLabel>
-                      <UserName name={`${userName}のスコア`} image={userImage} />
+                      <UserName
+                        name={`${userName}のスコア`}
+                        image={userImage}
+                      />
                     </FormLabel>
                     <FormControl>
                       <Input

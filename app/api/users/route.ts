@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   const name = searchParams.get("name");
   const where = name
     ? {
-        name: { 
+        name: {
           contains: name,
           mode: Prisma.QueryMode.insensitive,
         },

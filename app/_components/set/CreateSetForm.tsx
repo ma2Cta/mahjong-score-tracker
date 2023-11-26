@@ -44,7 +44,7 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
       toast({
         title: "セットの作成に成功しました。",
         description: `${values.date}`,
-      })
+      });
     }
   }
 
@@ -54,9 +54,7 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
         <DateInput form={form} />
         <LocationInput form={form} />
         <SelectedUsersInput form={form} />
-        <Button type="submit">
-          作成
-        </Button>
+        <Button type="submit">作成</Button>
       </form>
     </Form>
   );

@@ -45,7 +45,7 @@ const WindInput: React.FC<WindInputProps> = ({ form }) => {
               <SelectItem value="0">{toWind(0)}</SelectItem>
               <SelectItem value="1">{toWind(1)}</SelectItem>
               <SelectItem value="2">{toWind(2)}</SelectItem>
-              <SelectItem value="3">{toWind(3)}</SelectItem> 
+              <SelectItem value="3">{toWind(3)}</SelectItem>
             </SelectContent>
           </Select>
           <FormMessage />
@@ -53,6 +53,6 @@ const WindInput: React.FC<WindInputProps> = ({ form }) => {
       )}
     />
   );
-}
+};
 
 export default WindInput;
