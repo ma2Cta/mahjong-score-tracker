@@ -13,7 +13,7 @@ import {
 } from "@/app/_components/ui/form";
 import React, { useEffect, useState } from "react";
 import { Input } from "@/app/_components/ui/input";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRightIcon, UserIcon } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -64,7 +64,9 @@ const SelectedUsersInput: React.FC<SelectedUsersInputProps> = ({ form }) => {
               className="w-full h-full"
               src={row.original.image ?? ""}
             />
-            <AvatarFallback>?</AvatarFallback>
+            <AvatarFallback>
+              <UserIcon />
+            </AvatarFallback>
           </Avatar>
         );
       },

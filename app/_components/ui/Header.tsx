@@ -15,6 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/app/_components/ui/dropdown-menu";
+import { UserIcon } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
@@ -42,7 +43,9 @@ const Header: React.FC = () => {
                   className="w-full h-full"
                   src={session?.user?.image ?? ""}
                 />
-                <AvatarFallback>?</AvatarFallback>
+                <AvatarFallback>
+                  <UserIcon />
+                </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
