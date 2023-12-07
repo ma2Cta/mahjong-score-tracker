@@ -15,6 +15,7 @@ export async function GET(
   if (games) {
     const response = games.map((game) => ({
       id: game.id,
+      startAt: game.startAt,
       roundLength: game.roundLength,
       set: {
         id: game.set.id,

@@ -21,7 +21,7 @@ const SetsList: React.FC = () => {
   const columns: ColumnDef<Set>[] = [
     {
       accessorKey: "startAt",
-      header: "開催日時",
+      header: "開始日時",
       cell: ({ row }) => {
         const startAt = row.getValue("startAt") as string;
         return (

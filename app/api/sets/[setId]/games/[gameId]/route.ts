@@ -4,7 +4,7 @@ import { Wind } from "@/app/_types/round";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { gameId: string } },
+  { params }: { params: { gameId: string } }
 ) {
   const { gameId } = params;
   const gameIdNumber = Number(gameId);
@@ -32,10 +32,11 @@ export async function GET(
   if (game) {
     const response = {
       id: game.id,
+      startAt: game.startAt,
       roundLength: game.roundLength,
       set: {
         id: game.setId,
-        date: game.set.date,
+        startAt: game.set.startAt,
         location: game.set.location,
         users: game.set.users,
       },
@@ -68,7 +69,7 @@ export async function GET(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { gameId: string } },
+  { params }: { params: { gameId: string } }
 ) {
   const { gameId } = params;
   const gameIdNumber = Number(gameId);

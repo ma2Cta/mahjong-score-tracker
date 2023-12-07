@@ -16,18 +16,26 @@ const GameList: React.FC<GameListProps> = ({ games, setId }) => {
 
   const columns: ColumnDef<Game>[] = [
     {
+      accessorKey: "startAt",
+      header: "開始日時",
+      cell: ({ row }) => {
+        const startAt = row.getValue("startAt") as string;
+        return (
+          <Link
+            className="underline"
+            href={`/sets/${setId}/games/${row.original.id}`}
+          >
+            {startAt}
+          </Link>
+        );
+      },
+    },
+    {
       accessorKey: "roundLength",
       header: "何風戦",
       cell: ({ row }) => {
         const roundLength = row.getValue("roundLength") as RoundLength;
-        return (
-          <Link
-            className="underline underline-offset-2"
-            href={`/sets/${setId}/games/${row.original.id}`}
-          >
-            {roundLengthNames(roundLength)}
-          </Link>
-        );
+        return roundLengthNames(roundLength);
       },
     },
   ];

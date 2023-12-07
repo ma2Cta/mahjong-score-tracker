@@ -28,6 +28,7 @@ export async function GET(
       games: set.games.map((game) => {
         return {
           id: game.id,
+          startAt: game.startAt,
           roundLength: game.roundLength,
           set: null,
           scores: null,
