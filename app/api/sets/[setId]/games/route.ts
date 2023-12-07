@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { setId: string } },
+  { params }: { params: { setId: string } }
 ) {
   const { setId } = params;
   const setIdNumber = Number(setId);
@@ -18,7 +18,7 @@ export async function GET(
       roundLength: game.roundLength,
       set: {
         id: game.set.id,
-        date: game.set.date,
+        startAt: game.set.startAt,
         location: game.set.location,
         users: null,
       },
@@ -31,14 +31,16 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { setId: string } },
+  { params }: { params: { setId: string } }
 ) {
   const { setId } = params;
-  const { round } = await request.json();
+  const { startAt, round } = await request.json();
+  const isoDate = new Date(startAt);
   const setIdNumber = Number(setId);
   try {
     await prisma.game.create({
       data: {
+        startAt: isoDate,
         roundLength: round,
         set: {
           connect: { id: setIdNumber },
