@@ -7,12 +7,12 @@ export async function GET() {
       users: true,
       games: true,
     },
-    orderBy: { date: "asc" },
+    orderBy: { startAt: "asc" },
   });
   const response = sets.map((set) => {
     return {
       id: set.id,
-      date: set.date,
+      startAt: set.startAt,
       location: set.location,
       users: set.users.map((user) => {
         return {
@@ -38,11 +38,11 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  const { date, location, selectedUserIds } = await req.json();
-  const isoDate = new Date(date);
+  const { startAt, location, selectedUserIds } = await req.json();
+  const isoDate = new Date(startAt);
   await prisma.set.create({
     data: {
-      date: isoDate,
+      startAt: isoDate,
       location,
       users: {
         connect: selectedUserIds.map((id: String) => ({ id: Number(id) })),

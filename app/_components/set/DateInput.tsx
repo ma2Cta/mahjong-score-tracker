@@ -31,7 +31,7 @@ const DateInput: React.FC<DateInputProps> = ({ form }) => {
       name="date"
       render={({ field }) => (
         <FormItem className="flex flex-col">
-          <FormLabel>開催日</FormLabel>
+          <FormLabel>開催日時</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
               <FormControl>
@@ -39,7 +39,7 @@ const DateInput: React.FC<DateInputProps> = ({ form }) => {
                   variant={"outline"}
                   className={cn(
                     "w-[240px] pl-3 text-left font-normal",
-                    !field.value && "text-muted-foreground",
+                    !field.value && "text-muted-foreground"
                   )}
                 >
                   {field.value ? (
