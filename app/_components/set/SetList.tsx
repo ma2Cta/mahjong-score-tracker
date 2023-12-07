@@ -20,13 +20,13 @@ const SetsList: React.FC = () => {
 
   const columns: ColumnDef<Set>[] = [
     {
-      accessorKey: "date",
+      accessorKey: "startAt",
       header: "開催日時",
       cell: ({ row }) => {
-        const date = row.getValue("date") as string;
+        const startAt = row.getValue("startAt") as string;
         return (
           <Link className="underline" href={`/sets/${row.original.id}`}>
-            {date}
+            {startAt}
           </Link>
         );
       },

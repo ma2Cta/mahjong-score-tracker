@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { setId: string } },
+  { params }: { params: { setId: string } }
 ) {
   const { setId } = params;
   const setIdNumber = Number(setId);
@@ -14,7 +14,7 @@ export async function GET(
   if (set) {
     const response = {
       id: set.id,
-      date: set.date,
+      startAt: set.startAt,
       location: set.location,
       users: set.users.map((user) => {
         return {
@@ -42,7 +42,7 @@ export async function GET(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { setId: string } },
+  { params }: { params: { setId: string } }
 ) {
   const { setId } = params;
   const setIdNumber = Number(setId);
