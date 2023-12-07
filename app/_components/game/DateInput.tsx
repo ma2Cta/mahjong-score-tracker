@@ -2,7 +2,7 @@
 
 import { UseFormReturn } from "react-hook-form";
 import * as z from "zod";
-import { createSetFormSchema } from "@/app/_components/set/CreateSetFormSchema";
+import { createGameFormSchema } from "@/app/_components/game/CreateGameFormSchema";
 import { Calendar } from "@/app/_components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/app/_lib/utils";
@@ -21,7 +21,7 @@ import {
 import { Button } from "@/app/_components/ui/button";
 
 interface DateInputProps {
-  form: UseFormReturn<z.infer<typeof createSetFormSchema>>;
+  form: UseFormReturn<z.infer<typeof createGameFormSchema>>;
 }
 
 const DateInput: React.FC<DateInputProps> = ({ form }) => {

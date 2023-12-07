@@ -3,7 +3,7 @@ import { Game } from "./game";
 
 export type Set = {
   id: number;
-  date: Date;
+  startAt: Date;
   location: string;
   users: User[] | null;
   games: Game[] | null;

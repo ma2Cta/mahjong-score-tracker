@@ -10,6 +10,7 @@ import DateInput from "@/app/_components/set/DateInput";
 import LocationInput from "@/app/_components/set/LocationInput";
 import SelectedUsersInput from "@/app/_components/set/SelectedUsersInput";
 import { useToast } from "@/app/_components/ui/use-toast";
+import TimeInput from "@/app/_components/set/TimeInput";
 
 interface CreateSetFormProps {
   onSuccess: () => void;
@@ -17,23 +18,29 @@ interface CreateSetFormProps {
 
 const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
   const { toast } = useToast();
+  const now = new Date();
   const form = useForm<z.infer<typeof createSetFormSchema>>({
     resolver: zodResolver(createSetFormSchema),
     defaultValues: {
-      date: new Date(),
+      date: now,
+      hour: now.getHours(),
+      minute: now.getMinutes(),
+      second: now.getSeconds(),
       location: "",
       selectedUsers: [],
     },
   });
 
   async function onSubmit(values: z.infer<typeof createSetFormSchema>) {
+    const startAt = new Date(values.date);
+    startAt.setHours(values.hour, values.minute, values.second);
     const response = await fetch("/api/sets", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        date: values.date,
+        startAt: startAt,
         location: values.location,
         selectedUserIds: values.selectedUsers.map((user) => user.userId),
       }),
@@ -43,7 +50,7 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
       onSuccess();
       toast({
         title: "セットの作成に成功しました。",
-        description: `${values.date}`,
+        description: `${startAt}`,
       });
     }
   }
@@ -51,7 +58,12 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <DateInput form={form} />
+        <div className="flex items-end">
+          <DateInput form={form} />
+          <div className="ml-4">
+            <TimeInput form={form} />
+          </div>
+        </div>
         <LocationInput form={form} />
         <SelectedUsersInput form={form} />
         <Button type="submit">作成</Button>

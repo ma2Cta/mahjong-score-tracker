@@ -24,6 +24,10 @@ const GameDetail: React.FC<GameDetailProps> = ({ game, setId, deleteGame }) => {
       <Table>
         <TableBody>
           <TableRow>
+            <TableHead className="text-right">開始日時</TableHead>
+            <TableCell>{game.startAt.toString()}</TableCell>
+          </TableRow>
+          <TableRow>
             <TableHead className="text-right">何風戦</TableHead>
             <TableCell>{roundLengthNames(game.roundLength)}</TableCell>
           </TableRow>

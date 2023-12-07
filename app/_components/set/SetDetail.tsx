@@ -24,7 +24,7 @@ const SetDetail: React.FC<SetDetailProps> = ({ set }) => {
         <TableBody>
           <TableRow>
             <TableHead className="text-right">開催日時</TableHead>
-            <TableCell>{set.date?.toString()}</TableCell>
+            <TableCell>{set.startAt?.toString()}</TableCell>
           </TableRow>
           <TableRow>
             <TableHead className="text-right">開催場所</TableHead>
