@@ -10,6 +10,8 @@ import {
 import { BuiltInProviderType, Provider } from "next-auth/providers";
 import { Button } from "@/app/_components/ui/button";
 import Link from "next/link";
+import OtherLoginButton from "@/app/_components/login/OtherLoginButton";
+import GoogleLoginButton from "@/app/_components/login/GoogleLoginButton";
 
 const Login: React.FC = () => {
   const [providers, setProviders] = useState<Record<
@@ -36,15 +38,15 @@ const Login: React.FC = () => {
                 麻雀の戦績を管理するためのアプリケーションです。
               </p>
             </div>
-            <div className="w-full max-w-sm space-y-2 mx-auto">
+            <div className="w-full max-w-sm space-y-2 mx-auto flex justify-center">
               {providers &&
-                Object.values(providers).map((provider) => (
-                  <div key={provider.id}>
-                    <Button onClick={() => signIn(provider.id)}>
-                      {provider.name}でログイン
-                    </Button>
-                  </div>
-                ))}
+                Object.values(providers).map((provider) =>
+                  provider.id === "google" ? (
+                    <GoogleLoginButton key={provider.id} provider={provider} />
+                  ) : (
+                    <OtherLoginButton key={provider.id} provider={provider} />
+                  )
+                )}
             </div>
             <p className="text-xs">
               ログインすることで
