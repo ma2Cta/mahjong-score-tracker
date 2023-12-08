@@ -35,6 +35,9 @@ const Header: React.FC = () => {
           <div className="ml-4">
             <Link href="/sets">セット一覧</Link>
           </div>
+          <div className="ml-4">
+            <Link href="/score-tables">点数計算表</Link>
+          </div>
           <ModeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
