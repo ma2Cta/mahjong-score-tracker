@@ -4,8 +4,12 @@ import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr";
 import { fetcher } from "@/app/_lib/fetcher";
 import { ThemeProvider } from "@/app/_components/ui/ThemeProvider";
+import React from "react";
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+interface ProvidersProps {
+  children: React.ReactNode;
+}
+const Providers: React.FC<ProvidersProps> = ({ children }) => {
   return (
     <ThemeProvider
       attribute="class"
@@ -25,4 +29,6 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       </SessionProvider>
     </ThemeProvider>
   );
-}
+};
+
+export default Providers;
