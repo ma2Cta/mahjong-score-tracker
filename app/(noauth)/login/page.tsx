@@ -5,10 +5,8 @@ import {
   ClientSafeProvider,
   LiteralUnion,
   getProviders,
-  signIn,
 } from "next-auth/react";
-import { BuiltInProviderType, Provider } from "next-auth/providers";
-import { Button } from "@/app/_components/ui/button";
+import { BuiltInProviderType } from "next-auth/providers";
 import Link from "next/link";
 import OtherLoginButton from "@/app/_components/login/OtherLoginButton";
 import GoogleLoginButton from "@/app/_components/login/GoogleLoginButton";
