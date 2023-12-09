@@ -33,7 +33,7 @@ const Login: React.FC = () => {
         <div className="grid gap-6 items-center">
           <div className="flex flex-col justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h1 className="text-6xl font-bold">🀙 Mahjong Score Tracker</h1>
+              <h1 className="text-6xl font-bold">🀀 Mahjong Score Tracker</h1>
               <p className="max-w-[600px] md:text-xl mx-auto">
                 麻雀の戦績を管理するためのアプリケーションです。
               </p>
@@ -45,7 +45,7 @@ const Login: React.FC = () => {
                     <GoogleLoginButton key={provider.id} provider={provider} />
                   ) : (
                     <OtherLoginButton key={provider.id} provider={provider} />
-                  )
+                  ),
                 )}
             </div>
             <p className="text-xs">

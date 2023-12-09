@@ -24,18 +24,17 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className="flex items-end justify-between">
-        <div className="flex items-end">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
           <Link href="/">
-            <span className="text-4xl mr-2">🀙</span>
-            <span className="text-3xl font-bold mr-4">
-              Mahjong Score Tracker
+            <span className="text-2xl font-bold mr-4">
+              🀀 Mahjong Score Tracker
             </span>
           </Link>
-          <div className="ml-4 text-muted-foreground">
+          <div className="ml-4 text-muted-foreground hover:text-foreground">
             <Link href="/sets">セット一覧</Link>
           </div>
-          <div className="ml-4 text-muted-foreground">
+          <div className="ml-4 text-muted-foreground hover:text-foreground">
             <Link href="/score-tables">点数計算表</Link>
           </div>
         </div>
