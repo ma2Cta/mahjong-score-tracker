@@ -3,7 +3,7 @@
 import DataTable from "@/app/_components/ui/DataTable";
 import { User } from "@/app/_types/user";
 import { ColumnDef } from "@tanstack/react-table";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 
 interface UserSearchTableProps {

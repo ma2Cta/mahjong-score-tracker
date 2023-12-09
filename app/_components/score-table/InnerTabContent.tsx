@@ -7,6 +7,7 @@ import {
   TabsTrigger,
 } from "@/app/_components/ui/tabs";
 import ScoreTable from "@/app/_components/score-table/ScoreTable";
+import React from "react";
 
 interface InnerTabContentProps {
   isChild: boolean;

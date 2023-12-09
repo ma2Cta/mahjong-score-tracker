@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Set } from "@/app/_types/set";
 import useSWR, { mutate } from "swr";
 import SetDetail from "@/app/_components/set/SetDetail";
@@ -11,8 +11,7 @@ import CreateGameForm from "@/app/_components/game/CreateGameForm";
 import BreadCrumbs from "@/app/_components/ui/BreadCrumbs";
 import DeleteSetButton from "@/app/_components/set/DeleteSetButton";
 
-const SetDetailPage = () => {
-  const router = useRouter();
+const SetDetailPage: React.FC = () => {
   const params = useParams();
   const setId = Number(params.setId);
 

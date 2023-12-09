@@ -18,6 +18,7 @@ import {
 import { UserIcon } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import React from "react";
 
 const Header: React.FC = () => {
   const { data: session } = useSession();

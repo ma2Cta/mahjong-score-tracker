@@ -14,6 +14,7 @@ import {
   parentTsumoScores,
   parentRonScores,
 } from "@/app/_components/score-table/score";
+import React from "react";
 
 interface ChildScoreTableProps {
   isChild: boolean;

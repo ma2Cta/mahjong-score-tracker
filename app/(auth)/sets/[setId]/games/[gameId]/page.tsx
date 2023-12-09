@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Game } from "@/app/_types/game";
 import useSWR, { mutate } from "swr";
 import GameDetail from "@/app/_components/game/GameDetail";
@@ -12,7 +12,7 @@ import RoundList from "@/app/_components/round/RoundList";
 import BreadCrumbs from "@/app/_components/ui/BreadCrumbs";
 import DeleteGameButton from "@/app/_components/game/DeleteGameButton";
 
-const GameDetailPage = () => {
+const GameDetailPage: React.FC = () => {
   const router = useRouter();
   const { setId: setIdStr, gameId: gameIdStr } = useParams();
   const setId = Number(setIdStr);

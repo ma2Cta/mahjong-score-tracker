@@ -7,9 +7,9 @@ import {
   TabsTrigger,
 } from "@/app/_components/ui/tabs";
 import InnerTabContent from "@/app/_components/score-table/InnerTabContent";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const ScoreTablesPage = () => {
+const ScoreTablesPage: React.FC = () => {
   const [isTsumo, setIsTsumo] = useState<boolean>(false);
   return (
     <>

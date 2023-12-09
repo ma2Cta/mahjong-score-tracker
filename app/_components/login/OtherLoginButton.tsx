@@ -1,5 +1,6 @@
 import { Button } from "@/app/_components/ui/button";
 import { ClientSafeProvider, signIn } from "next-auth/react";
+import React from "react";
 
 interface OtherLoginButtonProps {
   provider: ClientSafeProvider;

@@ -4,8 +4,9 @@ import {
   AlertTitle,
 } from "@/app/_components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import React from "react";
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <>
       <Alert>
@@ -17,4 +18,6 @@ export default function Home() {
       </Alert>
     </>
   );
-}
+};
+
+export default Home;

@@ -18,6 +18,7 @@ import {
   AvatarImage,
 } from "@/app/_components/ui/avatar";
 import { UserName } from "@/app/_components/ui/UserName";
+import React from "react";
 
 interface ScoresInputProps {
   form: UseFormReturn<z.infer<typeof createRoundFormSchema>>;

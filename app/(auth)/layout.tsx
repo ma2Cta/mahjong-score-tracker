@@ -4,15 +4,15 @@ import "@/styles/globals.css";
 import Header from "@/app/_components/ui/Header";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Footer from "@/app/_components/ui/Footer";
 import { Toaster } from "@/app/_components/ui/toaster";
 
-export default function AuthLayout({
-  children,
-}: {
+interface AuthLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
   const router = useRouter();
   const { status } = useSession();
 
@@ -38,4 +38,6 @@ export default function AuthLayout({
   }
 
   return null;
-}
+};
+
+export default AuthLayout;

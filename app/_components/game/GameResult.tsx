@@ -9,6 +9,7 @@ import {
 } from "@/app/_components/ui/table";
 import { Game } from "@/app/_types/game";
 import { GameResult, buildGameResult } from "@/app/_types/game";
+import React from "react";
 
 type GameResultProps = {
   game: Game;

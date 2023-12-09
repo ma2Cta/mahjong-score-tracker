@@ -3,6 +3,7 @@ import { UserName } from "@/app/_components/ui/UserName";
 import { Round, roundNames } from "@/app/_types/round";
 import { ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
+import React from "react";
 
 interface RoundListProps {
   rounds: Round[];

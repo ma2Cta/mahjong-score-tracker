@@ -1,6 +1,6 @@
-import { Button } from "@/app/_components/ui/button";
 import { ClientSafeProvider, signIn } from "next-auth/react";
 import Image from "next/image";
+import React from "react";
 
 interface GoogleLoginButtonProps {
   provider: ClientSafeProvider;

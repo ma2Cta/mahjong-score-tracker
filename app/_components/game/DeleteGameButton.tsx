@@ -2,6 +2,7 @@
 
 import { Button } from "@/app/_components/ui/button";
 import { useParams, useRouter } from "next/navigation";
+import React from "react";
 
 const DeleteGameButton: React.FC = () => {
   const router = useRouter();

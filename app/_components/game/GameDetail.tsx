@@ -7,6 +7,7 @@ import {
   TableHead,
   TableRow,
 } from "@/app/_components/ui/table";
+import React from "react";
 
 type GameDetailProps = {
   game: Game;

@@ -19,6 +19,7 @@ import {
   PopoverTrigger,
 } from "@/app/_components/ui/popover";
 import { Button } from "@/app/_components/ui/button";
+import React from "react";
 
 interface DateInputProps {
   form: UseFormReturn<z.infer<typeof createSetFormSchema>>;
@@ -39,7 +40,7 @@ const DateInput: React.FC<DateInputProps> = ({ form }) => {
                   variant={"outline"}
                   className={cn(
                     "w-[240px] pl-3 text-left font-normal",
-                    !field.value && "text-muted-foreground"
+                    !field.value && "text-muted-foreground",
                   )}
                 >
                   {field.value ? (
