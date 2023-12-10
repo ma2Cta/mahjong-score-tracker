@@ -29,7 +29,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
           <nav className="fixed w-full z-10 px-10 p-3 bg-background border-b-2">
             <Header />
           </nav>
-          <main className="flex-grow px-16 mt-24">{children}</main>
+          <main className="flex-grow px-16 mt-20">{children}</main>
           <Toaster />
           <Footer />
         </div>
