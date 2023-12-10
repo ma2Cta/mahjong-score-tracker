@@ -3,14 +3,21 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { setId: string } }
+  { params }: { params: { setId: string } },
 ) {
   const { setId } = params;
   const setIdNumber = Number(setId);
+
+  const searchParams = request.nextUrl.searchParams;
+  const pageNumber = Number(searchParams.get("page")) || 1;
+  const pageSize = Number(searchParams.get("size")) || 10;
+
   const games = await prisma.game.findMany({
     where: { setId: setIdNumber },
     include: { set: true },
-    orderBy: { createdAt: "asc" },
+    orderBy: { startAt: "desc" },
+    take: pageSize,
+    skip: (pageNumber - 1) * pageSize,
   });
   if (games) {
     const response = games.map((game) => ({
@@ -32,7 +39,7 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { setId: string } }
+  { params }: { params: { setId: string } },
 ) {
   const { setId } = params;
   const { startAt, round } = await request.json();

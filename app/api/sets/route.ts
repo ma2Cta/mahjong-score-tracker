@@ -1,14 +1,21 @@
 import prisma from "@/app/_lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  const pageNumber = Number(searchParams.get("page")) || 1;
+  const pageSize = Number(searchParams.get("size")) || 10;
+
   const sets = await prisma.set.findMany({
     include: {
       users: true,
       games: true,
     },
-    orderBy: { startAt: "asc" },
+    orderBy: { startAt: "desc" },
+    take: pageSize,
+    skip: (pageNumber - 1) * pageSize,
   });
+
   const response = sets.map((set) => {
     return {
       id: set.id,
