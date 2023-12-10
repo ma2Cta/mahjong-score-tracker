@@ -21,11 +21,13 @@ import DataTablePagination from "@/app/_components/ui/DataTablePagination";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  suppressSelectedRowCount?: boolean;
 }
 
 function DataTable<TData, TValue>({
   columns,
   data,
+  suppressSelectedRowCount,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -86,7 +88,10 @@ function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination table={table} suppressSelectedRowCount={true} />
+      <DataTablePagination
+        table={table}
+        suppressSelectedRowCount={suppressSelectedRowCount}
+      />
     </div>
   );
 }

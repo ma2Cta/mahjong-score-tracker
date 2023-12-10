@@ -42,7 +42,11 @@ const GameList: React.FC<GameListProps> = ({ games, setId }) => {
 
   return (
     <div className="container mx-auto">
-      <DataTable columns={columns} data={games} />
+      <DataTable
+        columns={columns}
+        data={games}
+        suppressSelectedRowCount={true}
+      />
     </div>
   );
 };

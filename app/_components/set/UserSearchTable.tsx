@@ -32,7 +32,13 @@ const UserSearchTable: React.FC<UserSearchTableProps> = ({
     return <div>Error: {error.message}</div>;
   }
 
-  return <DataTable columns={userSearchTableColumns} data={users} />;
+  return (
+    <DataTable
+      columns={userSearchTableColumns}
+      data={users}
+      suppressSelectedRowCount={true}
+    />
+  );
 };
 
 export default UserSearchTable;

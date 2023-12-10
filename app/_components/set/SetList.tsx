@@ -57,7 +57,11 @@ const SetsList: React.FC = () => {
 
   return (
     <div className="container mx-auto my-4">
-      <DataTable columns={columns} data={sets} />
+      <DataTable
+        columns={columns}
+        data={sets}
+        suppressSelectedRowCount={true}
+      />
     </div>
   );
 };

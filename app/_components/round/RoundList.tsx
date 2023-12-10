@@ -77,7 +77,11 @@ const RoundList: React.FC<RoundListProps> = ({ rounds, setId, gameId }) => {
 
   return (
     <div className="container mx-auto">
-      <DataTable columns={columns} data={rounds} />
+      <DataTable
+        columns={columns}
+        data={rounds}
+        suppressSelectedRowCount={true}
+      />
     </div>
   );
 };
