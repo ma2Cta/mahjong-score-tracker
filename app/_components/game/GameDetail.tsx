@@ -11,11 +11,9 @@ import React from "react";
 
 type GameDetailProps = {
   game: Game;
-  setId: number;
-  deleteGame: (gameId: number) => void;
 };
 
-const GameDetail: React.FC<GameDetailProps> = ({ game, setId, deleteGame }) => {
+const GameDetail: React.FC<GameDetailProps> = ({ game }) => {
   if (!game) {
     return <div>Loading...</div>;
   }
