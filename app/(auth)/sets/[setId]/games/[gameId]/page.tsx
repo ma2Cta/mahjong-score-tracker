@@ -13,7 +13,6 @@ import BreadCrumbs from "@/app/_components/ui/BreadCrumbs";
 import DeleteGameButton from "@/app/_components/game/DeleteGameButton";
 
 const GameDetailPage: React.FC = () => {
-  const router = useRouter();
   const { setId: setIdStr, gameId: gameIdStr } = useParams();
   const setId = Number(setIdStr);
   const gameId = Number(gameIdStr);
@@ -28,28 +27,6 @@ const GameDetailPage: React.FC = () => {
       setGame(data);
     }
   }, [data]);
-
-  const deleteGame = async () => {
-    if (!setId || !gameId) {
-      return;
-    }
-    try {
-      const response = await fetch(`/api/sets/${setId}/games/${gameId}`, {
-        method: "DELETE",
-        body: null,
-      });
-      if (response.ok) {
-        // セットが正常に削除された場合、ユーザーをセット詳細ページにリダイレクトします。
-        router.push(`/sets/${setId}`);
-      } else {
-        // エラーメッセージを表示するなど、適切なエラーハンドリングを行います。
-        console.error("Failed to delete game");
-      }
-    } catch (error) {
-      // ネットワークエラーや、サーバーエラーのハンドリングを行います。
-      console.error("Error occurred while deleting game:", error);
-    }
-  };
 
   if (!game || isLoading) {
     return <div>Loading...</div>;
@@ -73,7 +50,7 @@ const GameDetailPage: React.FC = () => {
           <TypographyH2>ゲーム詳細</TypographyH2>
           <DeleteGameButton />
         </div>
-        <GameDetail game={game} setId={setId} deleteGame={deleteGame} />
+        <GameDetail game={game} />
         <div className="font-semibold my-4">ラウンド</div>
         <div className="flex flex-row justify-between">
           <div className="flex-1 mr-4">
