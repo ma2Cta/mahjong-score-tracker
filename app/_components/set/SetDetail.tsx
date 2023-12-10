@@ -22,15 +22,15 @@ const SetDetail: React.FC<SetDetailProps> = ({ set }) => {
     <div className="rounded-md border mt-4">
       <Table>
         <TableBody>
-          <TableRow>
+          <TableRow suppressHover={true}>
             <TableHead className="text-right">開催日時</TableHead>
             <TableCell>{set.startAt?.toString()}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow suppressHover={true}>
             <TableHead className="text-right">開催場所</TableHead>
             <TableCell>{set.location}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow suppressHover={true}>
             <TableHead className="text-right">参加ユーザー</TableHead>
             <TableCell>
               {set.users?.map((user) => {

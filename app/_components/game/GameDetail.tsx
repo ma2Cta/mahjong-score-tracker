@@ -24,11 +24,11 @@ const GameDetail: React.FC<GameDetailProps> = ({ game, setId, deleteGame }) => {
     <div className="rounded-md border mt-4">
       <Table>
         <TableBody>
-          <TableRow>
+          <TableRow suppressHover={true}>
             <TableHead className="text-right">開始日時</TableHead>
             <TableCell>{game.startAt.toString()}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow suppressHover={true}>
             <TableHead className="text-right">何風戦</TableHead>
             <TableCell>{roundLengthNames(game.roundLength)}</TableCell>
           </TableRow>

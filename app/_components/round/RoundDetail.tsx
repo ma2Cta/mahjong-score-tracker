@@ -21,11 +21,11 @@ const RoundDetail: React.FC<RoundDetailProps> = ({ round }) => {
     <div className="rounded-md border mt-4">
       <Table>
         <TableBody>
-          <TableRow>
+          <TableRow suppressHover={true}>
             <TableHead className="text-right">何戦目</TableHead>
             <TableCell>{round.round}</TableCell>
           </TableRow>
-          <TableRow>
+          <TableRow suppressHover={true}>
             <TableHead className="text-right">局</TableHead>
             <TableCell>{roundNames(round.wind, round.roundInWind)}</TableCell>
           </TableRow>
