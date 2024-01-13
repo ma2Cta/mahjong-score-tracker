@@ -1,6 +1,6 @@
 "use client";
 
-import DataTable from "@/app/_components/ui/DataTable";
+import PaginationDataTable from "@/app/_components/ui/PaginationDataTable";
 import { User } from "@/app/_types/user";
 import { ColumnDef } from "@tanstack/react-table";
 import React, { useEffect, useState } from "react";
@@ -33,7 +33,7 @@ const UserSearchTable: React.FC<UserSearchTableProps> = ({
   }
 
   return (
-    <DataTable
+    <PaginationDataTable
       columns={userSearchTableColumns}
       data={users}
       suppressSelectedRowCount={true}

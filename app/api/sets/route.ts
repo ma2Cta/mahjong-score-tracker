@@ -15,6 +15,8 @@ export async function GET(request: NextRequest) {
     take: pageSize,
     skip: (pageNumber - 1) * pageSize,
   });
+  const totalSets = await prisma.set.count();
+  const totalPageCount = Math.ceil(totalSets / pageSize);
 
   const response = sets.map((set) => {
     return {
@@ -41,7 +43,12 @@ export async function GET(request: NextRequest) {
       }),
     };
   });
-  return NextResponse.json({ sets: response });
+  return NextResponse.json({
+    sets: response,
+    page: pageNumber,
+    size: pageSize,
+    totalPageCount: totalPageCount,
+  });
 }
 
 export async function POST(req: NextRequest) {

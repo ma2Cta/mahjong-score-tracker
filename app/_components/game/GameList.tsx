@@ -2,7 +2,7 @@ import React from "react";
 import { Game, RoundLength, roundLengthNames } from "@/app/_types/game";
 import Link from "next/link";
 import { ColumnDef } from "@tanstack/react-table";
-import DataTable from "@/app/_components/ui/DataTable";
+import PaginationDataTable from "@/app/_components/ui/PaginationDataTable";
 
 interface GameListProps {
   games: Game[];
@@ -42,7 +42,7 @@ const GameList: React.FC<GameListProps> = ({ games, setId }) => {
 
   return (
     <div className="container mx-auto">
-      <DataTable
+      <PaginationDataTable
         columns={columns}
         data={games}
         suppressSelectedRowCount={true}

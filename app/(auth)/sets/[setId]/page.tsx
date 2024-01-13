@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Set } from "@/app/_types/set";
 import useSWR, { mutate } from "swr";
@@ -17,7 +17,7 @@ const SetDetailPage: React.FC = () => {
 
   const [set, setSet] = useState<Set | null>(null);
   const { data, error, isLoading } = useSWR(
-    setId ? `/api/sets/${setId}` : null,
+    setId ? `/api/sets/${setId}` : null
   );
 
   useEffect(() => {

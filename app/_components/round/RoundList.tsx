@@ -1,4 +1,4 @@
-import DataTable from "@/app/_components/ui/DataTable";
+import PaginationDataTable from "@/app/_components/ui/PaginationDataTable";
 import { UserName } from "@/app/_components/ui/UserName";
 import { Round, roundNames } from "@/app/_types/round";
 import { ColumnDef } from "@tanstack/react-table";
@@ -77,7 +77,7 @@ const RoundList: React.FC<RoundListProps> = ({ rounds, setId, gameId }) => {
 
   return (
     <div className="container mx-auto">
-      <DataTable
+      <PaginationDataTable
         columns={columns}
         data={rounds}
         suppressSelectedRowCount={true}
