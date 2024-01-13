@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { setId: string } },
+  { params }: { params: { setId: string } }
 ) {
   const { setId } = params;
   const setIdNumber = Number(setId);
@@ -19,8 +19,11 @@ export async function GET(
     take: pageSize,
     skip: (pageNumber - 1) * pageSize,
   });
+  const totalGames = await prisma.game.count({ where: { setId: setIdNumber } });
+  const totalPageCount = Math.ceil(totalGames / pageSize);
+
   if (games) {
-    const response = games.map((game) => ({
+    const convertedGames = games.map((game) => ({
       id: game.id,
       startAt: game.startAt,
       roundLength: game.roundLength,
@@ -31,7 +34,12 @@ export async function GET(
         users: null,
       },
     }));
-    return NextResponse.json(response);
+    return NextResponse.json({
+      games: convertedGames,
+      page: pageNumber,
+      size: pageSize,
+      totalPageCount: totalPageCount,
+    });
   } else {
     return NextResponse.json({ error: "Games not found" });
   }
@@ -39,7 +47,7 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { setId: string } },
+  { params }: { params: { setId: string } }
 ) {
   const { setId } = params;
   const { startAt, round } = await request.json();

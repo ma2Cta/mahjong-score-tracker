@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Game, RoundLength, roundLengthNames } from "@/app/_types/game";
 import Link from "next/link";
-import { ColumnDef } from "@tanstack/react-table";
+import { ColumnDef, PaginationState } from "@tanstack/react-table";
 import PaginationDataTable from "@/app/_components/ui/PaginationDataTable";
+import useSWR from "swr";
 
 interface GameListProps {
-  games: Game[];
   setId: number;
 }
 
-const GameList: React.FC<GameListProps> = ({ games, setId }) => {
-  if (!games) {
-    return <div>Loading...</div>;
-  }
+const GameList: React.FC<GameListProps> = ({ setId }) => {
+  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
+    pageIndex: 1,
+    pageSize: 10,
+  });
+  const { data, isLoading } = useSWR(
+    `/api/sets/${setId}/games?page=${pageIndex}&size=${pageSize}`
+  );
+  const [games, setGames] = useState<Game[]>([]);
+  const [totalPageCount, setTotalPageCount] = useState(0);
+  useEffect(() => {
+    if (data) {
+      setGames(data.games);
+      setTotalPageCount(data.totalPageCount);
+    }
+  }, [data]);
 
   const columns: ColumnDef<Game>[] = [
     {
@@ -40,12 +52,20 @@ const GameList: React.FC<GameListProps> = ({ games, setId }) => {
     },
   ];
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="container mx-auto">
       <PaginationDataTable
         columns={columns}
         data={games}
         suppressSelectedRowCount={true}
+        pageIndex={pageIndex}
+        pageSize={pageSize}
+        setPagination={setPagination}
+        totalPageCount={totalPageCount}
       />
     </div>
   );
