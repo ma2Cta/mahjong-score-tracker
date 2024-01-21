@@ -11,11 +11,11 @@ interface GameListProps {
 
 const GameList: React.FC<GameListProps> = ({ setId }) => {
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
-    pageIndex: 1,
+    pageIndex: 0,
     pageSize: 10,
   });
   const { data, isLoading } = useSWR(
-    `/api/sets/${setId}/games?page=${pageIndex}&size=${pageSize}`
+    `/api/sets/${setId}/games?page=${pageIndex + 1}&size=${pageSize}`
   );
   const [games, setGames] = useState<Game[]>([]);
   const [totalPageCount, setTotalPageCount] = useState(0);

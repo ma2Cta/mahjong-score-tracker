@@ -16,13 +16,13 @@ const UserSearchTable: React.FC<UserSearchTableProps> = ({
   userSearchTableColumns,
 }) => {
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
-    pageIndex: 1,
+    pageIndex: 0,
     pageSize: 10,
   });
   const [users, setUsers] = useState<User[]>([]);
   const [totalPageCount, setTotalPageCount] = useState(0);
   const { data, error, isLoading } = useSWR(
-    `/api/users?name=${searchName}&page=${pageIndex}&size=${pageSize}`
+    `/api/users?name=${searchName}&page=${pageIndex + 1}&size=${pageSize}`
   );
 
   useEffect(() => {

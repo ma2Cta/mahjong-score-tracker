@@ -11,11 +11,11 @@ import useSWR from "swr";
 
 const SetsList: React.FC = () => {
   const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
-    pageIndex: 1,
+    pageIndex: 0,
     pageSize: 10,
   });
   const { data, isLoading } = useSWR(
-    `/api/sets?page=${pageIndex}&size=${pageSize}`
+    `/api/sets?page=${pageIndex + 1}&size=${pageSize}`
   );
   const [sets, setSets] = useState<Set[]>([]);
   const [totalPageCount, setTotalPageCount] = useState(0);
