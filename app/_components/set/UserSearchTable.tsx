@@ -1,8 +1,8 @@
 "use client";
 
-import DataTable from "@/app/_components/ui/DataTable";
+import PaginationDataTable from "@/app/_components/ui/PaginationDataTable";
 import { User } from "@/app/_types/user";
-import { ColumnDef } from "@tanstack/react-table";
+import { ColumnDef, PaginationState } from "@tanstack/react-table";
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 
@@ -15,12 +15,20 @@ const UserSearchTable: React.FC<UserSearchTableProps> = ({
   searchName,
   userSearchTableColumns,
 }) => {
+  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
   const [users, setUsers] = useState<User[]>([]);
-  const { data, error, isLoading } = useSWR(`/api/users?name=${searchName}`);
+  const [totalPageCount, setTotalPageCount] = useState(0);
+  const { data, error, isLoading } = useSWR(
+    `/api/users?name=${searchName}&page=${pageIndex + 1}&size=${pageSize}`
+  );
 
   useEffect(() => {
     if (data) {
       setUsers(data.users);
+      setTotalPageCount(data.totalPageCount);
     }
   }, [data]);
 
@@ -32,7 +40,17 @@ const UserSearchTable: React.FC<UserSearchTableProps> = ({
     return <div>Error: {error.message}</div>;
   }
 
-  return <DataTable columns={userSearchTableColumns} data={users} />;
+  return (
+    <PaginationDataTable
+      columns={userSearchTableColumns}
+      data={users}
+      suppressSelectedRowCount={true}
+      pageIndex={pageIndex}
+      pageSize={pageSize}
+      setPagination={setPagination}
+      totalPageCount={totalPageCount}
+    />
+  );
 };
 
 export default UserSearchTable;

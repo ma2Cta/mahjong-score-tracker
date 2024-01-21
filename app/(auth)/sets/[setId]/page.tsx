@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Set } from "@/app/_types/set";
 import useSWR, { mutate } from "swr";
@@ -17,7 +17,7 @@ const SetDetailPage: React.FC = () => {
 
   const [set, setSet] = useState<Set | null>(null);
   const { data, error, isLoading } = useSWR(
-    setId ? `/api/sets/${setId}` : null,
+    setId ? `/api/sets/${setId}` : null
   );
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const SetDetailPage: React.FC = () => {
       <div className="font-semibold my-4">ゲーム</div>
       <div className="flex flex-row justify-between">
         <div className="flex-1 mr-4">
-          <GameList games={set.games ? set.games : []} setId={set.id} />
+          <GameList setId={set.id} />
         </div>
         <div className="flex-1">
           <CreateGameForm onSuccess={() => mutate(`/api/sets/${setId}`)} />

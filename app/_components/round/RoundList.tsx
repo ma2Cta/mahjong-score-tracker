@@ -1,4 +1,5 @@
 import DataTable from "@/app/_components/ui/DataTable";
+import PaginationDataTable from "@/app/_components/ui/PaginationDataTable";
 import { UserName } from "@/app/_components/ui/UserName";
 import { Round, roundNames } from "@/app/_types/round";
 import { ColumnDef } from "@tanstack/react-table";

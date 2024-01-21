@@ -3,18 +3,26 @@
 import React, { useEffect, useState } from "react";
 import { Set } from "@/app/_types/set";
 import Link from "next/link";
-import { ColumnDef } from "@tanstack/react-table";
-import DataTable from "@/app/_components/ui/DataTable";
+import { ColumnDef, PaginationState } from "@tanstack/react-table";
+import PaginationDataTable from "@/app/_components/ui/PaginationDataTable";
 import { User } from "@/app/_types/user";
 import { UserName } from "@/app/_components/ui/UserName";
 import useSWR from "swr";
 
 const SetsList: React.FC = () => {
-  const { data, isLoading } = useSWR("/api/sets");
+  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+  const { data, isLoading } = useSWR(
+    `/api/sets?page=${pageIndex + 1}&size=${pageSize}`
+  );
   const [sets, setSets] = useState<Set[]>([]);
+  const [totalPageCount, setTotalPageCount] = useState(0);
   useEffect(() => {
     if (data) {
       setSets(data.sets);
+      setTotalPageCount(data.totalPageCount);
     }
   }, [data]);
 
@@ -57,7 +65,15 @@ const SetsList: React.FC = () => {
 
   return (
     <div className="container mx-auto my-4">
-      <DataTable columns={columns} data={sets} />
+      <PaginationDataTable
+        columns={columns}
+        data={sets}
+        suppressSelectedRowCount={true}
+        pageIndex={pageIndex}
+        pageSize={pageSize}
+        setPagination={setPagination}
+        totalPageCount={totalPageCount}
+      />
     </div>
   );
 };

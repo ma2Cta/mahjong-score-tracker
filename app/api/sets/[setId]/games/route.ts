@@ -7,13 +7,23 @@ export async function GET(
 ) {
   const { setId } = params;
   const setIdNumber = Number(setId);
+
+  const searchParams = request.nextUrl.searchParams;
+  const pageNumber = Number(searchParams.get("page")) || 1;
+  const pageSize = Number(searchParams.get("size")) || 10;
+
   const games = await prisma.game.findMany({
     where: { setId: setIdNumber },
     include: { set: true },
-    orderBy: { createdAt: "asc" },
+    orderBy: { startAt: "desc" },
+    take: pageSize,
+    skip: (pageNumber - 1) * pageSize,
   });
+  const totalGames = await prisma.game.count({ where: { setId: setIdNumber } });
+  const totalPageCount = Math.ceil(totalGames / pageSize);
+
   if (games) {
-    const response = games.map((game) => ({
+    const convertedGames = games.map((game) => ({
       id: game.id,
       startAt: game.startAt,
       roundLength: game.roundLength,
@@ -24,7 +34,12 @@ export async function GET(
         users: null,
       },
     }));
-    return NextResponse.json(response);
+    return NextResponse.json({
+      games: convertedGames,
+      page: pageNumber,
+      size: pageSize,
+      totalPageCount: totalPageCount,
+    });
   } else {
     return NextResponse.json({ error: "Games not found" });
   }

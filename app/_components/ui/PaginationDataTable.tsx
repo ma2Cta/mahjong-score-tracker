@@ -4,6 +4,7 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import {
@@ -14,21 +15,46 @@ import {
   TableHeader,
   TableRow,
 } from "@/app/_components/ui/table";
-import React from "react";
+import DataTablePagination from "@/app/_components/ui/DataTablePagination";
+import React, { useMemo } from "react";
 
-interface DataTableProps<TData, TValue> {
+interface PaginationDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  suppressSelectedRowCount?: boolean;
+  pageIndex: number;
+  pageSize: number;
+  setPagination: React.Dispatch<any>;
+  totalPageCount: number;
 }
 
-function DataTable<TData, TValue>({
+function PaginationDataTable<TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+  suppressSelectedRowCount,
+  pageIndex,
+  pageSize,
+  setPagination,
+  totalPageCount,
+}: PaginationDataTableProps<TData, TValue>) {
+  const pagination = useMemo(
+    () => ({
+      pageIndex,
+      pageSize,
+    }),
+    [pageIndex, pageSize]
+  );
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    state: {
+      pagination,
+    },
+    pageCount: totalPageCount,
+    onPaginationChange: setPagination,
+    manualPagination: true,
   });
 
   return (
@@ -83,8 +109,12 @@ function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
+      <DataTablePagination
+        table={table}
+        suppressSelectedRowCount={suppressSelectedRowCount}
+      />
     </div>
   );
 }
 
-export default DataTable;
+export default PaginationDataTable;
