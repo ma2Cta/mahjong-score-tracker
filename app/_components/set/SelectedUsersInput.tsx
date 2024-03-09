@@ -31,12 +31,19 @@ import { Button } from "@/app/_components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { User } from "@/app/_types/user";
 import UserSearchTable from "@/app/_components/set/UserSearchTable";
+import { useToast } from "@/app/_components/ui/use-toast";
 
 interface SelectedUsersInputProps {
   form: UseFormReturn<z.infer<typeof createSetFormSchema>>;
+  isThree: boolean;
 }
 
-const SelectedUsersInput: React.FC<SelectedUsersInputProps> = ({ form }) => {
+const SelectedUsersInput: React.FC<SelectedUsersInputProps> = ({
+  form,
+  isThree,
+}) => {
+  const { toast } = useToast();
+
   const [userSearchName, setUserSearchName] = useState<string>("");
   const [debouncedSearchName, setDebouncedSearchName] = useState<string>("");
   const { fields, append, remove } = useFieldArray({
@@ -89,6 +96,21 @@ const SelectedUsersInput: React.FC<SelectedUsersInputProps> = ({ form }) => {
   ];
 
   const addUser = (user: User) => {
+    if (!isThree && fields.length >= 4) {
+      toast({
+        title: "追加失敗",
+        description: `四人麻雀では4人までしかユーザーを追加できません。`,
+      });
+      return
+    }
+    if (isThree && fields.length >= 3) {
+      toast({
+        title: "追加失敗",
+        description: `三人麻雀では3人までしかユーザーを追加できません。`,
+      });
+      return;
+    }
+
     fields.some((field: any) => field.userId === user.id) ||
       append({
         userId: user.id,

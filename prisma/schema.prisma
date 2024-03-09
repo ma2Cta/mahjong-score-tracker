@@ -28,6 +28,7 @@ model Set {
   id        Int      @id @default(autoincrement())
   startAt   DateTime @default(now())
   location  String
+  isThree   Boolean  @default(false)
   users     User[]
   games     Game[]
   createdAt DateTime @default(now())
