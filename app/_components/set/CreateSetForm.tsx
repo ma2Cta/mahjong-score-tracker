@@ -15,9 +15,13 @@ import React from "react";
 
 interface CreateSetFormProps {
   onSuccess: () => void;
+  isThree: boolean;
 }
 
-const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
+const CreateSetForm: React.FC<CreateSetFormProps> = ({
+  onSuccess,
+  isThree,
+}) => {
   const { toast } = useToast();
   const now = new Date();
   const form = useForm<z.infer<typeof createSetFormSchema>>({
@@ -29,6 +33,7 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
       second: now.getSeconds(),
       location: "",
       selectedUsers: [],
+      isThree: isThree
     },
   });
 
@@ -66,7 +71,7 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({ onSuccess }) => {
           </div>
         </div>
         <LocationInput form={form} />
-        <SelectedUsersInput form={form} />
+        <SelectedUsersInput form={form} isThree={isThree} />
         <Button type="submit">作成</Button>
       </form>
     </Form>

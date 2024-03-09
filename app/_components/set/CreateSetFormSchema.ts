@@ -15,7 +15,18 @@ export const createSetFormSchema = z.object({
         name: z.string(),
         image: z.string().nullable(),
       })
-    )
-    .min(3)
-    .max(4),
+    ),
+  isThree: z.boolean(),
+}).refine((data) => {
+  // isThreeがtrueの場合、selectedUsersの長さは3でなければならない
+  if (data.isThree && data.selectedUsers.length !== 3) {
+    return false;
+  }
+  // isThreeがfalseの場合、selectedUsersの長さは4でなければならない
+  if (!data.isThree && data.selectedUsers.length !== 4) {
+    return false;
+  }
+  return true;
+}, {
+  message: "四人麻雀のユーザー数は4でなければなりません。三人麻雀のユーザー数は3でなければなりません。",
 });
