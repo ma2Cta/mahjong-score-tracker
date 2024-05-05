@@ -6,7 +6,6 @@ import { useToast } from "@/app/_components/ui/use-toast";
 import { useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { createGameFormSchema } from "@/app/_components/game/CreateGameFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/app/_components/ui/form";
 import { Button } from "@/app/_components/ui/button";
@@ -20,12 +19,14 @@ type CreateRoundFormProps = {
   onSuccess: () => void;
   lastRound: Round | null;
   users: User[];
+  basePoint: number
 };
 
 const CreateRoundForm: React.FC<CreateRoundFormProps> = ({
   onSuccess,
   lastRound,
   users,
+  basePoint,
 }) => {
   const { toast } = useToast();
   const { setId, gameId } = useParams();
@@ -34,7 +35,7 @@ const CreateRoundForm: React.FC<CreateRoundFormProps> = ({
     userId: user.id,
     point: lastRound
       ? lastRound.scores.find((score) => score?.user?.id === user.id)?.point
-      : 25000,
+      : basePoint,
   }));
   const form = useForm<z.infer<typeof createRoundFormSchema>>({
     resolver: zodResolver(createRoundFormSchema),

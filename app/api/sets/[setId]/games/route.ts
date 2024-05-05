@@ -32,6 +32,8 @@ export async function GET(
         startAt: game.set.startAt,
         location: game.set.location,
         users: null,
+        isThree: game.set.isThree,
+        basePoint: game.set.basePoint,
       },
     }));
     return NextResponse.json({

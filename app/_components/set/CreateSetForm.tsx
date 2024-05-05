@@ -12,6 +12,7 @@ import SelectedUsersInput from "@/app/_components/set/SelectedUsersInput";
 import { useToast } from "@/app/_components/ui/use-toast";
 import TimeInput from "@/app/_components/set/TimeInput";
 import React from "react";
+import BasePointInput from "@/app/_components/set/BasePointInput";
 
 interface CreateSetFormProps {
   onSuccess: () => void;
@@ -33,7 +34,8 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({
       second: now.getSeconds(),
       location: "",
       selectedUsers: [],
-      isThree: isThree
+      isThree: isThree,
+      basePoint: isThree ? 35000 : 25000
     },
   });
 
@@ -50,6 +52,7 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({
         location: values.location,
         isThree: isThree,
         selectedUserIds: values.selectedUsers.map((user) => user.userId),
+        basePoint: values.basePoint,
       }),
     });
 
@@ -72,6 +75,7 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({
           </div>
         </div>
         <LocationInput form={form} />
+        <BasePointInput form={form} />
         <SelectedUsersInput form={form} isThree={isThree} />
         <Button type="submit">作成</Button>
       </form>

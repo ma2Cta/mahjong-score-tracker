@@ -35,6 +35,10 @@ const SetDetail: React.FC<SetDetailProps> = ({ set }) => {
             <TableCell>{set.location}</TableCell>
           </TableRow>
           <TableRow suppressHover={true}>
+            <TableHead className="text-right">素点</TableHead>
+            <TableCell>{set.basePoint}</TableCell>
+          </TableRow>
+          <TableRow suppressHover={true}>
             <TableHead className="text-right">参加ユーザー</TableHead>
             <TableCell>
               {set.users?.map((user) => {

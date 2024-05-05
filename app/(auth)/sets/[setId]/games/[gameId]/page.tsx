@@ -65,6 +65,7 @@ const GameDetailPage: React.FC = () => {
               onSuccess={() => mutate(`/api/sets/${setId}/games/${gameId}`)}
               lastRound={game?.rounds?.[game?.rounds?.length - 1] || null}
               users={game?.set?.users || []}
+              basePoint={game?.set?.basePoint ?? 25000}
             />
           </div>
         </div>
