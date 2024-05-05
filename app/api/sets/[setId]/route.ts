@@ -16,6 +16,7 @@ export async function GET(
       id: set.id,
       startAt: set.startAt,
       location: set.location,
+      isThree: set.isThree,
       users: set.users.map((user) => {
         return {
           id: user.id,
@@ -50,5 +51,5 @@ export async function DELETE(
   await prisma.set.delete({
     where: { id: setIdNumber },
   });
-  NextResponse.json({ success: true });
+  return NextResponse.json({ success: true });
 }

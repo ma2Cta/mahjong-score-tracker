@@ -23,6 +23,10 @@ const SetDetail: React.FC<SetDetailProps> = ({ set }) => {
       <Table>
         <TableBody>
           <TableRow suppressHover={true}>
+            <TableHead className="text-right">人数</TableHead>
+            <TableCell>{set.isThree ? '3' : '4'}</TableCell>
+          </TableRow>
+          <TableRow suppressHover={true}>
             <TableHead className="text-right">開催日時</TableHead>
             <TableCell>{set.startAt?.toString()}</TableCell>
           </TableRow>

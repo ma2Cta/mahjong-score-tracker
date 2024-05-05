@@ -23,6 +23,7 @@ export async function GET(request: NextRequest) {
       id: set.id,
       startAt: set.startAt,
       location: set.location,
+      isThree: set.isThree,
       users: set.users.map((user) => {
         return {
           id: user.id,
@@ -52,12 +53,13 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const { startAt, location, selectedUserIds } = await req.json();
+  const { startAt, location, isThree, selectedUserIds } = await req.json();
   const isoDate = new Date(startAt);
   await prisma.set.create({
     data: {
       startAt: isoDate,
       location,
+      isThree,
       users: {
         connect: selectedUserIds.map((id: String) => ({ id: Number(id) })),
       },
