@@ -29,6 +29,7 @@ model Set {
   startAt   DateTime @default(now())
   location  String
   isThree   Boolean  @default(false)
+  basePoint Int      @default(25000)
   users     User[]
   games     Game[]
   createdAt DateTime @default(now())

@@ -6,6 +6,7 @@ export type Set = {
   startAt: Date;
   location: string;
   isThree: boolean;
+  basePoint: number;
   users: User[] | null;
   games: Game[] | null;
 };

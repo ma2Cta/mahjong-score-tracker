@@ -39,6 +39,8 @@ export async function GET(
         startAt: game.set.startAt,
         location: game.set.location,
         users: game.set.users,
+        isThree: game.set.isThree,
+        basePoint: game.set.basePoint,
       },
       rounds: game.rounds.map((round) => ({
         id: round.id,

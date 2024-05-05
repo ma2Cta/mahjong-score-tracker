@@ -17,6 +17,7 @@ export const createSetFormSchema = z.object({
       })
     ),
   isThree: z.boolean(),
+  basePoint: z.number().min(100),
 }).refine((data) => {
   // isThreeがtrueの場合、selectedUsersの長さは3でなければならない
   if (data.isThree && data.selectedUsers.length !== 3) {

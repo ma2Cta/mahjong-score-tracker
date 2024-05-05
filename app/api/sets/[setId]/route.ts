@@ -17,6 +17,7 @@ export async function GET(
       startAt: set.startAt,
       location: set.location,
       isThree: set.isThree,
+      basePoint: set.basePoint,
       users: set.users.map((user) => {
         return {
           id: user.id,
