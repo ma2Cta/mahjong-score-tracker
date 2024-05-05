@@ -101,7 +101,7 @@ const SelectedUsersInput: React.FC<SelectedUsersInputProps> = ({
         title: "追加失敗",
         description: `四人麻雀では4人までしかユーザーを追加できません。`,
       });
-      return 
+      return
     }
     if (isThree && fields.length >= 3) {
       toast({

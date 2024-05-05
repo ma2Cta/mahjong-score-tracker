@@ -5,6 +5,7 @@ export type Set = {
   id: number;
   startAt: Date;
   location: string;
+  isThree: boolean;
   users: User[] | null;
   games: Game[] | null;
 };

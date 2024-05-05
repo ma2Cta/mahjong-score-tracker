@@ -48,6 +48,7 @@ const CreateSetForm: React.FC<CreateSetFormProps> = ({
       body: JSON.stringify({
         startAt: startAt,
         location: values.location,
+        isThree: isThree,
         selectedUserIds: values.selectedUsers.map((user) => user.userId),
       }),
     });
