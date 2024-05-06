@@ -43,7 +43,6 @@ model Game {
   startAt     DateTime @default(now())
   roundLength Int      @default(1)
   rounds      Round[]
-  basePoint   Int      @default(25000)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now())
 }

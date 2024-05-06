@@ -40,7 +40,6 @@ export async function GET(request: NextRequest) {
           roundLength: game.roundLength,
           set: null,
           rounds: null,
-          basePoint: game.basePoint,
         };
       }),
     };
