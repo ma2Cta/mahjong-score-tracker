@@ -8,7 +8,6 @@ export type Game = {
   roundLength: RoundLength;
   set: Set | null;
   rounds: Round[] | null;
-  basePoint: number;
 };
 
 export enum RoundLength {

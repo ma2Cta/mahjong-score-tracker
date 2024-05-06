@@ -61,7 +61,6 @@ export async function GET(
           point: score.point,
         })),
       })),
-      basePoint: game.basePoint,
     };
     return NextResponse.json(response);
   } else {
